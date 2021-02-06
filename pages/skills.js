@@ -3,8 +3,6 @@ import { Box, Heading, ListItem, UnorderedList, Text } from "@chakra-ui/react"
 import { getSkills } from '../services/skills';
 
 export default function Skills({ data }) {
-  console.log({ data });
-
   return (
     <Layout pageTitle="Skills">
       <Heading as="h1" fontWeight="700" fontStyle="italic">Skills</Heading>
