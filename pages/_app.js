@@ -4,10 +4,10 @@ import fonts from "../styles/fonts";
 
 const theme = extendTheme({
   fonts: {
-    heading: "Open Sans",
-    body: "Raleway",
-  },
-})
+    heading: "'Lora', serif",
+    body: "'Poppins', sans-serif",
+  }
+});
 
 export default function App({ Component, pageProps }) {
   return (
