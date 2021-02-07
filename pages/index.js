@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Grid, GridItem, Heading, Text, VisuallyHidden } from "@chakra-ui/react"
 import Layout from '../components/layout';
+import { SITE_MENU } from '../constants';
 
 export default function Home() {
   return (
@@ -8,32 +9,16 @@ export default function Home() {
       <VisuallyHidden>
         <Heading as="h1">Tommy Rosario</Heading>
       </VisuallyHidden>
-      <Grid templateColumns="repeat(2, 1fr)" gap={10}>
-        <GridBox link="/about">
-          <Heading as="h2" size="lg" fontWeight="700" fontStyle="italic">About Me</Heading>
-          <Text>Lorem ipsum</Text>
-        </GridBox>
-        <GridBox link="/work">
-          <Heading as="h2" size="lg" fontWeight="700" fontStyle="italic">Work Samples</Heading>
-          <Text>Lorem ipsum</Text>
-        </GridBox>
-        <GridBox link="/skills">
-          <Heading as="h2" size="lg" fontWeight="700" fontStyle="italic">Skills</Heading>
-          <Text>Lorem ipsum</Text>
-        </GridBox>
-        <GridBox link="/experience">
-          <Heading as="h2" size="lg" fontWeight="700" fontStyle="italic">Experience</Heading>
-          <Text>Lorem ipsum</Text>
-        </GridBox>
+      <Grid templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", null]} gap={[5, 10]}>
+        {SITE_MENU.map((menuItem, idx) =>
+          <GridItem bgColor="gray.200" borderRadius={10} key={idx} p={5} textAlign="center">
+            <Link href={menuItem.value}>
+              <a><Heading as="h2" size="lg" fontWeight="700" fontStyle="italic">{menuItem.label}</Heading></a>
+            </Link>
+            <Text>{menuItem.text}</Text>
+          </GridItem>
+        )}
       </Grid>
     </Layout>
-  )
-}
-
-function GridBox({ children, link, ...props }) {
-  return (
-    <GridItem bgColor="gray.200" borderRadius={10} p={5} textAlign="center" {...props}>
-      <Link href={link}><a>{children}</a></Link>
-    </GridItem>
   )
 }

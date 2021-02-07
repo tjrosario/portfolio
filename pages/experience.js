@@ -25,13 +25,11 @@ export default function Experience({ data }) {
               )}
             </UnorderedList>
 
-            <Stack isInline>
+            <Stack direction={["column", null, "row"]}>
               <Heading as="h3" fontSize="large">Technologies:</Heading>
               <Text>{experience.technology}</Text>
             </Stack>
           </Box>
-
-
         </Box>
       )}
     </Layout>
