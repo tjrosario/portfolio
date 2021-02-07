@@ -20,7 +20,7 @@ export default function Skills({ data }) {
             </Box>
           )}
 
-          {skill.items && 
+          {skill.items &&
             <SkillsList items={skill.items} />
           }
         </Box>
@@ -31,7 +31,7 @@ export default function Skills({ data }) {
 
 function SkillsList({ items }) {
   return (
-    <UnorderedList display="flex" listStyleType="none" my={3} ml={5}>
+    <UnorderedList display={["list-item", null, "flex"]} listStyleType="none" my={3} ml={[0, null, 5]}>
       {items.map((item, idx) =>
         <ListItem key={idx} mr={3}>{item}</ListItem>
       )}
