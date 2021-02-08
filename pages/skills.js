@@ -31,9 +31,9 @@ export default function Skills({ data }) {
 
 function SkillsList({ items }) {
   return (
-    <UnorderedList display={["list-item", null, "flex"]} listStyleType="none" my={3} ml={[0, null, 5]}>
+    <UnorderedList listStyleType="none" ml={0} mt={3}>
       {items.map((item, idx) =>
-        <ListItem key={idx} mr={3}>{item}</ListItem>
+        <ListItem key={idx} mr={3} display={["inline-block", null]}>{item}</ListItem>
       )}
     </UnorderedList>
   );

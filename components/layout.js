@@ -1,8 +1,23 @@
-import { Button, Container, Heading, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Stack } from "@chakra-ui/react"
+import React from "react";
+import { Container, Heading, ListItem, Stack, UnorderedList } from "@chakra-ui/react"
 import Head from 'next/head';
 import Link from 'next/link'
 import { BASE_PATH } from "../constants";
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import {
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  Box,
+  Flex,
+  IconButton,
+  Image,
+  Text,
+  useDisclosure
+} from "@chakra-ui/react";
 import { FaReact } from "react-icons/fa";
 import { CgMenuRound } from "react-icons/cg";
 import { SITE_MENU } from '../constants';
@@ -11,6 +26,8 @@ import Socials from '../components/socials';
 export default function Layout({ children, pageTitle }) {
   const defaultTitle = "Tommy Rosario, Seasoned Frontend Developer";
   const title = pageTitle ? `${pageTitle} : ${defaultTitle}` : defaultTitle;
+  const { isOpen, onClose, onOpen } = useDisclosure();
+  const btnRef = React.useRef();
 
   return (
     <>
@@ -33,23 +50,44 @@ export default function Layout({ children, pageTitle }) {
               </Box>
 
               <Box ml="auto">
-                <Menu>
-                  <MenuButton as={Button} rightIcon={<CgMenuRound />}>Menu</MenuButton>
-                  <MenuList>
-                    <MenuItem>
-                      <Link href={'/'}><a>Home</a></Link>
-                    </MenuItem>
-                    {SITE_MENU.map((menuItem, idx) =>
-                      <MenuItem>
-                        <Link href={menuItem.value}><a>{menuItem.label}</a></Link>
-                      </MenuItem>
-                    )}
-                    <MenuDivider />
-                    <MenuItem _hover={{ background: 'none'}}>
-                      <Socials />
-                    </MenuItem>
-                  </MenuList>
-                </Menu>
+                <IconButton
+                  aria-label="Toggle Menu"
+                  icon={<CgMenuRound />}
+                  size="lg"
+                  onClick={onOpen}
+                  variant="outline"
+                />
+
+                <Drawer
+                  isOpen={isOpen}
+                  placement="right"
+                  onClose={onClose}
+                  finalFocusRef={btnRef}
+                >
+                  <DrawerOverlay>
+                    <DrawerContent>
+                      <DrawerHeader background="gray.200" borderBottomColor="gray.400" borderBottomWidth="1px">
+                        <Heading as="h6" fontSize="2xl" fontStyle="italic">Take Your Pick</Heading>
+                      </DrawerHeader>
+                      <DrawerCloseButton />
+                      <DrawerBody>
+                        <UnorderedList listStyleType="none" m={0}>
+                          {SITE_MENU.map((menuItem, idx) =>
+                            <ListItem cursor="pointer" fontSize="larger" key={idx} my={3} _hover={{ color: "gray.500" }}>
+                              <Link href={menuItem.value} onClick={onClose}>
+                                <a>{menuItem.label}</a>
+                              </Link>
+                            </ListItem>
+                          )}
+                        </UnorderedList>
+                      </DrawerBody>
+
+                      <DrawerFooter>
+                        <Socials />
+                      </DrawerFooter>
+                    </DrawerContent>
+                  </DrawerOverlay>
+                </Drawer>
               </Box>
             </Flex>
           </Flex>
