@@ -2,7 +2,6 @@ const WORK = [
   {
     id: 0,
     title: 'Brewery App',
-    // src: 'video/real-estate.mp4',
     preview: 'img/work/brewery.jpg',
     description: 'Fun little brewery app that lets you search breweries across the country using different sets of criteria. Built using React\'s context and hooks API\'s.',
     github: 'https://github.com/tjrosario/brewery-app'

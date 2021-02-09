@@ -10,7 +10,8 @@ import {
   ModalCloseButton,
   Text
 } from "@chakra-ui/react"
-import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player';
+import { BASE_PATH } from "../constants";
 
 export default function WorkModal({ isOpen, onClose, work }) {
   return (
@@ -21,7 +22,7 @@ export default function WorkModal({ isOpen, onClose, work }) {
         <ModalCloseButton />
         <ModalBody>
           <AspectRatio ratio={2}>
-            <ReactPlayer controls url={work.src} height="100%" width="100%" />
+            <ReactPlayer controls url={`${BASE_PATH}/${work.src}`} height="100%" width="100%" />
           </AspectRatio>
           <Text mt={5}>{work.description}</Text>
         </ModalBody>
