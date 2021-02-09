@@ -1,4 +1,4 @@
-import Layout from '../components/layout';
+import Layout from '../components/Layout';
 import { Box, Heading, ListItem, UnorderedList, Text } from "@chakra-ui/react"
 import { getSkills } from '../services/skills';
 
