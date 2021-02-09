@@ -4,7 +4,7 @@ const SKILLS = [
     areas: [
       {
         name: 'Frontend',
-        items: ['react', 'redux', 'angular',
+        items: ['nextjs', 'react', 'chakra ui', 'styled components', 'redux', 'angular',
           'typescript', 'es2015', 'javascript',
           'scss', 'bootstrap', 'material-ui',
           'html5', 'jest', 'enzyme', 'magento'

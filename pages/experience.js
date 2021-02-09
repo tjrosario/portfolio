@@ -1,5 +1,5 @@
 import Layout from '../components/Layout';
-import { Box, Heading, ListItem, Stack, Text, UnorderedList } from "@chakra-ui/react"
+import { Box, Center, Divider, Heading, ListItem, Stack, Text, UnorderedList } from "@chakra-ui/react"
 import { getExperience } from '../services/experience';
 
 export default function Experience({ data }) {
@@ -30,6 +30,12 @@ export default function Experience({ data }) {
               <Text>{experience.technology}</Text>
             </Stack>
           </Box>
+
+          {idx < data.length - 1 &&
+            <Center my={[5, null, 10]}>
+              <Divider borderColor="gray.400" />
+            </Center>
+          }
         </Box>
       )}
     </Layout>
