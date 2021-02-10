@@ -4,7 +4,7 @@ import fonts from "../styles/fonts";
 
 const theme = extendTheme({
   fonts: {
-    heading: "'Lora', serif",
+    heading: "'Palanquin', serif",
     body: "'Poppins', sans-serif",
   }
 });

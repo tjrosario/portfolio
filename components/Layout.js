@@ -1,11 +1,11 @@
-import { Container } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react";
 import Head from 'next/head';
 import { BASE_PATH } from "../constants";
-
 import Header from './Header';
 import Footer from './Footer';
+import SiteContainer from './SiteContainer';
 
-export default function Layout({ children, pageTitle }) {
+export default function Layout({ children, pageTitle, ...props }) {
   const defaultTitle = "Tommy Rosario, Seasoned Frontend Developer";
   const title = pageTitle ? `${pageTitle} : ${defaultTitle}` : defaultTitle;
 
@@ -15,11 +15,13 @@ export default function Layout({ children, pageTitle }) {
         <link rel="shortcut icon" href={`${BASE_PATH}/memoji.png`} />
         <title>{title}</title>
       </Head>
-      <Container maxWidth="5xl" py={3}>
-        <Header />
-        {children}
-        <Footer />
-      </Container>
+      <Header />
+      <Box pb={10} pt={5} {...props}>
+        <SiteContainer>
+          {children}
+        </SiteContainer>
+      </Box>
+      <Footer />
     </>
   );
 }

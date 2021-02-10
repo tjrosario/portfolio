@@ -5,7 +5,7 @@ import { getExperience } from '../services/experience';
 export default function Experience({ data }) {
   return (
     <Layout pageTitle="Experience">
-      <Heading as="h1" fontWeight="700" fontStyle="italic">Experience</Heading>
+      <Heading as="h1" fontSize="7xl">Experience</Heading>
 
       {data.map((experience, idx) =>
         <Box key={idx} my={6}>

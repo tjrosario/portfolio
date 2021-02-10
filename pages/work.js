@@ -19,7 +19,7 @@ export default function Work({ data }) {
 
   return (
     <Layout pageTitle="Work Samples">
-      <Heading as="h1" fontWeight="700" fontStyle="italic">Work Samples</Heading>
+      <Heading as="h1" fontSize="7xl">Work Samples</Heading>
 
       <Text my={5}>This a hand-picked collection of some recent work I've had the pleasure of being involved with building. Enjoy!</Text>
 

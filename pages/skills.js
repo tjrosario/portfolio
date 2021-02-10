@@ -5,7 +5,7 @@ import { getSkills } from '../services/skills';
 export default function Skills({ data }) {
   return (
     <Layout pageTitle="Skills">
-      <Heading as="h1" fontWeight="700" fontStyle="italic">Skills</Heading>
+      <Heading as="h1" fontSize="7xl">Skills</Heading>
 
       {data.map((skill, idx) =>
         <Box key={idx}>

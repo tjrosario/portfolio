@@ -5,7 +5,7 @@ import { getAbout } from '../services/about';
 export default function About({ data }) {
   return (
     <Layout pageTitle="About">
-      <Heading as="h1" fontWeight="700" fontStyle="italic">About Me</Heading>
+      <Heading as="h1" fontSize="7xl">About Me</Heading>
 
       {data.map((text, idx) =>
         <Text key={idx} mt={5}>{text}</Text>  

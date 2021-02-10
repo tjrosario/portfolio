@@ -1,24 +1,36 @@
-import Link from 'next/link'
-import { Grid, GridItem, Heading, Text, VisuallyHidden } from "@chakra-ui/react"
+import { Box, Heading, Text } from "@chakra-ui/react"
 import Layout from '../components/Layout';
-import { SITE_MENU } from '../constants';
+import { BASE_PATH } from "../constants";
 
 export default function Home() {
   return (
-    <Layout>
-      <VisuallyHidden>
-        <Heading as="h1">Tommy Rosario</Heading>
-      </VisuallyHidden>
-      <Grid templateColumns={["repeat(1, 1fr)", null, "repeat(2, 1fr)"]} gap={[5, 10]}>
-        {SITE_MENU.map((menuItem, idx) =>
-          <GridItem bgColor="gray.200" borderRadius="lg" key={idx} p={5} textAlign="center">
-            <Link href={menuItem.value}>
-              <a><Heading as="h2" size="lg" fontWeight="700" fontStyle="italic">{menuItem.label}</Heading></a>
-            </Link>
-            <Text>{menuItem.text}</Text>
-          </GridItem>
-        )}
-      </Grid>
+    <Layout 
+      alignItems="center"
+      backgroundColor="black"
+      display="flex"
+      height="75vh"
+      _after={{
+        backgroundImage: `url(${BASE_PATH}/img/beach.jpg)`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "0 50%",
+        backgroundSize: "cover",
+        content: "' '",
+        display: "block",
+        height: "100%",
+        left: 0,
+        position: "absolute",
+        opacity: 0.25,
+        top: 0,
+        width: "100%"
+      }}
+      overflow="hidden"
+      position="relative"
+    >
+      <Box color="white" textAlign="center" position="relative" zIndex="2">
+        <Heading as="h1" fontFamily="Palanquin" fontSize={["4xl", "5em", "6em", "8em"]}>Tommy Rosario</Heading>
+        <Text color="gray.300" fontSize={["larger", "3xl", "4xl"]} my={3}>Seasoned Frontend Developer</Text>
+        <Text>&#60; jerseyShore <Box as="span" fontSize=".85em">&#47;</Box>&gt;</Text>
+      </Box>
     </Layout>
   )
 }
