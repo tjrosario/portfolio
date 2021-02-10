@@ -7,7 +7,7 @@ export default function Experience({ data }) {
     <Layout pageTitle={'Experience'}>
       <Heading
         as={'h1'}
-        fontSize={'7xl'}
+        fontSize={['5xl', null, '7xl']}
       >Experience
       </Heading>
 
@@ -20,7 +20,7 @@ export default function Experience({ data }) {
             as={'h2'}
             fontSize={'2xl'}
           >
-            {experience.company} /
+            {experience.company} / {' '}
             <Box
               as={'span'}
               fontWeight={'300'}

@@ -7,7 +7,7 @@ export default function About({ data }) {
     <Layout pageTitle={'About'}>
       <Heading
         as={'h1'}
-        fontSize={'7xl'}
+        fontSize={['5xl', null, '7xl']}
       >About Me
       </Heading>
 

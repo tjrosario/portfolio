@@ -21,7 +21,7 @@ export default function Work({ data }) {
     <Layout pageTitle={'Work Samples'}>
       <Heading
         as={'h1'}
-        fontSize={'7xl'}
+        fontSize={['5xl', null, '7xl']}
       >Work Samples
       </Heading>
 

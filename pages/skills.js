@@ -7,7 +7,7 @@ export default function Skills({ data }) {
     <Layout pageTitle={'Skills'}>
       <Heading
         as={'h1'}
-        fontSize={'7xl'}
+        fontSize={['5xl', null, '7xl']}
       >Skills
       </Heading>
 
