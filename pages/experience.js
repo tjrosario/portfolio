@@ -10,7 +10,7 @@ export default function Experience({ data }) {
       {data.map((experience, idx) =>
         <Box key={idx} my={6}>
           <Heading as="h2" fontSize="2xl">
-            {experience.company} / <Box as="span" fontWeight="300" fontStyle="italic">{experience.title}</Box>
+            {experience.company} / <Box as="span" fontWeight="300">{experience.title}</Box>
           </Heading>
 
           <Box>
