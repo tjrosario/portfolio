@@ -10,16 +10,16 @@ export default function Home() {
       display="flex"
       height="75vh"
       _after={{
-        backgroundImage: `url(${BASE_PATH}/img/beach.jpg)`,
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "0 50%",
-        backgroundSize: "cover",
         content: "' '",
         display: "block",
+        backgroundImage: `url(${BASE_PATH}/img/beach.jpg)`,
+        backgroundPosition: "0 50%",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
         height: "100%",
         left: 0,
-        position: "absolute",
         opacity: 0.25,
+        position: "absolute",
         top: 0,
         width: "100%"
       }}

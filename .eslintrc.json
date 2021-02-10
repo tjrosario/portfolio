@@ -11,13 +11,13 @@
   ],
   "rules": {
       "array-bracket-newline": [
-          "error",
+          0,
           {
               "minItems": 1
           }
       ],
       "array-element-newline": [
-          "error",
+          0,
           {
               "minItems": 1
           }
@@ -51,16 +51,18 @@
                   "external",
                   "builtin",
                   "parent"
-              ],
-              "newlines-between": "always"
+              ]
           }
       ],
       "indent": [
           "error",
-          4,
+          2,
           {
               "SwitchCase": 1
           }
+      ],
+      "jsx-a11y/anchor-is-valid": [
+          0
       ],
       "jsx-a11y/mouse-events-have-key-events": [
           0
@@ -103,9 +105,9 @@
           0
       ],
       "object-curly-newline": [
-          "error",
+          0,
           {
-              "minProperties": 1
+              "minProperties": 3
           }
       ],
       "object-property-newline": [
@@ -132,11 +134,11 @@
       ],
       "react/jsx-indent": [
           "error",
-          4
+          2
       ],
       "react/jsx-indent-props": [
           "error",
-          4
+          2
       ],
       "react/jsx-max-props-per-line": [
           "error",
@@ -150,16 +152,19 @@
       "react/jsx-props-no-spreading": [
           0
       ],
-      "react/jsx-sort-props": [
-          "error",
-          {
-              "ignoreCase": true
-          }
+      "react/no-array-index-key": [
+          0
       ],
       "react/no-did-update-set-state": [
           0
       ],
       "react/no-unescaped-entities": [
+          0
+      ],
+      "react/prop-types": [
+        0
+      ],
+      "react/react-in-jsx-scope": [
           0
       ],
       "sort-destructure-keys/sort-destructure-keys": [

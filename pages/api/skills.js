@@ -1,36 +1,36 @@
 const SKILLS = [
   {
-    name: 'Coding',
     areas: [
       {
-        name: 'Frontend',
         items: ['nextjs', 'react', 'chakra ui', 'styled components', 'redux', 'angular',
           'typescript', 'es2015', 'javascript',
           'scss', 'bootstrap', 'material-ui',
           'html5', 'jest', 'enzyme', 'magento'
-        ]
+        ],
+        name: 'Frontend'
       },
       {
-        name: 'Middle Tier',
-        items: ['nodejs', 'express', 'stripejs', 'passport', '.NET']
+        items: ['nodejs', 'express', 'stripejs', 'passport', '.NET'],
+        name: 'Middle Tier'
       },
       {
-        name: 'Backend',
-        items: ['mongodb']
+        items: ['mongodb'],
+        name: 'Backend'
       }
-    ]
+    ],
+    name: 'Coding'
   },
   {
-    name: 'Design',
-    items: ['photoshop', 'zeplin']
+    items: ['photoshop', 'zeplin'],
+    name: 'Design'
   },
   {
-    name: 'Project Management',
-    items: ['jira', 'zenhub', 'trello']
+    items: ['jira', 'zenhub', 'trello'],
+    name: 'Project Management'
   },
   {
-    name: 'Version Control',
-    items: ['git', 'github', 'gitlab']
+    items: ['git', 'github', 'gitlab'],
+    name: 'Version Control'
   }
 ];
 

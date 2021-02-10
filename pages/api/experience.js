@@ -1,9 +1,7 @@
 const EXPERIENCE = [
   {
-    title: 'Frontend Developer',
     company: 'Plixer',
     date: 'September 2019 – Present',
-    location: 'Remote',
     description: [
       'Assisted in re-architecting network traffic analysis system from a legacy tech-stack to modern Angular 8+ framework',
       'Lead development on the application’s reporting engine which gives customer’s a clear visualization of all network conversation and device usage',
@@ -11,13 +9,13 @@ const EXPERIENCE = [
       'Wrote unit tests using Jasmine and Karma',
       'Implemented Bootstrap for the UI library'
     ],
-    technology: "Angular 8+, Typescript, Bootstrap, Sass"
+    location: 'Remote',
+    technology: 'Angular 8+, Typescript, Bootstrap, Sass',
+    title: 'Frontend Developer'
   },
   {
-    title: 'Frontend Engineer',
     company: 'CityBldr',
     date: 'May 2017 – May 2020',
-    location: 'Remote',
     description: [
       'Lead front end developer for both the consumer facing and internal RETech application that determines the best value and uses for land for both sellers and buyers.',
       'Built property claim flow which allows sellers to register and look up their property to determine its worth when sold alone and along with neighbors',
@@ -28,13 +26,13 @@ const EXPERIENCE = [
       'Implemented UI components with Material UI',
       'Lead efforts in the consumer-facing site redesign'
     ],
-    technology: "React, Redux, LESS"
+    location: 'Remote',
+    technology: 'React, Redux, LESS',
+    title: 'Frontend Engineer'
   },
   {
-    title: 'Sr. UI Developer',
     company: 'AffinityX',
     date: 'Jan 2015 – May 2020',
-    location: 'Remote',
     description: [
       'Created new functionality and features for creative content delivery platforms using KnockoutJS, jQuery and PHP',
       'Helped in building custom application routing system',
@@ -42,13 +40,13 @@ const EXPERIENCE = [
       'Built a custom proofing interface that allows customers to upload creative content, manage revision history and mark for approval',
       'Assisted in building administrative console'
     ],
-    technology: "KnockoutJS, jQuery, PHP"
+    location: 'Remote',
+    technology: 'KnockoutJS, jQuery, PHP',
+    title: 'Sr. UI Developer'
   },
   {
-    title: 'Frontend Engineer',
     company: 'ThreadLab Inc',
     date: 'Mar 2014 – Jan 2020',
-    location: 'Remote',
     description: [
       'Lead front end development using Angular 5+, SASS',
       'Built a proxy using NodeJS for restful API consumption',
@@ -58,39 +56,39 @@ const EXPERIENCE = [
       'Integrated Stripe and Paypal payment funnels',
       'Manage email marketing templates via Mailchimp and Mandrill'
     ],
-    technology: "Angular 5+, NodeJS, ES6 (2015), SASS, Bourbon/Neat, Grunt, Stripe, Paypal, Groovy on Grails, MongoDB"
+    location: 'Remote',
+    technology: 'Angular 5+, NodeJS, ES6 (2015), SASS, Bourbon/Neat, Grunt, Stripe, Paypal, Groovy on Grails, MongoDB',
+    title: 'Frontend Engineer'
   },
   {
-    title: 'Software Engineer',
     company: 'Do Something',
     date: 'May 2014 – Jan 2015',
-    location: 'New York City',
     description: [
       'Lead development on various social awareness campaigns',
       'Creating new features, functionality to application modules using jQuery and RequireJS',
       'Ongoing maintenance within Drupal framework template system',
       'Contributed to open-sourced interface framework and pattern libraries'
     ],
-    technology: "Drupal, RequireJS, jQuery, SASS, Bourbon / Neat, Stripe, Wordress"
+    location: 'New York City',
+    technology: 'Drupal, RequireJS, jQuery, SASS, Bourbon / Neat, Stripe, Wordress',
+    title: 'Software Engineer'
   },
   {
-    title: 'Senior Software Engineer',
     company: 'CPXi',
     date: 'Oct 2013 – May 2014',
-    location: 'New York City',
     description: [
       'Worked on new functionality and features for company\’s internal metrics dashboard',
       'Developed browser plugins that were available in the Chrome and Firefox web stores',
       'Lead UI development on a real-time news feed application / scraper built on HandlebarsJS, NodeJS, and Sails MVC',
       'Proprietary CSS framework using LESS'
     ],
-    technology: "Handlebars JS, Laravel, Symfony, LESS, NodeJS, Sails MVC"
+    location: 'New York City',
+    technology: 'Handlebars JS, Laravel, Symfony, LESS, NodeJS, Sails MVC',
+    title: 'Senior Software Engineer'
   },
   {
-    title: 'Frontend Tech Lead',
     company: 'Alexander Interactive',
     date: 'Jul 2006 – Oct 2013',
-    location: 'New York City',
     description: [
       'Built, managed and lead a team of seven front-end developers',
       'In charge of providing front-end development estimates on all projects',
@@ -108,7 +106,9 @@ const EXPERIENCE = [
       'Converted Photoshop documents into HTML and CSS templates',
       'Wrote custom CSS reset framework'
     ],
-    technology: "jQuery, PrototypeJS, Vanilla JS, Magento, Django"
+    location: 'New York City',
+    technology: 'jQuery, PrototypeJS, Vanilla JS, Magento, Django',
+    title: 'Frontend Tech Lead'
   }
 ];
 

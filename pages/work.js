@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { Box, Grid, GridItem, Heading, IconButton, Stack, Text, useDisclosure } from '@chakra-ui/react';
+import { useState } from 'react';
+import { CgLink } from 'react-icons/cg';
+import { ImVideoCamera } from 'react-icons/im';
+import { SiGithub } from 'react-icons/si';
 import Layout from '../components/Layout';
-import { Box, Grid, GridItem, Heading, IconButton, Stack, Text, useDisclosure } from "@chakra-ui/react"
+import WorkModal from '../components/WorkModal';
+import { BASE_PATH } from '../constants';
 import { getWork } from '../services/work';
-import { BASE_PATH } from "../constants";
-import { SiGithub } from "react-icons/si";
-import { CgLink } from "react-icons/cg";
-import { ImVideoCamera } from "react-icons/im";
-import WorkModal from "../components/WorkModal";
 
 export default function Work({ data }) {
   const [activeWork, setActiveWork] = useState(null);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onClose, onOpen } = useDisclosure();
 
   const viewWork = (work) => {
     setActiveWork(work);
@@ -18,59 +18,93 @@ export default function Work({ data }) {
   };
 
   return (
-    <Layout pageTitle="Work Samples">
-      <Heading as="h1" fontSize="7xl">Work Samples</Heading>
+    <Layout pageTitle={'Work Samples'}>
+      <Heading
+        as={'h1'}
+        fontSize={'7xl'}
+      >Work Samples
+      </Heading>
 
       <Text my={5}>This a hand-picked collection of some recent work I've had the pleasure of being involved with building. Enjoy!</Text>
 
-      <Grid templateColumns={["repeat(1, 1fr)", null, "repeat(2, 1fr)", null, "repeat(3, 1fr)"]} gap={[5, 10]}>
-        {data.map((work, index) =>
+      <Grid
+        templateColumns={['repeat(1, 1fr)', null, 'repeat(2, 1fr)', null, 'repeat(3, 1fr)']}
+        gap={[5, 10]}
+      >
+        {data.map((work, index) => (
           <GridItem
-            borderColor="gray.200"
-            borderRadius="lg"
-            borderWidth="1px"
-            display="flex"
-            flexDir="column"
+            borderColor={'gray.200'}
+            borderRadius={'lg'}
+            borderWidth={'1px'}
+            display={'flex'}
+            flexDir={'column'}
             key={index}
           >
             <Box
               backgroundImage={`url(${BASE_PATH}/${work.preview})`}
-              backgroundPosition="center"
-              backgroundSize="cover"
-              borderColor="gray.200"
-              borderTopLeftRadius="lg"
-              borderTopRightRadius="lg"
-              borderBottomWidth="1px"
-              height="200px"
-            >
-            </Box>
+              backgroundPosition={'center'}
+              backgroundSize={'cover'}
+              borderColor={'gray.200'}
+              borderTopLeftRadius={'lg'}
+              borderTopRightRadius={'lg'}
+              borderBottomWidth={'1px'}
+              height={'200px'}
+            />
             <Box p={5}>
-              <Heading as="h2" fontSize="larger">{work.title}</Heading>
+              <Heading
+                as={'h2'}
+                fontSize={'larger'}
+              >{work.title}
+              </Heading>
               <Text mt={3}>{work.description}</Text>
             </Box>
 
-            <Stack as="footer" background="gray.200" isInline mt="auto" justifyContent="flex-end" spacing={0}>
-              {work.src &&
-                <IconButton aria-label="View screenshare" icon={<ImVideoCamera />} onClick={() => viewWork(work)} variant="ghost" />
-              }
-              {work.github &&
-                <IconButton aria-label="View on GitHub" icon={<SiGithub />} variant="ghost" />
-              }
-              {work.url &&
-                <IconButton aria-label="View website" icon={<CgLink />} variant="ghost" />
-              }
+            <Stack
+              as={'footer'}
+              background={'gray.200'}
+              isInline
+              mt={'auto'}
+              justifyContent={'flex-end'}
+              spacing={0}
+            >
+              {work.src
+                && (
+                  <IconButton
+                    aria-label={'View screenshare'}
+                    icon={<ImVideoCamera />}
+                    onClick={() => viewWork(work)}
+                    variant={'ghost'}
+                  />
+                )}
+              {work.github
+                && (
+                  <IconButton
+                    aria-label={'View on GitHub'}
+                    icon={<SiGithub />}
+                    variant={'ghost'}
+                  />
+                )}
+              {work.url
+                && (
+                  <IconButton
+                    aria-label={'View website'}
+                    icon={<CgLink />}
+                    variant={'ghost'}
+                  />
+                )}
             </Stack>
           </GridItem>
-        )}
+        ))}
       </Grid>
 
-      {activeWork &&
-        <WorkModal 
-          isOpen={isOpen}
-          onClose={onClose}
-          work={activeWork}
-        />
-      }
+      {activeWork
+        && (
+          <WorkModal
+            isOpen={isOpen}
+            onClose={onClose}
+            work={activeWork}
+          />
+        )}
     </Layout>
   );
 }
@@ -82,5 +116,5 @@ export async function getStaticProps(context) {
     props: {
       data
     }
-  }
+  };
 }

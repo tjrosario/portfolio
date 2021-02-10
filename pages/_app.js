@@ -1,11 +1,11 @@
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import { Global } from "@emotion/react"
-import fonts from "../styles/fonts";
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { Global } from '@emotion/react';
+import fonts from '../styles/fonts';
 
 const theme = extendTheme({
   fonts: {
-    heading: "'Palanquin', serif",
     body: "'Poppins', sans-serif",
+    heading: "'Palanquin', serif"
   }
 });
 
