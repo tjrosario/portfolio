@@ -1,21 +1,7 @@
 const EXPERIENCE = [
   {
-    company: 'Plixer',
-    date: 'September 2019 – Present',
-    description: [
-      'Assisted in re-architecting network traffic analysis system from a legacy tech-stack to modern Angular 8+ framework',
-      'Lead development on the application’s reporting engine which gives customer’s a clear visualization of all network conversation and device usage',
-      'Components and services strongly typed using Typescript',
-      'Wrote unit tests using Jasmine and Karma',
-      'Implemented Bootstrap for the UI library'
-    ],
-    location: 'Remote',
-    technology: 'Angular 8+, Typescript, Bootstrap, Sass',
-    title: 'Frontend Developer'
-  },
-  {
     company: 'CityBldr',
-    date: 'May 2017 – May 2020',
+    date: 'May 2017 – Present',
     description: [
       'Lead front end developer for both the consumer facing and internal RETech application that determines the best value and uses for land for both sellers and buyers.',
       'Built property claim flow which allows sellers to register and look up their property to determine its worth when sold alone and along with neighbors',
@@ -29,6 +15,20 @@ const EXPERIENCE = [
     location: 'Remote',
     technology: 'React, Redux, LESS',
     title: 'Frontend Engineer'
+  },
+  {
+    company: 'Plixer',
+    date: 'September 2019 – October 2020',
+    description: [
+      'Assisted in re-architecting network traffic analysis system from a legacy tech-stack to modern Angular 8+ framework',
+      'Lead development on the application’s reporting engine which gives customer’s a clear visualization of all network conversation and device usage',
+      'Components and services strongly typed using Typescript',
+      'Wrote unit tests using Jasmine and Karma',
+      'Implemented Bootstrap for the UI library'
+    ],
+    location: 'Remote',
+    technology: 'Angular 8+, Typescript, Bootstrap, Sass',
+    title: 'Frontend Developer'
   },
   {
     company: 'AffinityX',
