@@ -13,7 +13,7 @@ const EXPERIENCE = [
       'Lead efforts in the consumer-facing site redesign'
     ],
     location: 'Remote',
-    technology: 'React, Redux, LESS',
+    technology: 'React, Redux, Material UI, LESS',
     title: 'Frontend Engineer'
   },
   {
