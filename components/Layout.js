@@ -1,8 +1,8 @@
-import { Box } from '@chakra-ui/react';
 import Head from 'next/head';
 import { BASE_PATH } from '../constants';
 import Footer from './Footer';
 import Header from './Header';
+import { Box } from './shared';
 import SiteContainer from './SiteContainer';
 
 export default function Layout({ children, pageTitle, ...props }) {

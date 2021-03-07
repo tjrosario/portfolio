@@ -1,5 +1,5 @@
-import { Heading, Text } from '@chakra-ui/react';
 import Layout from '../components/Layout';
+import { Heading, Text } from '../components/shared';
 import { getAbout } from '../services/about';
 
 export default function About({ data }) {
@@ -14,7 +14,6 @@ export default function About({ data }) {
       {data.map((text, idx) => (
         <Text
           key={idx}
-          mt={5}
         >{text}
         </Text>
       ))}

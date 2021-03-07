@@ -54,6 +54,7 @@
               ]
           }
       ],
+      "import/prefer-default-export": [0],
       "indent": [
           "error",
           2,

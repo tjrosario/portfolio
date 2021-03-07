@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from "@chakra-ui/react"
+import { Box, Heading, Text } from '../components/shared';
 import Layout from '../components/Layout';
 import { BASE_PATH } from "../constants";
 

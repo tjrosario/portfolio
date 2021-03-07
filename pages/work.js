@@ -1,9 +1,9 @@
-import { Box, Grid, GridItem, Heading, IconButton, Stack, Text, useDisclosure } from '@chakra-ui/react';
 import { useState } from 'react';
 import { CgLink } from 'react-icons/cg';
 import { ImVideoCamera } from 'react-icons/im';
 import { SiGithub } from 'react-icons/si';
 import Layout from '../components/Layout';
+import { Box, Grid, GridItem, Heading, IconButton, Stack, Text, useDisclosure } from '../components/shared';
 import WorkModal from '../components/WorkModal';
 import { BASE_PATH } from '../constants';
 import { getWork } from '../services/work';
@@ -25,7 +25,7 @@ export default function Work({ data }) {
       >Work Samples
       </Heading>
 
-      <Text my={5}>This a hand-picked collection of some recent work I've had the pleasure of being involved with building. Enjoy!</Text>
+      <Text>This a hand-picked collection of some recent work I've had the pleasure of being involved with building. Enjoy!</Text>
 
       <Grid
         templateColumns={['repeat(1, 1fr)', null, 'repeat(2, 1fr)', null, 'repeat(3, 1fr)']}
@@ -78,19 +78,31 @@ export default function Work({ data }) {
                 )}
               {work.github
                 && (
-                  <IconButton
-                    aria-label={'View on GitHub'}
-                    icon={<SiGithub />}
-                    variant={'ghost'}
-                  />
+                  <a
+                    href={work.github}
+                    rel={'noreferrer'}
+                    target={'_blank'}
+                  >
+                    <IconButton
+                      aria-label={'View on GitHub'}
+                      icon={<SiGithub />}
+                      variant={'ghost'}
+                    />
+                  </a>
                 )}
               {work.url
                 && (
-                  <IconButton
-                    aria-label={'View website'}
-                    icon={<CgLink />}
-                    variant={'ghost'}
-                  />
+                  <a
+                    href={work.url}
+                    rel={'noreferrer'}
+                    target={'_blank'}
+                  >
+                    <IconButton
+                      aria-label={'View website'}
+                      icon={<CgLink />}
+                      variant={'ghost'}
+                    />
+                  </a>
                 )}
             </Stack>
           </GridItem>

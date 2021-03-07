@@ -1,5 +1,5 @@
-import { Box, Center, Divider, Heading, ListItem, Stack, Text, UnorderedList } from '@chakra-ui/react';
 import Layout from '../components/Layout';
+import { Box, Center, Divider, Heading, ListItem, Stack, Text, UnorderedList } from '../components/shared';
 import { getExperience } from '../services/experience';
 
 export default function Experience({ data }) {

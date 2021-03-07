@@ -1,4 +1,4 @@
-import { Container } from '@chakra-ui/react';
+import { Container } from './shared';
 
 export default function SiteContainer({ children, ...props }) {
   return (

@@ -1,5 +1,5 @@
-import { Box, Heading, ListItem, UnorderedList } from '@chakra-ui/react';
 import Layout from '../components/Layout';
+import { Box, Heading, ListItem, UnorderedList } from '../components/shared';
 import { getSkills } from '../services/skills';
 
 export default function Skills({ data }) {

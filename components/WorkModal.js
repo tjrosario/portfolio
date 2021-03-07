@@ -1,3 +1,6 @@
+
+import ReactPlayer from 'react-player';
+import { BASE_PATH } from '../constants';
 import {
   AspectRatio,
   Button,
@@ -9,9 +12,7 @@ import {
   ModalHeader,
   ModalOverlay,
   Text
-} from '@chakra-ui/react';
-import ReactPlayer from 'react-player';
-import { BASE_PATH } from '../constants';
+} from './shared';
 
 export default function WorkModal({ isOpen, onClose, work }) {
   return (

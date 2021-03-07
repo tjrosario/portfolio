@@ -1,5 +1,5 @@
-import { IconButton, Link, Stack } from '@chakra-ui/react';
 import { SiGithub, SiLinkedin, SiMinutemailer } from 'react-icons/si';
+import { IconButton, Link, Stack } from './shared';
 
 export default function Socials({ ...props }) {
   return (

@@ -1,3 +1,8 @@
+
+import Link from 'next/link';
+import { useRef } from 'react';
+import { CgMenuRound } from 'react-icons/cg';
+import { SITE_MENU } from '../constants';
 import {
   Box,
   Drawer,
@@ -15,12 +20,7 @@ import {
   Text,
   UnorderedList,
   useDisclosure
-} from '@chakra-ui/react';
-
-import Link from 'next/link';
-import { useRef } from 'react';
-import { CgMenuRound } from 'react-icons/cg';
-import { SITE_MENU } from '../constants';
+} from './shared';
 import Socials from './Socials';
 
 export default function Nav({ onToggle, ...props }) {

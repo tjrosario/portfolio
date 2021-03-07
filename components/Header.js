@@ -1,8 +1,8 @@
-import { Avatar, Box } from '@chakra-ui/react';
-
 import Link from 'next/link';
+
 import { BASE_PATH } from '../constants';
 import Nav from './Nav';
+import { Avatar, Box } from './shared';
 import SiteContainer from './SiteContainer';
 
 export default function Header() {
