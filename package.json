@@ -6,7 +6,9 @@
     "build": "next build",
     "dev": "next dev -p 1234",
     "export": "next export",
-    "start": "next start"
+    "start": "next start",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.2.1",
@@ -20,7 +22,13 @@
     "react-player": "^2.8.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@storybook/addon-actions": "^6.1.21",
+    "@storybook/addon-essentials": "^6.1.21",
+    "@storybook/addon-links": "^6.1.21",
+    "@storybook/react": "^6.1.21",
     "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.2.2",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",

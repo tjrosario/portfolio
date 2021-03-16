@@ -28,7 +28,7 @@ export default function Work({ data }) {
       <Text>This a hand-picked collection of some recent work I've had the pleasure of being involved with building. Enjoy!</Text>
 
       <Grid
-        templateColumns={['repeat(1, 1fr)', null, 'repeat(2, 1fr)', null, 'repeat(3, 1fr)']}
+        templateColumns={['repeat(1, 1fr)', null, 'repeat(2, 1fr)']}
         gap={[5, 10]}
       >
         {data.map((work, index) => (

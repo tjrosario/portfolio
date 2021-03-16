@@ -7,13 +7,6 @@ const WORK = [
     title: 'Brewery App'
   },
   {
-    description: 'Real Estate platform that leverages Ai, machine learning and data science to determine best use of land for both buyers and sellers.',
-    id: 1,
-    preview: 'img/work/real-estate.jpg',
-    src: 'video/real-estate.mp4',
-    title: 'Real Estate Ai Platform'
-  },
-  {
     description: 'Threadlab is an eco-friendly lifestyle personalization technology that makes it easy to discover the best new products from around the world.',
     github: 'https://github.com/tjrosario/mens-shopping-app',
     id: 2,
