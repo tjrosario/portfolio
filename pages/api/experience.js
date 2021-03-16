@@ -16,37 +16,37 @@ const EXPERIENCE = [
     technology: 'React, Redux, Material UI, LESS',
     title: 'Frontend Engineer'
   },
-  {
-    company: 'Plixer',
-    date: 'September 2019 – October 2020',
-    description: [
-      'Assisted in re-architecting network traffic analysis system from a legacy tech-stack to modern Angular 8+ framework',
-      'Lead development on the application’s reporting engine which gives customer’s a clear visualization of all network conversation and device usage',
-      'Components and services strongly typed using Typescript',
-      'Wrote unit tests using Jasmine and Karma',
-      'Implemented Bootstrap for the UI library'
-    ],
-    location: 'Remote',
-    technology: 'Angular 8+, Typescript, Bootstrap, Sass',
-    title: 'Frontend Developer'
-  },
-  {
-    company: 'AffinityX',
-    date: 'Jan 2015 – May 2020',
-    description: [
-      'Created new functionality and features for creative content delivery platforms using KnockoutJS, jQuery and PHP',
-      'Helped in building custom application routing system',
-      'Developed re-usable components using KnockoutJS',
-      'Built a custom proofing interface that allows customers to upload creative content, manage revision history and mark for approval',
-      'Assisted in building administrative console'
-    ],
-    location: 'Remote',
-    technology: 'KnockoutJS, jQuery, PHP',
-    title: 'Sr. UI Developer'
-  },
+  // {
+  //   company: 'Plixer',
+  //   date: 'September 2019 – October 2020',
+  //   description: [
+  //     'Assisted in re-architecting network traffic analysis system from a legacy tech-stack to modern Angular 8+ framework',
+  //     'Lead development on the application’s reporting engine which gives customer’s a clear visualization of all network conversation and device usage',
+  //     'Components and services strongly typed using Typescript',
+  //     'Wrote unit tests using Jasmine and Karma',
+  //     'Implemented Bootstrap for the UI library'
+  //   ],
+  //   location: 'Remote',
+  //   technology: 'Angular 8+, Typescript, Bootstrap, Sass',
+  //   title: 'Frontend Developer'
+  // },
+  // {
+  //   company: 'AffinityX',
+  //   date: 'Jan 2015 – May 2020',
+  //   description: [
+  //     'Created new functionality and features for creative content delivery platforms using KnockoutJS, jQuery and PHP',
+  //     'Helped in building custom application routing system',
+  //     'Developed re-usable components using KnockoutJS',
+  //     'Built a custom proofing interface that allows customers to upload creative content, manage revision history and mark for approval',
+  //     'Assisted in building administrative console'
+  //   ],
+  //   location: 'Remote',
+  //   technology: 'KnockoutJS, jQuery, PHP',
+  //   title: 'Sr. UI Developer'
+  // },
   {
     company: 'ThreadLab Inc',
-    date: 'Mar 2014 – Jan 2020',
+    date: 'Mar 2014 – May 2017',
     description: [
       'Lead front end development using Angular 5+, SASS',
       'Built a proxy using NodeJS for restful API consumption',
