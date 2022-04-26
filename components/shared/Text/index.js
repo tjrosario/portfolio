@@ -6,9 +6,9 @@ const Button = styled.button`
 `;
 
 export const Text = ({ children, my = 5, ...props }) => (
-  <ChakraText
-    my={my}
-    {...props}
-  >{children}
-  </ChakraText>
+    <ChakraText
+        my={my}
+        {...props}
+    >{children}
+    </ChakraText>
 )

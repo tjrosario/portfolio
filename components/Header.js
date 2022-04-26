@@ -6,32 +6,32 @@ import { Avatar, Box } from './shared';
 import SiteContainer from './SiteContainer';
 
 export default function Header() {
-  return (
-    <Box
-      as={'header'}
-      background={'white'}
-      borderBottomColor={'gray.200'}
-      borderBottomWidth={'1px'}
-      position={'relative'}
-    >
-      <SiteContainer py={1}>
+    return (
         <Box
-          display={'flex'}
-          alignItems={'center'}
+            as={'header'}
+            background={'white'}
+            borderBottomColor={'gray.200'}
+            borderBottomWidth={'1px'}
+            position={'relative'}
         >
-          <Link href={'/'}>
-            <a>
-              <Avatar
-                background={'white'}
-                name={'Tommy Rosario'}
-                src={`${BASE_PATH}/img/memoji.png`}
-                size={['md']}
-              />
-            </a>
-          </Link>
-          <Nav ml={'auto'} />
+            <SiteContainer py={1}>
+                <Box
+                    display={'flex'}
+                    alignItems={'center'}
+                >
+                    <Link href={'/'}>
+                        <a>
+                            <Avatar
+                                background={'white'}
+                                name={'Tommy Rosario'}
+                                src={`${BASE_PATH}/img/memoji.png`}
+                                size={['md']}
+                            />
+                        </a>
+                    </Link>
+                    <Nav ml={'auto'} />
+                </Box>
+            </SiteContainer>
         </Box>
-      </SiteContainer>
-    </Box>
-  );
+    );
 }
