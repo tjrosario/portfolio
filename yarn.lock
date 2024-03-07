@@ -2074,15 +2074,15 @@
   resolved "https://registry.yarnpkg.com/@fontsource-variable/manrope/-/manrope-5.0.19.tgz#34949aee173ab250d380412ef6150d56249883a0"
   integrity sha512-1WQ1NFnS3tfZ+ZQ3nNJ6sQGpIr6RWhq/wTovlcTlmvVrd53lnmITSolq6vBSEgVef6DWNFUehEvodDcyL3O6EA==
 
-"@fontsource-variable/nunito@^5.0.18":
-  version "5.0.18"
-  resolved "https://registry.yarnpkg.com/@fontsource-variable/nunito/-/nunito-5.0.18.tgz#8d0e6692680810bb3accab4af57f0a3e2db8f015"
-  integrity sha512-DaAMnvCuwxv2tCjUIGudvayzO3jjsDEH2DcqcgwRZnjBp5RZRynYkV4aBmvMkQ+Grzpm7MMTqNltiLcJxqSeAQ==
-
 "@fontsource/dm-serif-text@^5.0.19":
   version "5.0.19"
   resolved "https://registry.yarnpkg.com/@fontsource/dm-serif-text/-/dm-serif-text-5.0.19.tgz#6bb09eb536b8ca08ac3184f6074651ee9434a9d4"
   integrity sha512-MXEsYmQZhoXRnHzxPP8UfJ+3t5ge2q9BH4OiEJx1rjm7ltK/SYnHKTSq9cXJqe6iqjJA36bhcSCa1x80XPF0Vw==
+
+"@fontsource/indie-flower@^5.0.18":
+  version "5.0.18"
+  resolved "https://registry.yarnpkg.com/@fontsource/indie-flower/-/indie-flower-5.0.18.tgz#a953a2544111a9ef1b42d8a472f248ea04b8a1fa"
+  integrity sha512-1e+er9IyiOWuNiEV2J0Mq7sZt/shptz7qkfah+/Edm/gdFzB3lWTTLY2LMUlh2NTMq+XvoWwvdScDhMpZLCeqg==
 
 "@fontsource/kalam@^5.0.12":
   version "5.0.12"

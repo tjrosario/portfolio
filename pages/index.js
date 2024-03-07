@@ -30,16 +30,17 @@ export default function Home() {
         bg="rgba(0, 0, 0, .5)"
         border="2px solid rgba(255, 255, 255, .2)"
         color="white"
-        p={4}
+        px={4}
+        py={5}
         textAlign="center"
         position="relative"
         zIndex="2"
       >
         <Heading
           as="h1"
-          fontSize={['4xl', '5em', '6em', '8em']}
-          letterSpacing="0.08em"
+          fontSize={['4xl', '5em', '6em', '7em']}
           lineHeight="1"
+          variant="signature"
         >
           Tommy Rosario
         </Heading>
