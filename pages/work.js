@@ -114,7 +114,7 @@ export default function Work({ data = [] }) {
 }
 
 export async function getStaticProps(context) {
-  const data = await getWork();
+  const { data } = await getWork();
 
   return {
     props: {

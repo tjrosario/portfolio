@@ -7,5 +7,5 @@ const ABOUT = [
 ];
 
 export default function handler(req, res) {
-  res.status(200).json(ABOUT);
+  res.status(200).json({ data: ABOUT });
 }

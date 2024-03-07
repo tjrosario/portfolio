@@ -45,7 +45,7 @@ function SkillsList({ items }) {
 }
 
 export async function getStaticProps(context) {
-  const data = await getSkills();
+  const { data } = await getSkills();
 
   return {
     props: {

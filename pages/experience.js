@@ -61,7 +61,7 @@ export default function Experience({ data = [] }) {
 }
 
 export async function getStaticProps(context) {
-  const data = await getExperience();
+  const { data } = await getExperience();
 
   return {
     props: {

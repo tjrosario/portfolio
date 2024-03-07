@@ -49,5 +49,5 @@ const SKILLS = [
 ];
 
 export default function handler(req, res) {
-  res.status(200).json(SKILLS);
+  res.status(200).json({ data: SKILLS });
 }

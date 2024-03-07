@@ -17,7 +17,7 @@ export default function About({ data = [] }) {
 }
 
 export async function getStaticProps() {
-  const data = await getAbout();
+  const { data } = await getAbout();
 
   return {
     props: {
