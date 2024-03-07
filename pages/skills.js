@@ -5,7 +5,7 @@ import { getSkills } from '../services/skills';
 export default function Skills({ data = [] }) {
   return (
     <Layout pageTitle={'Skills'}>
-      <Heading as={'h1'} fontSize={['5xl', null, '7xl']}>
+      <Heading as={'h1'} fontSize={['5xl', null, '7xl']} variant="lead">
         Skills
       </Heading>
 

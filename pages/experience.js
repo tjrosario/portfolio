@@ -14,7 +14,7 @@ import { getExperience } from '../services/experience';
 export default function Experience({ data = [] }) {
   return (
     <Layout pageTitle={'Experience'}>
-      <Heading as={'h1'} fontSize={['5xl', null, '7xl']}>
+      <Heading as={'h1'} fontSize={['5xl', null, '7xl']} variant="lead">
         Experience
       </Heading>
 

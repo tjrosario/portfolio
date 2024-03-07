@@ -28,7 +28,7 @@ export default function Work({ data = [] }) {
 
   return (
     <Layout pageTitle={'Work Samples'}>
-      <Heading as={'h1'} fontSize={['5xl', null, '7xl']}>
+      <Heading as={'h1'} fontSize={['5xl', null, '7xl']} variant="lead">
         Work Samples
       </Heading>
 

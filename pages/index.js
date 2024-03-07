@@ -26,11 +26,20 @@ export default function Home() {
       overflow="hidden"
       position="relative"
     >
-      <Box color="white" textAlign="center" position="relative" zIndex="2">
+      <Box
+        bg="rgba(0, 0, 0, .5)"
+        border="2px solid rgba(255, 255, 255, .2)"
+        color="white"
+        p={4}
+        textAlign="center"
+        position="relative"
+        zIndex="2"
+      >
         <Heading
           as="h1"
-          fontFamily="Palanquin"
           fontSize={['4xl', '5em', '6em', '8em']}
+          letterSpacing="0.08em"
+          lineHeight="1"
         >
           Tommy Rosario
         </Heading>
