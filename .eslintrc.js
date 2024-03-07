@@ -2,23 +2,17 @@
 
 module.exports = {
   root: true,
-  // parser: '@typescript-eslint/parser',
   plugins: ['prettier'],
-  extends: ['prettier'],
+  extends: ['plugin:@next/next/recommended', 'prettier'],
+  parser: '@babel/eslint-parser',
+  parserOptions: {
+    parser: '@babel/eslint-parser',
+    requireConfigFile: false,
+  },
   overrides: [
     {
+      extends: ['plugin:@next/next/recommended', 'prettier'],
       files: ['*.js', '*.jsx'],
-      parserOptions: {
-        project: ['./esconfig.json'],
-        tsconfigRootDir: __dirname,
-      },
-      plugins: ['prettier'],
-      extends: [
-        //declaring 'next/core-web-vitals' and 'prettier' again in case
-        //the two plugin:... configs above overrode any of their rules
-        //Also, 'prettier' needs to be last in any extends array
-        'prettier',
-      ],
       rules: {
         '@next/next/no-document-import-in-page': 0,
         '@next/next/no-sync-scripts': 0,
