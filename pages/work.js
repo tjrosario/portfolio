@@ -61,10 +61,12 @@ export default function Work({ data = [] }) {
               height={'200px'}
             />
             <Box p={5}>
-              <Heading as={'h2'} fontSize={'larger'}>
+              <Heading as={'h2'} fontSize={'2xl'}>
                 {work.title}
               </Heading>
-              <Text mt={3}>{work.description}</Text>
+              <Text mb={0} mt={1}>
+                {work.description}
+              </Text>
             </Box>
 
             <Stack

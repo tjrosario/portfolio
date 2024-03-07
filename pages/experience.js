@@ -34,14 +34,14 @@ export default function Experience({ data = [] }) {
             </Box>
           </Box>
 
-          <Box mx={5}>
+          <Box mt={5}>
             <UnorderedList my={2}>
               {experience.description.map((text, jdx) => (
                 <ListItem key={jdx}>{text}</ListItem>
               ))}
             </UnorderedList>
 
-            <Stack direction={['column', null, 'row']}>
+            <Stack direction={['column', null, 'row']} alignItems="baseline">
               <Heading as={'h3'} fontSize={'large'}>
                 Technologies:
               </Heading>

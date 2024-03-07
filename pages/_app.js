@@ -1,8 +1,9 @@
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
-import { Global } from '@emotion/react';
+// import { Global } from '@emotion/react';
 // import fonts from '../styles/fonts';
-import '@fontsource-variable/nunito';
 import '@fontsource/dm-serif-text';
+import '@fontsource/kalam'; // Supports weights 200-800
+import '@fontsource-variable/manrope';
 
 const theme = extendTheme({
   components: {
@@ -12,19 +13,20 @@ const theme = extendTheme({
       },
       variants: {
         lead: {
-          color: 'gray.600',
+          color: 'gray.700',
+          fontFamily: `'DM Serif Text', serif`,
         },
       },
     },
     Text: {
       baseStyle: {
-        fontSize: 'lg',
+        fontSize: 'md',
       },
     },
   },
   fonts: {
-    body: `'Nunito Variable', sans-serif`,
-    heading: `'DM Serif Text', serif`,
+    body: `'Manrope Variable', sans-serif`,
+    heading: `'Kalam', cursive`,
   },
 });
 
