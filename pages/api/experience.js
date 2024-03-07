@@ -10,11 +10,11 @@ const EXPERIENCE = [
       'Facilitated ongoing upgrades to the front end stack (React)',
       'State management using Redux',
       'Implemented UI components with Material UI',
-      'Lead efforts in the consumer-facing site redesign'
+      'Lead efforts in the consumer-facing site redesign',
     ],
     location: 'Remote',
     technology: 'React, Redux, Material UI, LESS',
-    title: 'Frontend Engineer'
+    title: 'Frontend Engineer',
   },
   // {
   //   company: 'Plixer',
@@ -54,11 +54,12 @@ const EXPERIENCE = [
       'Created responsive layout using SASS/Bourbon',
       'Implemented recurring subscription system using Recurly',
       'Integrated Stripe and Paypal payment funnels',
-      'Manage email marketing templates via Mailchimp and Mandrill'
+      'Manage email marketing templates via Mailchimp and Mandrill',
     ],
     location: 'Remote',
-    technology: 'Angular 5+, NodeJS, ES6 (2015), SASS, Bourbon/Neat, Grunt, Stripe, Paypal, Groovy on Grails, MongoDB',
-    title: 'Frontend Engineer'
+    technology:
+      'Angular 5+, NodeJS, ES6 (2015), SASS, Bourbon/Neat, Grunt, Stripe, Paypal, Groovy on Grails, MongoDB',
+    title: 'Frontend Engineer',
   },
   {
     company: 'Do Something',
@@ -67,24 +68,25 @@ const EXPERIENCE = [
       'Lead development on various social awareness campaigns',
       'Creating new features, functionality to application modules using jQuery and RequireJS',
       'Ongoing maintenance within Drupal framework template system',
-      'Contributed to open-sourced interface framework and pattern libraries'
+      'Contributed to open-sourced interface framework and pattern libraries',
     ],
     location: 'New York City',
-    technology: 'Drupal, RequireJS, jQuery, SASS, Bourbon / Neat, Stripe, Wordress',
-    title: 'Software Engineer'
+    technology:
+      'Drupal, RequireJS, jQuery, SASS, Bourbon / Neat, Stripe, Wordress',
+    title: 'Software Engineer',
   },
   {
     company: 'CPXi',
     date: 'Oct 2013 – May 2014',
     description: [
-      'Worked on new functionality and features for company\’s internal metrics dashboard',
+      'Worked on new functionality and features for company’s internal metrics dashboard',
       'Developed browser plugins that were available in the Chrome and Firefox web stores',
       'Lead UI development on a real-time news feed application / scraper built on HandlebarsJS, NodeJS, and Sails MVC',
-      'Proprietary CSS framework using LESS'
+      'Proprietary CSS framework using LESS',
     ],
     location: 'New York City',
     technology: 'Handlebars JS, Laravel, Symfony, LESS, NodeJS, Sails MVC',
-    title: 'Senior Software Engineer'
+    title: 'Senior Software Engineer',
   },
   {
     company: 'Alexander Interactive',
@@ -94,7 +96,7 @@ const EXPERIENCE = [
       'In charge of providing front-end development estimates on all projects',
       'Developed and re-wrote several re-usable JavaScript widgets from Prototype JS to jQuery',
       'Introduced HTML5 and CSS3 to Magento applications',
-      'Defined and authored the company\'s best practices and coding standards document for front-end development',
+      "Defined and authored the company's best practices and coding standards document for front-end development",
       'Worked closely with IA and Creative departments on defining new and effective user experiences',
       'Worked closely with backend development team on front-end integration points',
       'Provided technical direction for clients on front-end handoff projects',
@@ -104,12 +106,12 @@ const EXPERIENCE = [
       'Responsive CSS',
       'Parallax UI Development',
       'Converted Photoshop documents into HTML and CSS templates',
-      'Wrote custom CSS reset framework'
+      'Wrote custom CSS reset framework',
     ],
     location: 'New York City',
     technology: 'jQuery, PrototypeJS, Vanilla JS, Magento, Django',
-    title: 'Frontend Tech Lead'
-  }
+    title: 'Frontend Tech Lead',
+  },
 ];
 
 export default function handler(req, res) {
