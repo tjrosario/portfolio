@@ -17,14 +17,12 @@ export default function Header() {
       <SiteContainer py={1}>
         <Box display={'flex'} alignItems={'center'}>
           <Link href={'/'}>
-            <a>
-              <Avatar
-                background={'white'}
-                name={'Tommy Rosario'}
-                src={`${BASE_PATH}/img/memoji.png`}
-                size={['md']}
-              />
-            </a>
+            <Avatar
+              background={'white'}
+              name={'Tommy Rosario'}
+              src={`${BASE_PATH}/img/memoji.png`}
+              size={['md']}
+            />
           </Link>
           <Nav ml={'auto'} />
         </Box>

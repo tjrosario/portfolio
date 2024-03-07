@@ -81,7 +81,7 @@ export default function Nav({ onToggle, ...props }) {
                       _hover={{ color: 'gray.500' }}
                     >
                       <Link href={menuItem.value} onClick={onClose}>
-                        <a>{menuItem.label}</a>
+                        {menuItem.label}
                       </Link>
                     </ListItem>
                   ))}
@@ -101,10 +101,8 @@ export default function Nav({ onToggle, ...props }) {
 
 const NavItem = ({ children, isLast, to = '/', ...props }) => (
   <Link href={to}>
-    <a>
-      <Text display={'block'} {...props} _hover={{ color: 'gray.500' }}>
-        {children}
-      </Text>
-    </a>
+    <Text display={'block'} {...props} _hover={{ color: 'gray.500' }}>
+      {children}
+    </Text>
   </Link>
 );
