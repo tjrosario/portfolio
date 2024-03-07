@@ -2,7 +2,7 @@ import Layout from '../components/Layout';
 import { Box, Heading, ListItem, UnorderedList } from '../components/shared';
 import { getSkills } from '../services/skills';
 
-export default function Skills({ data }) {
+export default function Skills({ data = [] }) {
   return (
     <Layout pageTitle={'Skills'}>
       <Heading as={'h1'} fontSize={['5xl', null, '7xl']}>

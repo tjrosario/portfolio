@@ -17,7 +17,7 @@ import WorkModal from '../components/WorkModal';
 import { BASE_PATH } from '../constants';
 import { getWork } from '../services/work';
 
-export default function Work({ data }) {
+export default function Work({ data = [] }) {
   const [activeWork, setActiveWork] = useState(null);
   const { isOpen, onClose, onOpen } = useDisclosure();
 
