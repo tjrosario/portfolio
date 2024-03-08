@@ -2,7 +2,7 @@ import AvataaarThirdParty from 'avataaars';
 
 export const Avataaar = ({ ...props }) => (
   <AvataaarThirdParty
-    avatarStyle="Transparent"
+    avatarStyle="Circle"
     topType="ShortHairFrizzle"
     accessoriesType="Blank"
     hairColor="Black"
