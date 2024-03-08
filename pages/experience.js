@@ -49,22 +49,24 @@ export default function Experience({ data = [] }) {
               spacing={0}
               mt={5}
             >
-              <Heading as={'h3'} fontSize={'large'}>
+              <Heading as={'h3'} fontSize={'md'}>
                 Technologies:
               </Heading>
 
-              <HStack
-                direction={['column', 'row']}
-                flexWrap={'wrap'}
-                gap={3}
-                spacing={0}
-              >
-                {experience?.technology?.map((tech) => (
-                  <Badge key={tech} px={2} py={1}>
-                    {tech}
-                  </Badge>
-                ))}
-              </HStack>
+              {experience.technology && (
+                <HStack
+                  direction={['column', 'row']}
+                  flexWrap={'wrap'}
+                  gap={3}
+                  spacing={0}
+                >
+                  {experience.technology.map((tech) => (
+                    <Badge key={tech} px={2} py={1}>
+                      {tech}
+                    </Badge>
+                  ))}
+                </HStack>
+              )}
             </HStack>
           </Box>
 
