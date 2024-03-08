@@ -1,8 +1,6 @@
 import Link from 'next/link';
-
-import { BASE_PATH } from '../constants';
 import Nav from './Nav';
-import { Avatar, Box } from './shared';
+import { Avataaar, Box, Text } from './shared';
 import SiteContainer from './SiteContainer';
 
 export default function Header() {
@@ -17,12 +15,10 @@ export default function Header() {
       <SiteContainer py={1}>
         <Box display={'flex'} alignItems={'center'}>
           <Link href={'/'}>
-            <Avatar
-              background={'white'}
-              name={'Tommy Rosario'}
-              src={`${BASE_PATH}/img/memoji.png`}
-              size={['md']}
-            />
+            <Box display={'flex'} alignItems={'center'} gap="2">
+              <Avataaar style={{ width: '50px', height: '50px' }} />
+              <Text>'sup</Text>
+            </Box>
           </Link>
           <Nav ml={'auto'} />
         </Box>

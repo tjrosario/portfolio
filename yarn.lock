@@ -2079,11 +2079,6 @@
   resolved "https://registry.yarnpkg.com/@fontsource-variable/raleway/-/raleway-5.0.18.tgz#7397661a31d7b7fbd914f555aea5833b9624b352"
   integrity sha512-gd1W+taHZoWe6FoqdbMogSYfp8FK4WUsFse43zvM4NC3s5IoQBdGlMB7XGTdiNux+Ult1wkrlYpiSedSWLjSMw==
 
-"@fontsource/dm-serif-text@^5.0.19":
-  version "5.0.19"
-  resolved "https://registry.yarnpkg.com/@fontsource/dm-serif-text/-/dm-serif-text-5.0.19.tgz#6bb09eb536b8ca08ac3184f6074651ee9434a9d4"
-  integrity sha512-MXEsYmQZhoXRnHzxPP8UfJ+3t5ge2q9BH4OiEJx1rjm7ltK/SYnHKTSq9cXJqe6iqjJA36bhcSCa1x80XPF0Vw==
-
 "@fontsource/indie-flower@^5.0.18":
   version "5.0.18"
   resolved "https://registry.yarnpkg.com/@fontsource/indie-flower/-/indie-flower-5.0.18.tgz#a953a2544111a9ef1b42d8a472f248ea04b8a1fa"
@@ -4749,6 +4744,14 @@ available-typed-arrays@^1.0.6, available-typed-arrays@^1.0.7:
   integrity sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==
   dependencies:
     possible-typed-array-names "^1.0.0"
+
+avataaars@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/avataaars/-/avataaars-2.0.0.tgz#7b45331f5e10ba1308ab6a06d7aa3dcd7832fa00"
+  integrity sha512-VBS14dAvTe1l/HEwSoR5LArV7OqXgbhksBCS3CZZLIOQfv+oM3yVgy0d5QKz/KYqNMmS8emSzD9znlrOhbg2fA==
+  dependencies:
+    lodash ">=4.17.21"
+    prop-types "^15.7.2"
 
 axe-core@=4.7.0:
   version "4.7.0"
@@ -9192,7 +9195,7 @@ lodash.uniq@4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha512-xfBaXQd9ryd9dlSDvnvI0lvxfLJlYAZzXomUYzLKtUeOQvOP5piqAWuGtrhWeqaXK9hhoM/iyJc5AV+XfsX3HQ==
 
-lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.21:
+lodash@>=4.17.21, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.21:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==

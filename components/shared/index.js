@@ -36,4 +36,5 @@ export {
   useDisclosure,
 } from '@chakra-ui/react';
 
+export * from './Avatar';
 export * from './Text';
