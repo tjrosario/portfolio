@@ -53,7 +53,7 @@ export default function Experience({ data = [] }) {
                 Technologies:
               </Heading>
 
-              {experience.technology && (
+              {Array.isArray(experience.technology) && (
                 <HStack
                   direction={['column', 'row']}
                   flexWrap={'wrap'}
