@@ -2074,6 +2074,11 @@
   resolved "https://registry.yarnpkg.com/@fontsource-variable/manrope/-/manrope-5.0.19.tgz#34949aee173ab250d380412ef6150d56249883a0"
   integrity sha512-1WQ1NFnS3tfZ+ZQ3nNJ6sQGpIr6RWhq/wTovlcTlmvVrd53lnmITSolq6vBSEgVef6DWNFUehEvodDcyL3O6EA==
 
+"@fontsource-variable/raleway@^5.0.18":
+  version "5.0.18"
+  resolved "https://registry.yarnpkg.com/@fontsource-variable/raleway/-/raleway-5.0.18.tgz#7397661a31d7b7fbd914f555aea5833b9624b352"
+  integrity sha512-gd1W+taHZoWe6FoqdbMogSYfp8FK4WUsFse43zvM4NC3s5IoQBdGlMB7XGTdiNux+Ult1wkrlYpiSedSWLjSMw==
+
 "@fontsource/dm-serif-text@^5.0.19":
   version "5.0.19"
   resolved "https://registry.yarnpkg.com/@fontsource/dm-serif-text/-/dm-serif-text-5.0.19.tgz#6bb09eb536b8ca08ac3184f6074651ee9434a9d4"

@@ -24,6 +24,7 @@ export default function Footer() {
           <GridItem
             display={'flex'}
             justifyContent={['center', null, 'flex-start']}
+            textTransform="lowercase"
           >
             &copy; {YEAR} Tommy Rosario
           </GridItem>

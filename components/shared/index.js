@@ -1,6 +1,7 @@
 export {
   AspectRatio,
   Avatar,
+  Badge,
   Box,
   Button,
   Center,
@@ -17,6 +18,7 @@ export {
   Grid,
   GridItem,
   Heading,
+  HStack,
   IconButton,
   Image,
   Link,
@@ -30,6 +32,7 @@ export {
   ModalOverlay,
   Stack,
   UnorderedList,
+  VStack,
   useDisclosure,
 } from '@chakra-ui/react';
 

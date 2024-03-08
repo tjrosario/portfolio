@@ -13,7 +13,16 @@ const EXPERIENCE = [
       'Lead efforts in the consumer-facing site redesign',
     ],
     location: 'Remote',
-    technology: 'React, Redux, Material UI, LESS',
+    technology: [
+      'NextJS',
+      'GraphQL',
+      'Algolia',
+      'Contentful',
+      'React',
+      'Redux',
+      'Material UI',
+      'LESS',
+    ],
     title: 'Frontend Engineer',
   },
   // {
@@ -57,8 +66,18 @@ const EXPERIENCE = [
       'Manage email marketing templates via Mailchimp and Mandrill',
     ],
     location: 'Remote',
-    technology:
-      'Angular 5+, NodeJS, ES6 (2015), SASS, Bourbon/Neat, Grunt, Stripe, Paypal, Groovy on Grails, MongoDB',
+    technology: [
+      'Angular 5+',
+      'NodeJS',
+      'ES6 (2015)',
+      'SASS',
+      'Bourbon/Neat',
+      'Grunt',
+      'Stripe',
+      'Paypal',
+      'Groovy on Grails',
+      'MongoDB',
+    ],
     title: 'Frontend Engineer',
   },
   {
@@ -71,8 +90,15 @@ const EXPERIENCE = [
       'Contributed to open-sourced interface framework and pattern libraries',
     ],
     location: 'New York City',
-    technology:
-      'Drupal, RequireJS, jQuery, SASS, Bourbon / Neat, Stripe, Wordress',
+    technology: [
+      'Drupal',
+      'RequireJS',
+      'jQuery',
+      'SASS',
+      'Bourbon / Neat',
+      'Stripe',
+      'Wordress',
+    ],
     title: 'Software Engineer',
   },
   {
@@ -85,7 +111,14 @@ const EXPERIENCE = [
       'Proprietary CSS framework using LESS',
     ],
     location: 'New York City',
-    technology: 'Handlebars JS, Laravel, Symfony, LESS, NodeJS, Sails MVC',
+    technology: [
+      'Handlebars JS',
+      'Laravel',
+      'Symfony',
+      'LESS',
+      'NodeJS',
+      'Sails MVC',
+    ],
     title: 'Senior Software Engineer',
   },
   {
@@ -109,7 +142,7 @@ const EXPERIENCE = [
       'Wrote custom CSS reset framework',
     ],
     location: 'New York City',
-    technology: 'jQuery, PrototypeJS, Vanilla JS, Magento, Django',
+    technology: ['jQuery', 'PrototypeJS', 'Vanilla JS', 'Magento', 'Django'],
     title: 'Frontend Tech Lead',
   },
 ];

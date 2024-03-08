@@ -31,7 +31,7 @@ export default function Home() {
         border="2px solid rgba(255, 255, 255, .2)"
         color="white"
         px={4}
-        py={5}
+        py={10}
         textAlign="center"
         position="relative"
         zIndex="2"
@@ -44,8 +44,13 @@ export default function Home() {
         >
           Tommy Rosario
         </Heading>
-        <Text color="gray.300" fontSize={['larger', '3xl', '4xl']} my={3}>
-          Seasoned Frontend Developer
+        <Text
+          color="gray.300"
+          fontSize={['larger', '2xl']}
+          my={3}
+          textTransform="lowercase"
+        >
+          I build stuff that's fun, innovative and pretty damn slick
         </Text>
         <Text>
           &#60; jerseyShore{' '}

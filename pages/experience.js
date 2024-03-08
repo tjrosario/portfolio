@@ -1,12 +1,12 @@
 import Layout from '../components/Layout';
 import {
+  Badge,
   Box,
   Center,
   Divider,
   Heading,
+  HStack,
   ListItem,
-  Stack,
-  Text,
   UnorderedList,
 } from '../components/shared';
 import { getExperience } from '../services/experience';
@@ -35,18 +35,37 @@ export default function Experience({ data = [] }) {
           </Box>
 
           <Box mt={5}>
-            <UnorderedList my={2}>
+            <UnorderedList my={2} spacing={2}>
               {experience.description.map((text, jdx) => (
                 <ListItem key={jdx}>{text}</ListItem>
               ))}
             </UnorderedList>
 
-            <Stack direction={['column', null, 'row']} alignItems="baseline">
+            <HStack
+              direction={['column', 'row']}
+              alignItems="baseline"
+              flexWrap={'wrap'}
+              gap={3}
+              spacing={0}
+              mt={5}
+            >
               <Heading as={'h3'} fontSize={'large'}>
                 Technologies:
               </Heading>
-              <Text>{experience.technology}</Text>
-            </Stack>
+
+              <HStack
+                direction={['column', 'row']}
+                flexWrap={'wrap'}
+                gap={3}
+                spacing={0}
+              >
+                {experience.technology.map((tech) => (
+                  <Badge key={tech} px={2} py={1}>
+                    {tech}
+                  </Badge>
+                ))}
+              </HStack>
+            </HStack>
           </Box>
 
           {idx < data.length - 1 && (

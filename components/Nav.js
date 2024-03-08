@@ -40,7 +40,7 @@ export default function Nav({ onToggle, ...props }) {
           spacing={[5, 10]}
         >
           {SITE_MENU.map((menuItem, idx) => (
-            <NavItem key={idx} to={menuItem.value}>
+            <NavItem key={idx} textTransform="lowercase" to={menuItem.value}>
               {menuItem.label}
             </NavItem>
           ))}
