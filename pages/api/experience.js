@@ -1,7 +1,7 @@
 const EXPERIENCE = [
   {
     company: 'CityBldr',
-    date: 'May 2017 – Present',
+    date: 'May 2017 - Present',
     description: [
       'Lead front end developer for both the consumer facing and internal RETech application that determines the best value and uses for land for both sellers and buyers.',
       'Built property claim flow which allows sellers to register and look up their property to determine its worth when sold alone and along with neighbors',
@@ -27,7 +27,7 @@ const EXPERIENCE = [
   },
   // {
   //   company: 'Plixer',
-  //   date: 'September 2019 – October 2020',
+  //   date: 'September 2019 - October 2020',
   //   description: [
   //     'Assisted in re-architecting network traffic analysis system from a legacy tech-stack to modern Angular 8+ framework',
   //     'Lead development on the application’s reporting engine which gives customer’s a clear visualization of all network conversation and device usage',
@@ -39,23 +39,23 @@ const EXPERIENCE = [
   //   technology: 'Angular 8+, Typescript, Bootstrap, Sass',
   //   title: 'Frontend Developer'
   // },
-  // {
-  //   company: 'AffinityX',
-  //   date: 'Jan 2015 – May 2020',
-  //   description: [
-  //     'Created new functionality and features for creative content delivery platforms using KnockoutJS, jQuery and PHP',
-  //     'Helped in building custom application routing system',
-  //     'Developed re-usable components using KnockoutJS',
-  //     'Built a custom proofing interface that allows customers to upload creative content, manage revision history and mark for approval',
-  //     'Assisted in building administrative console'
-  //   ],
-  //   location: 'Remote',
-  //   technology: 'KnockoutJS, jQuery, PHP',
-  //   title: 'Sr. UI Developer'
-  // },
+  {
+    company: 'AffinityX',
+    date: 'Jan 2015 - May 2020',
+    description: [
+      'Created new functionality and features for creative content delivery platforms using KnockoutJS, jQuery and PHP',
+      'Helped in building custom application routing system',
+      'Developed re-usable components using KnockoutJS',
+      'Built a custom proofing interface that allows customers to upload creative content, manage revision history and mark for approval',
+      'Assisted in building administrative console',
+    ],
+    location: 'Remote',
+    technology: ['KnockoutJS', 'jQuery', 'PHP'],
+    title: 'Sr. UI Developer',
+  },
   {
     company: 'ThreadLab Inc',
-    date: 'Mar 2014 – May 2017',
+    date: 'Mar 2014 - May 2017',
     description: [
       'Lead front end development using Angular 5+, SASS',
       'Built a proxy using NodeJS for restful API consumption',
@@ -82,7 +82,7 @@ const EXPERIENCE = [
   },
   {
     company: 'Do Something',
-    date: 'May 2014 – Jan 2015',
+    date: 'May 2014 - Jan 2015',
     description: [
       'Lead development on various social awareness campaigns',
       'Creating new features, functionality to application modules using jQuery and RequireJS',
@@ -97,13 +97,13 @@ const EXPERIENCE = [
       'SASS',
       'Bourbon / Neat',
       'Stripe',
-      'Wordress',
+      'Wordpress',
     ],
     title: 'Software Engineer',
   },
   {
     company: 'CPXi',
-    date: 'Oct 2013 – May 2014',
+    date: 'Oct 2013 - May 2014',
     description: [
       'Worked on new functionality and features for company’s internal metrics dashboard',
       'Developed browser plugins that were available in the Chrome and Firefox web stores',
@@ -123,7 +123,7 @@ const EXPERIENCE = [
   },
   {
     company: 'Alexander Interactive',
-    date: 'Jul 2006 – Oct 2013',
+    date: 'Jul 2006 - Oct 2013',
     description: [
       'Built, managed and lead a team of seven front-end developers',
       'In charge of providing front-end development estimates on all projects',
