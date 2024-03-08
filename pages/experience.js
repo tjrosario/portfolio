@@ -53,20 +53,18 @@ export default function Experience({ data = [] }) {
                 Technologies:
               </Heading>
 
-              {Array.isArray(experience.technology) && (
-                <HStack
-                  direction={['column', 'row']}
-                  flexWrap={'wrap'}
-                  gap={3}
-                  spacing={0}
-                >
-                  {experience.technology.map((tech) => (
-                    <Badge key={tech} px={2} py={1}>
-                      {tech}
-                    </Badge>
-                  ))}
-                </HStack>
-              )}
+              <HStack
+                direction={['column', 'row']}
+                flexWrap={'wrap'}
+                gap={3}
+                spacing={0}
+              >
+                {experience.technology.map((tech) => (
+                  <Badge key={tech} px={2} py={1}>
+                    {tech}
+                  </Badge>
+                ))}
+              </HStack>
             </HStack>
           </Box>
 
