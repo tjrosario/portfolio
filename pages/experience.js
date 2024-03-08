@@ -59,7 +59,7 @@ export default function Experience({ data = [] }) {
                 gap={3}
                 spacing={0}
               >
-                {experience.technology.map((tech) => (
+                {experience?.technology?.map((tech) => (
                   <Badge key={tech} px={2} py={1}>
                     {tech}
                   </Badge>
