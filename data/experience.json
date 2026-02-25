@@ -1,0 +1,73 @@
+[
+  {
+    "company": "CityBldr",
+    "title": "Senior Frontend Engineer",
+    "startDate": "2017-01",
+    "endDate": "Present",
+    "location": "Remote",
+    "bullets": [
+      "Led frontend architecture for consumer and internal real estate platforms used for land valuation and investor workflows.",
+      "Drove full migration to a headless architecture using Next.js, React, Contentful, and Algolia.",
+      "Improved search performance, SEO, and Core Web Vitals across the platform.",
+      "Built a Zillow-style property search experience backed by GraphQL and high-performance indexing.",
+      "Partnered with product and data teams to deliver features that supported valuation models and investor tools.",
+      "Established scalable UI patterns using Tailwind and modern component architecture."
+    ],
+    "tech": ["Next.js", "React", "TypeScript", "Tailwind CSS", "GraphQL", "Contentful", "Algolia"]
+  },
+  {
+    "company": "ThreadLab",
+    "title": "Sr. Frontend Engineer",
+    "startDate": "2014-01",
+    "endDate": "2017-01",
+    "location": "New York, NY",
+    "bullets": [
+      "Led frontend development for a subscription-based e-commerce platform.",
+      "Built responsive storefront experiences using Angular and SASS.",
+      "Integrated subscription billing with Recurly and implemented payment flows with Stripe and PayPal.",
+      "Built and maintained a Node.js proxy for REST APIs.",
+      "Set up Jenkins pipelines to automate builds and deployments.",
+      "Managed transactional and marketing email templates via Mailchimp and Mandrill."
+    ],
+    "tech": ["Angular", "SASS", "Node.js", "Stripe", "PayPal", "Recurly", "Jenkins"]
+  },
+  {
+    "company": "DoSomething.org",
+    "title": "Sr. Software Engineer",
+    "startDate": "2014-01",
+    "endDate": "2015-01",
+    "location": "New York, NY",
+    "bullets": [
+      "Built interactive campaign features using jQuery and RequireJS across high-traffic social impact initiatives.",
+      "Maintained and extended Drupal templates and UI components to support rapid campaign launches.",
+      "Worked closely with design and content teams to ship features on tight deadlines."
+    ],
+    "tech": ["jQuery", "RequireJS", "Drupal", "JavaScript", "CSS3"]
+  },
+  {
+    "company": "CPXi",
+    "title": "Sr. Software Engineer",
+    "startDate": "2013-01",
+    "endDate": "2014-01",
+    "location": "New York, NY",
+    "bullets": [
+      "Developed internal dashboards, browser extensions, and a real-time news feed using Node.js and Handlebars.",
+      "Built and maintained a custom LESS-based UI framework to support multiple internal tools.",
+      "Focused on performance and usability for data-heavy interfaces used by sales and operations teams."
+    ],
+    "tech": ["Node.js", "Handlebars", "LESS", "JavaScript", "CSS3"]
+  },
+  {
+    "company": "Alexander Interactive",
+    "title": "Frontend Tech Lead",
+    "startDate": "2006-01",
+    "endDate": "2017-01",
+    "location": "New York, NY",
+    "bullets": [
+      "Led a team of seven developers building Magento themes and responsive client sites.",
+      "Defined frontend standards, reusable components, and development workflows across projects.",
+      "Worked directly with clients to translate requirements into production-ready interfaces and ensure smooth handoffs from design to engineering."
+    ],
+    "tech": ["Magento", "jQuery", "HTML5", "CSS3", "JavaScript", "Responsive Design"]
+  }
+]

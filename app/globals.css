@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+@theme {
+  /* Fonts from your config */
+  --font-body:    var(--font-space-grotesk), sans-serif;
+  --font-display: var(--font-syne), sans-serif;
+
+  /* Colors from your config (moved into the theme engine) */
+  --color-accent: #2dd4bf;
+  --color-accent-dim: #0d9488;
+  --color-bg-base: #0b0f14;
+  --color-bg-card: #111820;
+  --color-bg-section: #0d1117;
+
+  /* Animations & Keyframes */
+  --animate-marquee: marquee 25s linear infinite;
+  --animate-fade-in-up: fadeInUp 0.7s ease forwards;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   DARK THEME (default)
+   ═══════════════════════════════════════════════ */
+:root,
+[data-theme="dark"] {
+  --color-bg-base:    #0e1117;
+  --color-bg-card:    #141820;
+  --color-bg-section: #111419;
+  --color-bg-nav:     rgba(14, 17, 23, 0.92);
+
+  --color-accent:     #f97316;
+  --color-accent-dim: #c2570f;
+
+  --color-text-primary:   #f1ece4;
+  --color-text-secondary: #8b8d94;
+  --color-text-muted:     #4b4d54;
+
+  --color-border:       rgba(249, 115, 22, 0.12);
+  --color-border-hover: rgba(249, 115, 22, 0.38);
+  --color-border-nav:   rgba(249, 115, 22, 0.10);
+
+  --color-selection-bg: rgba(249, 115, 22, 0.30);
+
+  --grid-dot: rgba(249, 115, 22, 0.04);
+
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --shadow-glow: 0 4px 24px rgba(249, 115, 22, 0.30);
+}
+
+/* ═══════════════════════════════════════════════
+   LIGHT THEME
+   Warm sand/cream — Prismora-inspired
+   ═══════════════════════════════════════════════ */
+[data-theme="light"] {
+  --color-bg-base:    #faf7f2;
+  --color-bg-card:    #ffffff;
+  --color-bg-section: #f3ede4;
+  --color-bg-nav:     rgba(250, 247, 242, 0.92);
+
+  --color-accent:     #ea6c0a;   /* slightly deeper orange for contrast on light */
+  --color-accent-dim: #b85208;
+
+  --color-text-primary:   #1a1410;   /* near-black warm */
+  --color-text-secondary: #5a5650;   /* warm medium grey */
+  --color-text-muted:     #a09890;   /* light warm grey */
+
+  --color-border:       rgba(234, 108, 10, 0.14);
+  --color-border-hover: rgba(234, 108, 10, 0.40);
+  --color-border-nav:   rgba(234, 108, 10, 0.12);
+
+  --color-selection-bg: rgba(234, 108, 10, 0.20);
+
+  --grid-dot: rgba(234, 108, 10, 0.06);
+
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.07);
+  --shadow-glow: 0 4px 20px rgba(234, 108, 10, 0.25);
+}
+
+/* ═══════════════════════════════════════════════
+   BASE
+   ═══════════════════════════════════════════════ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-body);
+    /* Prevent flash on theme load — transition everything except initial paint */
+  }
+
+  html.theme-ready * {
+    transition:
+      background-color 0.25s ease,
+      border-color 0.25s ease,
+      color 0.15s ease,
+      box-shadow 0.25s ease;
+  }
+
+  body {
+    background-color: var(--color-bg-base);
+    color: var(--color-text-primary);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-selection-bg);
+    color: var(--color-accent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   UTILITIES
+   ═══════════════════════════════════════════════ */
+@layer utilities {
+  .font-display { font-family: var(--font-display); }
+  .font-body    { font-family: var(--font-body); }
+
+  .animate-marquee { animation: var(--animate-marquee); }
+
+  .anim-hidden {
+    opacity: 0;
+    animation: var(--animate-fade-in-up);
+    animation-fill-mode: forwards;
+  }
+  .delay-100 { animation-delay: 0.10s; }
+  .delay-200 { animation-delay: 0.20s; }
+  .delay-300 { animation-delay: 0.30s; }
+  .delay-400 { animation-delay: 0.40s; }
+  .delay-500 { animation-delay: 0.50s; }
+  .delay-600 { animation-delay: 0.60s; }
+
+  .grid-bg {
+    background-image: radial-gradient(circle, var(--grid-dot) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+}
+
+@keyframes ping {
+  75%, 100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Theme toggle pill animation */
+@keyframes toggleSlide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(20px); }
+}
