@@ -1,9 +1,38 @@
 [
   {
+    "company": "Frontend Development Consulting",
+    "title": "Senior Frontend Consultant",
+    "startDate": "2018-01",
+    "endDate": "Present",
+    "location": "Remote",
+    "bullets": [
+      "Providing independent technical leadership and frontend architectural guidance for diverse client projects.",
+      "Specializing in modernizing legacy codebases, implementing design systems, and optimizing web performance for high-traffic applications.",
+      "Consulting on technology stack selection and implementing scalable solutions using React, Angular, and Next.js."
+    ],
+    "tech": ["Next.js", "React", "TypeScript", "Tailwind CSS", "GraphQL", "Contentful", "Algolia", "Angular", "RxJS"]
+  },
+  {
+    "company": "Plixer",
+    "title": "Senior Frontend Engineer",
+    "startDate": "2021-06",
+    "endDate": "Present",
+    "location": "Remote",
+    "bullets": [
+      "Architected and developed the frontend for Scrutinizer, a high-performance network monitoring and security analytics platform processing millions of flows per second.",
+      "Engineered complex, reactive data visualizations and real-time dashboards to surface actionable network intelligence and security threats.",
+      "Implemented modular UI components and streamlined NetOps/SecOps workflows to improve data accessibility and root-cause analysis speed.",
+      "Optimized frontend performance for data-heavy reporting interfaces, ensuring smooth interactions with massive historical and real-time datasets.",
+      "Collaborated with backend and data teams to integrate RESTful APIs for proactive alerting, DDoS detection, and machine learning-driven anomaly reporting.",
+      "Established scalable UI patterns and coding standards to maintain consistency across the Scrutinizer web interface."
+    ],
+    "tech": ["Angular", "RxJS", "TypeScript", "Tailwind CSS"]
+  },
+  {
     "company": "CityBldr",
     "title": "Senior Frontend Engineer",
     "startDate": "2017-01",
-    "endDate": "Present",
+    "endDate": "2021-06",
     "location": "Remote",
     "bullets": [
       "Led frontend architecture for consumer and internal real estate platforms used for land valuation and investor workflows.",
