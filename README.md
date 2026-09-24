@@ -5,10 +5,12 @@ A production-ready frontend developer portfolio built with **Next.js 15 (App Rou
 ## Quick Start
 
 ```bash
-npm install
-npm run dev
+bun install
+bun run dev
 # Open http://localhost:3000
 ```
+
+This project uses [Bun](https://bun.sh) as its package manager. `bun.lock` is the only committed lockfile.
 
 ## Project Structure
 
