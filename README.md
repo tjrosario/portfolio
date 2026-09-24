@@ -7,10 +7,12 @@ A production-ready frontend developer portfolio built with **Next.js 15 (App Rou
 ```bash
 bun install
 bun run dev
-# Open http://localhost:3000
+# Open http://localhost:4000
 ```
 
 This project uses [Bun](https://bun.sh) as its package manager. `bun.lock` is the only committed lockfile.
+
+The dev and start scripts listen on port 4000 to stay clear of other local projects. Override with `PORT=4500 bun run dev`.
 
 ## Project Structure
 
