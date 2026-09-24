@@ -180,6 +180,7 @@ export const siteConfig = {
     "Design Systems",
     "Core Web Vitals",
     "GraphQL",
+    "TanStack Query",
     "Algolia",
     "Contentful",
     "OpenAI APIs",
