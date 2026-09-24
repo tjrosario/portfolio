@@ -10,7 +10,7 @@
       "Specializing in modernizing legacy codebases, implementing design systems, and optimizing web performance for high-traffic applications.",
       "Consulting on technology stack selection and implementing scalable solutions using React, Angular, and Next.js."
     ],
-    "tech": ["Next.js", "React", "TypeScript", "Tailwind CSS", "GraphQL", "Contentful", "Algolia", "Angular", "RxJS"]
+    "tech": ["Next.js", "React", "TypeScript", "Tailwind CSS", "GraphQL", "TanStack Query", "Contentful", "Algolia", "Angular", "RxJS"]
   },
   {
     "company": "Plixer",
