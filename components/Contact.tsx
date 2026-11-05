@@ -1,6 +1,7 @@
 "use client";
 
 import { siteConfig } from "@/site.config";
+import { useResume } from "@/lib/resume";
 import SectionHeader from "./SectionHeader";
 import WindowFrame from "./WindowFrame";
 
@@ -11,6 +12,8 @@ const TERMINAL_LINKS = [
 ];
 
 export default function Contact() {
+  const { open: openResume } = useResume();
+
   return (
     <section id="contact" style={{ padding: "96px 0", maxWidth: 1152, margin: "0 auto", paddingLeft: 24, paddingRight: 24 }}>
       <SectionHeader path="./contact.sh" title="Contact" subtitle="Hiring, or have a project in mind? Let's talk." />
@@ -51,6 +54,15 @@ export default function Contact() {
               </svg>
               {siteConfig.email}
             </a>
+
+          <button type="button" onClick={openResume} style={{
+            alignSelf: "flex-start", padding: "12px 20px", background: "transparent",
+            color: "var(--color-text-primary)", fontWeight: 600, fontSize: "0.875rem",
+            borderRadius: 8, border: "1px solid var(--color-border-hover)",
+            cursor: "pointer", fontFamily: "var(--font-body)",
+          }}>
+            View Resume
+          </button>
 
             {siteConfig.availableForWork && (
               <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
