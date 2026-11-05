@@ -588,6 +588,9 @@ html:has(.resume-dialog[open]) {
   .resume-dialog .editor-bar {
     display: none;
   }
+  .resume-body:focus-visible {
+    outline: none;
+  }
   .resume-body {
     padding: 0;
     overflow: visible;

@@ -44,6 +44,7 @@ export default function Navbar() {
     setMobileOpen(false);
     target?.setAttribute("tabindex", "-1");
     target?.focus({ preventScroll: true });
+    target?.addEventListener("blur", () => target.removeAttribute("tabindex"), { once: true });
   };
 
   const linkStyle: React.CSSProperties = {
@@ -175,7 +176,7 @@ export default function Navbar() {
           </li>
           <li>
             <a href="#contact" onClick={followDrawerLink} style={{
-              display: "inline-block", padding: "9px 20px", borderRadius: 6,
+              display: "inline-block", padding: "9px 20px", borderRadius: 6, border: "1px solid transparent",
               background: "var(--color-accent)", color: "var(--color-on-accent)",
               fontSize: "0.875rem", fontWeight: 700,
               textDecoration: "none", fontFamily: "var(--font-body)",

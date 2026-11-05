@@ -39,7 +39,7 @@ export default function Contact() {
 
             <a href={`mailto:${siteConfig.email}`} style={{
               display: "inline-flex", alignItems: "center", gap: 10,
-              padding: "13px 20px", background: "var(--color-accent)",
+              padding: "13px 20px", background: "var(--color-accent)", border: "1px solid transparent",
               color: "var(--color-on-accent)", fontWeight: 700, fontSize: "0.875rem",
               borderRadius: 8, textDecoration: "none",
               transition: "opacity 0.2s, transform 0.15s",
