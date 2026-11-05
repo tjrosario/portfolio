@@ -16,13 +16,13 @@ export default function Ticker() {
         {items.map((word, i) => (
           <span key={i} style={{ display: "inline-flex", alignItems: "center", gap: 16, margin: "0 16px" }}>
             <span style={{
-              fontFamily: "var(--font-display)", fontWeight: 700,
-              fontSize: "0.68rem", letterSpacing: "0.2em", textTransform: "uppercase",
+              fontFamily: "var(--font-mono)", fontWeight: 600,
+              fontSize: "0.72rem",
               color: "var(--color-text-muted)",
             }}>
               {word}
             </span>
-            <span style={{ color: "var(--color-accent)", fontSize: "0.4rem", opacity: 0.5 }}>◆</span>
+            <span style={{ fontFamily: "var(--font-mono)", color: "var(--color-accent)", fontSize: "0.72rem" }}>{"//"}</span>
           </span>
         ))}
       </div>

@@ -1,6 +1,6 @@
 # Tommy Rosario — Portfolio
 
-Personal portfolio built with **Next.js (App Router), TypeScript, Tailwind CSS and self-hosted fonts**.
+Personal portfolio built with **Next.js (App Router), TypeScript, Tailwind CSS and self-hosted variable fonts**.
 
 ## Quick Start
 
@@ -41,13 +41,21 @@ portfolio/
 │   └── experience.types.ts
 ├── data/
 │   └── experience.json      Editable experience data
-├── public/fonts/            Self-hosted Syne + Space Grotesk
+├── public/fonts/            Self-hosted Sora, Inter and JetBrains Mono
 └── site.config.ts           ALL content lives here
 ```
 
 ## Customising Content
 
 Edit **`site.config.ts`** for everything: name, bio, skills, projects, links.
+
+## Seasonal Themes
+
+Seasons and their date ranges live in `seasons` in `site.config.ts`, and their accent colors in `app/globals.css`. The first matching range wins, so holidays sit above the seasons around them.
+
+Preview any season with `?season=<id>`, for example `http://localhost:4000/?season=christmas`.
+
+Season ids: `christmas`, `newyear`, `valentines`, `stpatricks`, `fourth`, `halloween`, `thanksgiving`, `winter`, `spring`, `summer`, `fall`.
 
 ## Experience JSON Schema
 

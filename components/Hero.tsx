@@ -2,10 +2,21 @@
 
 import Image from "next/image";
 import { siteConfig } from "@/site.config";
+import HeroEditor from "./HeroEditor";
+import SeasonalParticles from "./SeasonalParticles";
+import { ART } from "./SeasonalArt";
+import { useSeason } from "@/lib/season";
+
+const FLOATING_TAGS = [
+  { label: "<div>",  top: "16%", left: "4%",   delay: "0s" },
+  { label: "</>",    top: "78%", left: "7%",   delay: "1.2s" },
+  { label: "{ }",    top: "9%",  right: "6%",  delay: "0.6s" },
+  { label: "=>",     top: "88%", right: "42%", delay: "1.8s" },
+];
 
 function HeroCircle() {
   return (
-    <div style={{ position: "relative", width: "clamp(200px, 55vw, 360px)", aspectRatio: "1", flexShrink: 0 }}>
+    <div style={{ position: "relative", width: "clamp(128px, 32vw, 184px)", aspectRatio: "1", flexShrink: 0 }}>
       {/* Outer spinning ring */}
       <div style={{
         position: "absolute", inset: 0, borderRadius: "50%",
@@ -29,9 +40,9 @@ function HeroCircle() {
           src="/caricature.png"
           alt={`Caricature of ${siteConfig.name} coding at his desk`}
           fill
-          sizes="(max-width: 640px) 200px, 300px"
+          sizes="160px"
           style={{ objectFit: "cover", objectPosition: "50% 32%" }}
-          priority
+          preload
         />
       </div>
       {/* Cardinal dots */}
@@ -52,47 +63,53 @@ function HeroCircle() {
 }
 
 export default function Hero() {
+  const season = useSeason();
+
   return (
     <section id="hero" aria-label="Hero" style={{
       minHeight: "100vh", display: "flex", alignItems: "center",
       paddingTop: 64, position: "relative", overflow: "hidden",
     }}>
       <div aria-hidden="true" className="grid-bg" style={{ position: "absolute", inset: 0, pointerEvents: "none" }} />
-      <div aria-hidden="true" style={{
-        position: "absolute", top: "-10%", right: "-5%",
-        width: 700, height: 700,
-        background: "radial-gradient(circle, var(--color-border) 0%, transparent 65%)",
-        pointerEvents: "none", opacity: 0.6,
-      }} />
+      <div aria-hidden="true" className="hero-glow" style={{ top: "-20%", right: "-10%" }} />
+      <div aria-hidden="true" className="hero-glow" style={{ bottom: "-35%", left: "-15%", opacity: 0.5 }} />
+      <SeasonalParticles />
+      {FLOATING_TAGS.map(({ label, ...pos }) => (
+        <span key={label} aria-hidden="true" className="floating-tag hidden lg:block" style={{ ...pos, animationDelay: pos.delay }}>
+          {label}
+        </span>
+      ))}
 
-      <div style={{ maxWidth: 1152, margin: "0 auto", padding: "80px 24px", width: "100%" }}>
+      <div style={{ position: "relative", zIndex: 1, maxWidth: 1152, margin: "0 auto", padding: "80px 24px", width: "100%" }}>
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-
-          {/* Graphic */}
-          <div className="anim-hidden flex justify-center lg:justify-start">
-            <HeroCircle />
-          </div>
 
           {/* Text */}
           <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             <p className="anim-hidden delay-100" style={{
-              fontFamily: "monospace", fontSize: "0.72rem", fontWeight: 600,
-              letterSpacing: "0.22em", textTransform: "uppercase",
-              color: "var(--color-accent)",
+              fontFamily: "var(--font-mono)", fontSize: "0.8rem", fontWeight: 600,
+              letterSpacing: "0.04em",
+              color: "var(--color-accent)", margin: 0,
             }}>
-              Hello, I&apos;m
+              {"// hello, I'm"}
             </p>
 
-            <h1 className="anim-hidden delay-200" style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(3.2rem, 7vw, 5.2rem)",
-              fontWeight: 800, lineHeight: 0.95,
-              color: "var(--color-text-primary)",
-              margin: 0, letterSpacing: "-0.03em",
-            }}>
-              {siteConfig.name.split(" ")[0]}{" "}
-              <span style={{ color: "var(--color-accent)" }}>{siteConfig.name.split(" ")[1]}</span>
-            </h1>
+            <div className="anim-hidden delay-200 inspect-box">
+              <span aria-hidden="true" className="inspect-label">h1.name</span>
+              <span aria-hidden="true" className="inspect-handle" style={{ top: -4, left: -4 }} />
+              <span aria-hidden="true" className="inspect-handle" style={{ top: -4, right: -4 }} />
+              <span aria-hidden="true" className="inspect-handle" style={{ bottom: -4, left: -4 }} />
+              <span aria-hidden="true" className="inspect-handle" style={{ bottom: -4, right: -4 }} />
+              <h1 style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(3rem, 6.4vw, 5rem)",
+                fontWeight: 800, lineHeight: 1,
+                color: "var(--color-text-primary)",
+                margin: 0, letterSpacing: "-0.01em",
+              }}>
+                <span style={{ display: "block" }}>{siteConfig.firstName}</span>{" "}
+                <span style={{ display: "block", color: "var(--color-accent)" }}>{siteConfig.lastName}</span>
+              </h1>
+            </div>
 
             <p className="anim-hidden delay-300" style={{
               fontFamily: "var(--font-display)", fontSize: "1.15rem",
@@ -151,6 +168,20 @@ export default function Hero() {
                 </span>
               </div>
             )}
+          </div>
+
+          {/* Editor with caricature */}
+          <div className="anim-hidden delay-300" style={{ position: "relative", paddingBottom: "clamp(84px, 13vw, 124px)" }}>
+            <HeroEditor />
+            {/* Holiday hat on the editor corner */}
+            {season?.hat && (
+              <svg aria-hidden="true" viewBox="0 0 24 24" className="season-hat">
+                {ART[season.hat]}
+              </svg>
+            )}
+            <div style={{ position: "absolute", right: -8, bottom: 0 }}>
+              <HeroCircle />
+            </div>
           </div>
         </div>
       </div>

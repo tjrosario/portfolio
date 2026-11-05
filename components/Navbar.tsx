@@ -19,6 +19,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
+    requestAnimationFrame(onScroll); // deep links can load mid-page
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -53,8 +54,9 @@ export default function Navbar() {
             fontSize: "1.1rem", color: "var(--color-text-primary)", flexShrink: 0,
           }}
         >
-          {siteConfig.name.split(" ")[0]}
-          <span style={{ color: "var(--color-accent)" }}>.</span>
+          <span style={{ color: "var(--color-accent)" }}>&lt;</span>
+          {siteConfig.firstName}
+          <span style={{ color: "var(--color-accent)" }}>{" />"}</span>
         </a>
 
         {/* Desktop nav links — hidden on mobile */}
@@ -111,7 +113,7 @@ export default function Navbar() {
 
       {/* Mobile drawer */}
       <div className="md:hidden" style={{
-        maxHeight: mobileOpen ? 360 : 0, overflow: "hidden",
+        maxHeight: mobileOpen ? "calc(100dvh - 64px)" : 0, overflowX: "hidden", overflowY: mobileOpen ? "auto" : "hidden",
         visibility: mobileOpen ? "visible" : "hidden",
         transition: "max-height 0.3s ease, visibility 0.3s",
         background: "var(--color-bg-nav)",

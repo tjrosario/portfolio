@@ -12,6 +12,8 @@ function formatDate(d: string) {
   return mo >= 1 && mo <= 12 ? `${months[mo - 1]} ${year}` : year;
 }
 
+const commitSlug = (company: string) => company.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
 function ExperienceCard({ entry }: { entry: ExperienceEntry }) {
   const [hovered, setHovered] = useState(false);
   return (
@@ -40,6 +42,12 @@ function ExperienceCard({ entry }: { entry: ExperienceEntry }) {
           transition: "border-color 0.3s, box-shadow 0.3s",
         }}
       >
+        <p aria-hidden="true" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 8, fontFamily: "var(--font-mono)", fontSize: "0.72rem", color: "var(--color-text-muted)", margin: "0 0 10px" }}>
+          <span><span style={{ color: "var(--color-accent)" }}>commit</span> {commitSlug(entry.company)}</span>
+          {entry.endDate === "Present" && (
+            <span style={{ padding: "0 6px", borderRadius: 4, background: "var(--color-accent)", color: "var(--color-on-accent)", fontWeight: 600 }}>HEAD</span>
+          )}
+        </p>
         <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 8, marginBottom: 4 }}>
           <div>
             <h3 className="font-display" style={{ fontWeight: 700, fontSize: "1.05rem", color: "var(--color-text-primary)", margin: 0, letterSpacing: "-0.01em" }}>
@@ -47,8 +55,8 @@ function ExperienceCard({ entry }: { entry: ExperienceEntry }) {
             </h3>
             <p style={{ color: "var(--color-accent)", fontWeight: 600, fontSize: "0.85rem", margin: "3px 0 0" }}>{entry.company}</p>
           </div>
-          <div style={{ textAlign: "right", flexShrink: 0 }}>
-            <p style={{ color: "var(--color-text-muted)", fontSize: "0.73rem", fontFamily: "monospace", margin: 0 }}>
+          <div className="sm:text-right" style={{ flexShrink: 0 }}>
+            <p style={{ color: "var(--color-text-muted)", fontSize: "0.73rem", fontFamily: "var(--font-mono)", margin: 0 }}>
               {formatDate(entry.startDate)} — {formatDate(entry.endDate)}
             </p>
             {entry.location && (
@@ -61,7 +69,7 @@ function ExperienceCard({ entry }: { entry: ExperienceEntry }) {
           <ul style={{ margin: "14px 0 0", padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 7 }}>
             {entry.bullets.map((b, i) => (
               <li key={i} style={{ display: "flex", gap: 8, color: "var(--color-text-secondary)", fontSize: "0.855rem", lineHeight: 1.65 }}>
-                <span style={{ color: "var(--color-accent)", flexShrink: 0, marginTop: 4, fontSize: "0.5rem" }}>▸</span>
+                <span aria-hidden="true" style={{ color: "var(--color-diff-add)", flexShrink: 0, fontFamily: "var(--font-mono)", fontWeight: 700 }}>+</span>
                 {b}
               </li>
             ))}
@@ -90,7 +98,7 @@ export default function Experience({ entries }: { entries: ExperienceEntry[] }) 
   return (
     <section id="experience" style={{ padding: "96px 0", background: "var(--color-bg-section)" }}>
       <div style={{ maxWidth: 1152, margin: "0 auto", padding: "0 24px" }}>
-        <SectionHeader title="Experience" subtitle="Places I've worked and the things I've built." />
+        <SectionHeader path="$ git log --career" title="Experience" subtitle="Places I've worked and the things I've built." />
         {entries.length > 0 ? (
           <div style={{ maxWidth: 760 }}>
             {entries.map((e, i) => <ExperienceCard key={i} entry={e} />)}

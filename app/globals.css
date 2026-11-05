@@ -2,8 +2,9 @@
 
 @theme {
   /* Fonts from your config */
-  --font-body:    var(--font-space-grotesk), sans-serif;
-  --font-display: var(--font-syne), sans-serif;
+  --font-body:    var(--font-inter), sans-serif;
+  --font-display: var(--font-sora), sans-serif;
+  --font-mono:    var(--font-jetbrains-mono), monospace;
 
   /* Colors from your config (moved into the theme engine) */
   --color-accent: #2dd4bf;
@@ -36,24 +37,25 @@
   --color-bg-section: #111419;
   --color-bg-nav:     rgba(14, 17, 23, 0.92);
 
-  --color-accent:     #f97316;
+  --color-accent:     var(--season-dark, #f97316);
   --color-accent-dim: #c2570f;
   --color-on-accent:  #0e1117;
+  --color-diff-add:   #4ade80;
 
   --color-text-primary:   #f1ece4;
   --color-text-secondary: #8b8d94;
   --color-text-muted:     #85878e;
 
-  --color-border:       rgba(249, 115, 22, 0.12);
-  --color-border-hover: rgba(249, 115, 22, 0.38);
-  --color-border-nav:   rgba(249, 115, 22, 0.10);
+  --color-border:       color-mix(in srgb, var(--color-accent) 12%, transparent);
+  --color-border-hover: color-mix(in srgb, var(--color-accent) 38%, transparent);
+  --color-border-nav:   color-mix(in srgb, var(--color-accent) 10%, transparent);
 
-  --color-selection-bg: rgba(249, 115, 22, 0.30);
+  --color-selection-bg: color-mix(in srgb, var(--color-accent) 30%, transparent);
 
-  --grid-dot: rgba(249, 115, 22, 0.04);
+  --grid-dot: color-mix(in srgb, var(--color-accent) 14%, transparent);
 
   --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.35);
-  --shadow-glow: 0 4px 24px rgba(249, 115, 22, 0.30);
+  --shadow-glow: 0 4px 24px color-mix(in srgb, var(--color-accent) 30%, transparent);
 }
 
 /* ═══════════════════════════════════════════════
@@ -66,25 +68,42 @@
   --color-bg-section: #f3ede4;
   --color-bg-nav:     rgba(250, 247, 242, 0.92);
 
-  --color-accent:     #ad4c06;   /* deeper orange for contrast on light */
-  --color-accent-dim: #8f3f05;
+  --color-accent:     var(--season-light, #a24705);   /* deeper orange for contrast on light */
+  --color-accent-dim: #863a04;
   --color-on-accent:  #ffffff;
+  --color-diff-add:   #15803d;
 
   --color-text-primary:   #1a1410;   /* near-black warm */
   --color-text-secondary: #5a5650;   /* warm medium grey */
   --color-text-muted:     #6b645d;   /* warm grey */
 
-  --color-border:       rgba(234, 108, 10, 0.14);
-  --color-border-hover: rgba(234, 108, 10, 0.40);
-  --color-border-nav:   rgba(234, 108, 10, 0.12);
+  --color-border:       color-mix(in srgb, var(--color-accent) 14%, transparent);
+  --color-border-hover: color-mix(in srgb, var(--color-accent) 40%, transparent);
+  --color-border-nav:   color-mix(in srgb, var(--color-accent) 12%, transparent);
 
-  --color-selection-bg: rgba(234, 108, 10, 0.20);
+  --color-selection-bg: color-mix(in srgb, var(--color-accent) 20%, transparent);
 
-  --grid-dot: rgba(234, 108, 10, 0.06);
+  --grid-dot: color-mix(in srgb, var(--color-accent) 16%, transparent);
 
   --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.07);
-  --shadow-glow: 0 4px 20px rgba(234, 108, 10, 0.25);
+  --shadow-glow: 0 4px 20px color-mix(in srgb, var(--color-accent) 25%, transparent);
 }
+
+/* ═══════════════════════════════════════════════
+   SEASONS
+   Set by the blocking script in app/layout.tsx. Dark and light accents both meet 4.5:1.
+   ═══════════════════════════════════════════════ */
+[data-season="christmas"]    { --season-dark: #f87171; --season-light: #a51717; }
+[data-season="newyear"]      { --season-dark: #facc15; --season-light: #854d0e; }
+[data-season="valentines"]   { --season-dark: #fb7185; --season-light: #9f1239; }
+[data-season="stpatricks"]   { --season-dark: #4ade80; --season-light: #166534; }
+[data-season="fourth"]       { --season-dark: #60a5fa; --season-light: #1d4ed8; }
+[data-season="halloween"]    { --season-dark: #c084fc; --season-light: #7e22ce; }
+[data-season="thanksgiving"] { --season-dark: #f59e0b; --season-light: #92400e; }
+[data-season="winter"]       { --season-dark: #7dd3fc; --season-light: #075985; }
+[data-season="spring"]       { --season-dark: #a3e635; --season-light: #3f6212; }
+[data-season="summer"]       { --season-dark: #2dd4bf; --season-light: #115e59; }
+[data-season="fall"]         { --season-dark: #fb923c; --season-light: #9a3412; }
 
 /* ═══════════════════════════════════════════════
    BASE
@@ -169,6 +188,232 @@
   transform: none;
 }
 
+/* ═══════════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════════ */
+.hero-glow {
+  position: absolute;
+  width: min(760px, 110vw);
+  aspect-ratio: 1;
+  background: radial-gradient(circle closest-side, var(--color-border-hover) 0%, transparent 100%);
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+.season-particle {
+  position: absolute;
+  top: -48px;
+  opacity: 0.85;
+  animation-name: season-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* Tilted so the brim straddles the editor's top right corner */
+.season-hat {
+  --hat-size: clamp(68px, 11vw, 100px);
+  position: absolute;
+  top: calc(var(--hat-size) * -0.68);
+  right: calc(var(--hat-size) * -0.48);
+  width: var(--hat-size);
+  height: var(--hat-size);
+  transform: rotate(32deg);
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.35));
+}
+@media (max-width: 640px) {
+  .season-hat {
+    --hat-size: 52px;
+    right: calc(var(--hat-size) * -0.4);
+  }
+}
+
+.floating-tag {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  opacity: 0.45;
+  pointer-events: none;
+  animation: float 6s ease-in-out infinite;
+}
+
+.inspect-box {
+  position: relative;
+  align-self: flex-start;
+  margin-top: 14px;
+  padding: 8px 12px;
+  background: var(--color-border);
+  outline: 1px dashed var(--color-border-hover);
+}
+.inspect-label {
+  position: absolute;
+  top: -22px;
+  left: -1px;
+  padding: 1px 7px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+.inspect-handle {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  background: var(--color-bg-base);
+  border: 1px solid var(--color-accent);
+}
+
+/* The editor stays dark in both themes */
+.editor-window {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0b0e14;
+  border: 1px solid var(--color-border-hover);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4), var(--shadow-glow);
+}
+.editor-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 14px;
+  height: 38px;
+  background: #141820;
+}
+.editor-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+.editor-tab {
+  margin-left: 12px;
+  padding: 3px 12px;
+  border-radius: 5px;
+  background: #0b0e14;
+  color: #c9ccd3;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+.editor-code {
+  margin: 0;
+  padding: 16px 16px 44px 0;
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: clamp(0.64rem, 2.5vw, 0.82rem);
+  line-height: 1.85;
+  color: #f1ece4;
+}
+.editor-line {
+  display: flex;
+  white-space: pre;
+}
+.editor-line code {
+  font-family: inherit;
+}
+.editor-gutter {
+  flex: 0 0 38px;
+  padding-right: 14px;
+  text-align: right;
+  color: #5d6068;
+  user-select: none;
+}
+.editor-status {
+  display: flex;
+  gap: 16px;
+  padding: 3px 14px;
+  background: var(--season-dark, #f97316);
+  color: #0e1117;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+.editor-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  margin-left: 3px;
+  vertical-align: text-bottom;
+  background: var(--season-dark, #f97316);
+  animation: blink 1.1s steps(2) infinite;
+}
+
+.jsx-bracket {
+  font-family: var(--font-mono);
+  font-size: 0.72em;
+  font-weight: 500;
+  color: var(--color-accent);
+}
+
+.terminal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px 20px 22px;
+}
+.terminal-line {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: #f1ece4;
+}
+.terminal-link {
+  color: #a6e3a1;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+.terminal-link:hover {
+  color: #f1ece4;
+}
+
+.browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: var(--color-bg-section);
+  border-bottom: 1px solid var(--color-border);
+}
+.browser-address {
+  flex: 1;
+  min-width: 0;
+  margin-left: 8px;
+  padding: 2px 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  background: var(--color-bg-base);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+}
+
+.tok-json-key { color: var(--color-accent); }
+.tok-comment { color: #7d8290; font-style: italic; }
+.tok-keyword { color: #ff9e64; }
+.tok-name    { color: #f1ece4; }
+.tok-key     { color: #7dcfff; }
+.tok-string  { color: #a6e3a1; }
+.tok-punct   { color: #a0a3ad; }
+
+@keyframes season-fall {
+  25%  { transform: translate(18px, 26vh) rotate(-18deg); }
+  50%  { transform: translate(-12px, 52vh) rotate(16deg); }
+  75%  { transform: translate(14px, 78vh) rotate(-14deg); }
+  100% { transform: translate(0, calc(100vh + 80px)) rotate(12deg); }
+}
+
+@keyframes float {
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes blink {
+  to { opacity: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -180,6 +425,13 @@
   .anim-hidden {
     opacity: 1;
   }
+  .season-particle {
+    display: none;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 @keyframes ping {

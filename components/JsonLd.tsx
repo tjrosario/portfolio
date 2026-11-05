@@ -7,7 +7,7 @@
  *  3. ProfilePage   — WebPage type for portfolio pages (schema.org v20+)
  *  4. ItemList      — project list as CreativeWork entries
  *
- * All schemas use @id cross-references so Google can resolve the entity graph.
+ * All schemas share one @graph so their @id cross-references resolve.
  *
  * Zero client JavaScript — rendered as static <script> tags by app/page.tsx.
  */
@@ -19,12 +19,11 @@ type JsonValue =
   | JsonValue[]
   | { [k: string]: JsonValue };
 
-function buildSchemas(): JsonValue[] {
+function buildSchema(): JsonValue {
   const base = siteConfig.siteUrl;
 
   // ── 1. Person ────────────────────────────────────────────────────────────
   const person: { [k: string]: JsonValue } = {
-    "@context": "https://schema.org",
     "@type":    "Person",
     "@id":      `${base}/#person`,
     name:       siteConfig.name,
@@ -70,7 +69,6 @@ function buildSchemas(): JsonValue[] {
 
   // ── 2. WebSite ───────────────────────────────────────────────────────────
   const website: { [k: string]: JsonValue } = {
-    "@context":  "https://schema.org",
     "@type":     "WebSite",
     "@id":       `${base}/#website`,
     url:         base,
@@ -82,7 +80,6 @@ function buildSchemas(): JsonValue[] {
 
   // ── 3. ProfilePage (WebPage subtype for portfolio/person pages) ──────────
   const webpage: { [k: string]: JsonValue } = {
-    "@context":   "https://schema.org",
     "@type":      "ProfilePage",
     "@id":        `${base}/#webpage`,
     url:          base,
@@ -90,6 +87,7 @@ function buildSchemas(): JsonValue[] {
     description:  siteConfig.metaDescription,
     isPartOf:     { "@id": `${base}/#website` },
     about:        { "@id": `${base}/#person` },
+    mainEntity:   { "@id": `${base}/#person` },
     primaryImageOfPage: {
       "@type": "ImageObject",
       url:     `${base}${siteConfig.ogImage}`,
@@ -111,7 +109,6 @@ function buildSchemas(): JsonValue[] {
 
   // ── 4. ItemList — Projects ───────────────────────────────────────────────
   const projectsList: { [k: string]: JsonValue } = {
-    "@context": "https://schema.org",
     "@type":    "ItemList",
     "@id":      `${base}/#projects`,
     name:       `Projects by ${siteConfig.name}`,
@@ -136,22 +133,18 @@ function buildSchemas(): JsonValue[] {
     })),
   };
 
-  return [person, website, webpage, projectsList];
+  return {
+    "@context": "https://schema.org",
+    "@graph":   [person, website, webpage, projectsList],
+  };
 }
 
 export default function JsonLd() {
-  const schemas = buildSchemas();
-
   return (
-    <>
-      {schemas.map((schema, i) => (
-        <script
-          key={i}
-          type="application/ld+json"
-          // Safe: content is built entirely from our own config constants
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema, null, 0) }}
-        />
-      ))}
-    </>
+    <script
+      type="application/ld+json"
+      // Safe: content is built entirely from our own config constants
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(buildSchema()) }}
+    />
   );
 }
