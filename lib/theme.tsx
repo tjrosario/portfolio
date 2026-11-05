@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, useCallback } from "react";
+import { createContext, useContext, useEffect, useCallback, useSyncExternalStore } from "react";
 
 type Theme = "dark" | "light";
 
@@ -14,30 +14,31 @@ const ThemeContext = createContext<ThemeContextValue>({
   toggle: () => {},
 });
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("dark");
+// The blocking script in app/layout.tsx sets data-theme before paint
+function getTheme(): Theme {
+  return document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+}
 
-  // On mount: read saved preference or system preference
+function subscribe(onChange: () => void) {
+  const observer = new MutationObserver(onChange);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  return () => observer.disconnect();
+}
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const theme = useSyncExternalStore(subscribe, getTheme, () => "dark" as Theme);
+
+  // Enable transitions only after first paint to prevent flash
   useEffect(() => {
-    const saved = localStorage.getItem("theme") as Theme | null;
-    const preferred =
-      saved ??
-      (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
-    setTheme(preferred);
-    document.documentElement.setAttribute("data-theme", preferred);
-    // Enable transitions only after first paint to prevent flash
     requestAnimationFrame(() => {
       document.documentElement.classList.add("theme-ready");
     });
   }, []);
 
   const toggle = useCallback(() => {
-    setTheme((prev) => {
-      const next: Theme = prev === "dark" ? "light" : "dark";
-      localStorage.setItem("theme", next);
-      document.documentElement.setAttribute("data-theme", next);
-      return next;
-    });
+    const next: Theme = getTheme() === "dark" ? "light" : "dark";
+    localStorage.setItem("theme", next);
+    document.documentElement.setAttribute("data-theme", next);
   }, []);
 
   return (

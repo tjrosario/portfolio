@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { siteConfig } from "@/site.config";
 import { ThemeProvider } from "@/lib/theme";
@@ -27,12 +28,12 @@ const syne = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
   title: `${siteConfig.name} — ${siteConfig.role}`,
-  description: siteConfig.bio,
-  keywords: ["Frontend Developer", "React", "Next.js", "TypeScript", siteConfig.name],
+  description: siteConfig.metaDescription,
+  alternates: { canonical: "/" },
   authors: [{ name: siteConfig.name, url: siteConfig.siteUrl }],
   openGraph: {
     title: `${siteConfig.name} — ${siteConfig.role}`,
-    description: siteConfig.bio,
+    description: siteConfig.metaDescription,
     url: siteConfig.siteUrl,
     siteName: siteConfig.name,
     images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: siteConfig.name }],
@@ -41,7 +42,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: `${siteConfig.name} — ${siteConfig.role}`,
-    description: siteConfig.bio,
+    description: siteConfig.metaDescription,
     images: [siteConfig.ogImage],
   },
   icons: {
@@ -79,7 +80,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>
+        <a href="#main" className="skip-link">Skip to content</a>
         <ThemeProvider>{children}</ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
