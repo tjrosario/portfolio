@@ -10,13 +10,13 @@ The source for [tommyrosario.me](https://tommyrosario.me), my portfolio as a sen
 
 - **Seasonal theming:** the accent color, falling particles, and holiday art follow the date. A blocking script applies the theme before paint, so a static page still changes with the calendar and never flashes the wrong colors.
 - **Accessibility:** audited against WCAG 2.2 AA. It has a skip link, a pause control for animations, reduced motion and forced colors support, and keyboard handling throughout the mobile menu and resume dialog.
-- **Resume dialog:** a native `<dialog>` with a print stylesheet that produces a one-page PDF.
+- **Resume dialog:** a native `<dialog>` that fetches its content from `/api/resume` on first open, with loading and error states, and prints to a one-page PDF.
 - **Search and AI discovery:** metadata, JSON-LD, a sitemap, a generated social image, and an `llms.txt` route, all built from one config file.
 - **Light on dependencies:** four runtime packages and self-hosted variable fonts, with no state library because the site doesn't need one.
 
 ## Stack
 
-Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, ESLint, Bun, and Vercel. GitHub Actions runs lint and a production build on every pull request.
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, MSW, ESLint, Bun, and Vercel. GitHub Actions runs lint and a production build on every pull request.
 
 ## Run it locally
 
@@ -39,14 +39,21 @@ Then open http://localhost:4000. To use another port, run `PORT=4500 bun run dev
 ## Project structure
 
 ```
-app/          Routes, layout, global styles, and the og and llms.txt routes
+app/          Routes, layout, global styles, and the og, llms.txt, and api/resume routes
 components/   Page sections and shared UI
 data/         Experience timeline and resume content
 docs/         README assets
 lib/          Theme, season, motion, and resume state
-public/       Fonts, icons, and images
+mocks/        MSW handlers for local development
+public/       Fonts, icons, images, and the generated MSW service worker
 site.config.ts   Site content, projects, skills, and seasons
 ```
+
+## API mocking
+
+In development, [MSW](https://mswjs.io) intercepts `/api/resume` and adds a 1.2 second delay so the loading state is easy to see. Handlers live in `mocks/`. Production skips MSW and uses the real route in `app/api/resume/route.ts`.
+
+`public/mockServiceWorker.js` is generated, so run `bunx msw init public` after upgrading MSW.
 
 ## Editing content
 

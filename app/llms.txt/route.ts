@@ -1,3 +1,4 @@
+import resume from "@/data/resume.json";
 import { siteConfig } from "@/site.config";
 
 export const dynamic = "force-static";
@@ -11,6 +12,12 @@ export function GET() {
     siteConfig.bio,
     "",
     siteConfig.aiWorkflow.intro,
+    "",
+    "## Experience",
+    ...[...resume.experience, ...resume.earlierRoles].map(r => `- ${r.title}, ${r.company} (${r.dates}): ${r.summary}`),
+    "",
+    "## Education",
+    `- ${resume.education.degree}, ${resume.education.school} (${resume.education.dates})`,
     "",
     "## Skills",
     ...siteConfig.skillGroups.map(g => `- ${g.label}: ${g.skills.join(", ")}`),

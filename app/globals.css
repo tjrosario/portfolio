@@ -399,9 +399,39 @@ html:has(.resume-dialog[open]) {
   white-space: nowrap;
   cursor: pointer;
 }
-.resume-action:hover {
+.resume-action:hover:enabled {
   border-color: var(--season-dark, #f97316);
   color: #f1ece4;
+}
+.resume-action:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.resume-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: min(60vh, 420px);
+}
+.resume-spinner {
+  width: 26px;
+  height: 26px;
+  border: 2px solid var(--color-border-hover);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+.resume-retry {
+  padding: 6px 14px;
+  border: 1px solid var(--color-border-hover);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  cursor: pointer;
 }
 .resume-body {
   padding: clamp(20px, 4vw, 36px);
