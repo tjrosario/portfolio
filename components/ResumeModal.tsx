@@ -12,7 +12,7 @@ function Heading({ children }: { children: string }) {
 
 function ResumeLoading() {
   return (
-    <div className="resume-body resume-status" role="status">
+    <div className="resume-body resume-status">
       <span aria-hidden="true" className="resume-spinner" />
       <p>Loading resume</p>
     </div>
@@ -122,6 +122,13 @@ interface ResumeModalProps {
   onRetry: () => void;
 }
 
+const STATUS_MESSAGES: Record<ResumeState["status"], string> = {
+  idle: "",
+  loading: "Loading resume",
+  ready: "Resume loaded",
+  error: "",
+};
+
 export default function ResumeModal({ ref, state, onRetry }: ResumeModalProps) {
   // A text selection dragged out of the window also fires click on the dialog
   const pressedBackdrop = useRef(false);
@@ -141,6 +148,8 @@ export default function ResumeModal({ ref, state, onRetry }: ResumeModalProps) {
       onMouseDown={e => { pressedBackdrop.current = e.target === e.currentTarget; }}
       onClick={e => { if (pressedBackdrop.current && e.target === e.currentTarget) e.currentTarget.close(); }}
     >
+      {/* Stays mounted so screen readers hear each change; the error state announces itself */}
+      <p role="status" className="sr-only">{STATUS_MESSAGES[state.status]}</p>
       <WindowFrame
         label="resume.tsx"
         actions={

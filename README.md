@@ -39,19 +39,21 @@ Then open http://localhost:4000. To use another port, run `PORT=4500 bun run dev
 ## Project structure
 
 ```
-app/          Routes, layout, global styles, and the og and llms.txt routes
+app/          Routes, layout, global styles, and the og, llms.txt, and api/resume routes
 components/   Page sections and shared UI
 data/         Experience timeline and resume content
 docs/         README assets
 lib/          Theme, season, motion, and resume state
 mocks/        MSW handlers for local development
-public/       Fonts, icons, and images
+public/       Fonts, icons, images, and the generated MSW service worker
 site.config.ts   Site content, projects, skills, and seasons
 ```
 
 ## API mocking
 
 In development, [MSW](https://mswjs.io) intercepts `/api/resume` and adds a 1.2 second delay so the loading state is easy to see. Handlers live in `mocks/`. Production skips MSW and uses the real route in `app/api/resume/route.ts`.
+
+`public/mockServiceWorker.js` is generated, so run `bunx msw init public` after upgrading MSW.
 
 ## Editing content
 
