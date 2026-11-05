@@ -6,11 +6,32 @@ test("loads on open and hands focus back on close", async ({ page }) => {
   await page.goto("/");
   const dialog = await openResume(page);
 
-  await expect(dialog.getByRole("heading", { name: resume.experience[0].title })).toBeVisible();
+  await expect(dialog.getByRole("region", { name: "Resume content" })).toContainText(resume.education.school);
   await page.keyboard.press("Escape");
 
   await expect(dialog).toBeHidden();
   await expect(page.locator("#hero").getByRole("button", { name: "View Resume" })).toBeFocused();
+});
+
+test("the Close button closes it", async ({ page }) => {
+  await page.goto("/");
+  const dialog = await openResume(page);
+
+  await dialog.getByRole("button", { name: "Close resume" }).click();
+
+  await expect(dialog).toBeHidden();
+});
+
+test("Print opens the browser's print dialog once the resume is ready", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.print = () => document.documentElement.setAttribute("data-printed", "true");
+  });
+  await page.goto("/");
+  const dialog = await openResume(page);
+
+  await dialog.getByRole("button", { name: "Print / Save PDF" }).click();
+
+  await expect(page.locator("html")).toHaveAttribute("data-printed", "true");
 });
 
 test("closes from the backdrop but not from a click inside", async ({ page }) => {

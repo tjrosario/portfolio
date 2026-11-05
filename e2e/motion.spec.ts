@@ -1,4 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
+import { clickUntil, expectNoAxeViolations } from "./helpers";
 
 const pauseButton = (page: Page) => page.getByRole("button", { name: "Pause animations" });
 const playButton = (page: Page) => page.getByRole("button", { name: "Play animations" });
@@ -8,10 +9,7 @@ test.describe("with motion allowed", () => {
 
   test("the pause stops looping animations and survives a reload", async ({ page }) => {
     await page.goto("/");
-    await expect(async () => {
-      await pauseButton(page).click();
-      await expect(playButton(page)).toBeVisible({ timeout: 1000 });
-    }).toPass();
+    await clickUntil(pauseButton(page), playButton(page));
 
     const ticker = page.locator(".ticker-repeat").first();
     await expect(ticker.locator("xpath=..")).toHaveCSS("animation-play-state", "paused");
@@ -19,6 +17,16 @@ test.describe("with motion allowed", () => {
     await page.reload();
     await expect(page.locator("html")).toHaveAttribute("data-motion", "paused");
     await expect(playButton(page)).toBeVisible();
+  });
+});
+
+test.describe("axe with motion allowed", () => {
+  test.use({ contextOptions: { reducedMotion: "no-preference" } });
+
+  test("the pause control and particles pass", async ({ page }) => {
+    await page.goto("/");
+    await expect(pauseButton(page)).toBeVisible();
+    await expectNoAxeViolations(page);
   });
 });
 

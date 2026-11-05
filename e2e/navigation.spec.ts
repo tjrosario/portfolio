@@ -35,6 +35,17 @@ test("keyboard focus never lands under the fixed header", async ({ page }) => {
   expect([...covered]).toEqual([]);
 });
 
+test("section links stop below the fixed header", async ({ page }) => {
+  await page.goto("/#experience");
+
+  await expect(async () => {
+    const header = await page.getByRole("banner").boundingBox();
+    const section = await page.locator("#experience").boundingBox();
+    expect(section!.y).toBeGreaterThanOrEqual(header!.height);
+    expect(section!.y).toBeLessThan(header!.height + 40);
+  }).toPass();
+});
+
 test.describe("mobile drawer", () => {
   test.use({ viewport: { width: 375, height: 760 } });
 
@@ -50,6 +61,7 @@ test.describe("mobile drawer", () => {
     const { menu, drawer } = await openDrawer(page);
 
     await expect(menu).toHaveAttribute("aria-expanded", "true");
+    await drawer.getByRole("link").first().focus();
     await page.keyboard.press("Escape");
 
     await expect(drawer).toBeHidden();

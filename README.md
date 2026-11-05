@@ -16,7 +16,7 @@ The source for [tommyrosario.me](https://tommyrosario.me), my portfolio as a sen
 
 ## Stack
 
-Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, MSW, ESLint, Bun, and Vercel. GitHub Actions runs lint and a production build on every pull request.
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, MSW, Vitest, Playwright, ESLint, Bun, and Vercel. GitHub Actions runs lint, both test suites, and a production build on every pull request.
 
 ## Run it locally
 
@@ -58,7 +58,7 @@ site.config.ts   Site content, projects, skills, and seasons
 
 Unit and component tests use [Vitest](https://vitest.dev) and React Testing Library, and sit next to the code they cover. They share the MSW handlers from `mocks/`, so a test and the dev server get the same responses.
 
-Browser tests use [Playwright](https://playwright.dev) against a production build. They cover axe scans of every season in both themes, the resume loading, error, and print flows, keyboard navigation, the pause control, and season dates. Run `bunx playwright install chromium` once before the first run.
+Browser tests use [Playwright](https://playwright.dev) against a production build. They cover axe scans of the page, resume, and mobile menu in every season and both themes, the resume loading, error, and print flows, keyboard navigation, the pause control, and season dates. Run `bunx playwright install chromium` once before the first run. The tests serve the build on port 4100, so that port must be free.
 
 CI runs lint, both test suites, and the build on every pull request.
 

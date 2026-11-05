@@ -22,6 +22,5 @@ export default defineConfig({
     command: "bun run start",
     env: { PORT: String(PORT) },
     url: baseURL,
-    reuseExistingServer: !process.env.CI,
   },
 });
