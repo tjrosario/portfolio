@@ -6,9 +6,6 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: __dirname,
   },
-  env: {
-    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL ?? "https://tommyrosario.me",
-  },
 };
 
 export default nextConfig;

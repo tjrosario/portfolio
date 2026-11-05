@@ -8,7 +8,7 @@ export const siteConfig = {
   name:       "Tommy Rosario",
   firstName:  "Tommy",
   lastName:   "Rosario",
-  role:       "Senior Software Engineer",
+  role:       "Sr. Frontend Engineer",
   favicon:    "/favicon.ico",
   icons: {
       icon16: "/favicon-16x16.png",
@@ -25,7 +25,7 @@ export const siteConfig = {
   availabilityLabel: "Open to full-time, contract & consulting work",
 
   // ── Bio (naturally keyword-rich, readable) ────────────────────────────────
-  bio: "Senior Software Engineer with 15+ years building high-performance, scalable web applications for consumer platforms and internal enterprise tools. Expert in React, Next.js, TypeScript, Angular, and Vue, with a strong foundation in modern CSS, Tailwind, and design systems.",
+  bio: "Senior Frontend Engineer with 15+ years building high-performance, scalable web applications for consumer platforms and internal enterprise tools. Expert in React, Next.js, TypeScript, Angular, and Vue, with a strong foundation in modern CSS, Tailwind, and design systems.",
   bioExtended:
     "Known for leading large-scale frontend migrations, improving performance and SEO, and delivering fast, polished user experiences that directly support business growth. Comfortable working across product, design, and data teams to ship features that scale.",
   bioHighlights: [
@@ -40,7 +40,6 @@ export const siteConfig = {
   github:        "https://github.com/tjrosario",
   linkedin:      "https://www.linkedin.com/in/tommy-rosario-65771711/",
   twitter:       "https://twitter.com/tommyrosario",
-  twitterHandle: "@tommyrosario",
 
   // ── SEO / OG ──────────────────────────────────────────────────────────────
   siteUrl:  "https://tommyrosario.me",
@@ -49,7 +48,7 @@ export const siteConfig = {
   lastUpdated: "2026-11-04",
   /** Primary meta description — ≤160 chars */
   metaDescription:
-    "Tommy Rosario is a senior software engineer specializing in React, Next.js, and AI-assisted delivery. Open to full-time, contract, and consulting work.",
+    "Tommy Rosario is a senior frontend engineer specializing in React, Next.js, and AI-assisted delivery. Open to full-time, contract, and consulting work.",
 
   // ── JSON-LD extras ────────────────────────────────────────────────────────
   knowsAbout: [
