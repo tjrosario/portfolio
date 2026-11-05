@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { siteConfig } from "@/site.config";
 import HeroEditor from "./HeroEditor";
+import MotionToggle from "./MotionToggle";
 import SeasonalParticles from "./SeasonalParticles";
 import { ART } from "./SeasonalArt";
 import { useSeason } from "@/lib/season";
@@ -92,7 +93,7 @@ export default function Hero() {
               letterSpacing: "0.04em",
               color: "var(--color-accent)", margin: 0,
             }}>
-              {"// hello, I'm"}
+              <span aria-hidden="true">{"// "}</span>hello, I&apos;m
             </p>
 
             <div className="anim-hidden delay-200 inspect-box">
@@ -131,6 +132,7 @@ export default function Hero() {
               <a href="#projects" style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
                 padding: "12px 24px", background: "var(--color-accent)",
+                border: "1px solid transparent",
                 color: "var(--color-on-accent)", fontWeight: 700, fontSize: "0.875rem",
                 borderRadius: 8, textDecoration: "none",
                 transition: "opacity 0.2s, transform 0.15s",
@@ -171,17 +173,20 @@ export default function Hero() {
               </button>
             </div>
 
-            {siteConfig.availableForWork && (
-              <div className="anim-hidden delay-600" style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <span style={{ position: "relative", display: "inline-flex", width: 9, height: 9 }}>
-                  <span style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "#22c55e", opacity: 0.7, animation: "ping 1.8s cubic-bezier(0,0,0.2,1) infinite" }} />
-                  <span style={{ position: "relative", display: "inline-flex", width: 9, height: 9, borderRadius: "50%", background: "#22c55e" }} />
-                </span>
-                <span style={{ color: "var(--color-text-secondary)", fontSize: "0.82rem" }}>
-                  {siteConfig.availabilityLabel}
-                </span>
-              </div>
-            )}
+            <div className="anim-hidden delay-600" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "10px 16px" }}>
+              {siteConfig.availableForWork && (
+                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                  <span style={{ position: "relative", display: "inline-flex", width: 9, height: 9 }}>
+                    <span style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "#22c55e", opacity: 0.7, animation: "ping 1.8s cubic-bezier(0,0,0.2,1) infinite" }} />
+                    <span style={{ position: "relative", display: "inline-flex", width: 9, height: 9, borderRadius: "50%", background: "#22c55e" }} />
+                  </span>
+                  <span style={{ color: "var(--color-text-primary)", fontSize: "0.82rem" }}>
+                    {siteConfig.availabilityLabel}
+                  </span>
+                </div>
+              )}
+              <MotionToggle />
+            </div>
           </div>
 
           {/* Editor with caricature */}

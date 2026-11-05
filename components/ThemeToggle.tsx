@@ -75,6 +75,7 @@ export default function ThemeToggle() {
           width: 14,
           height: 14,
           borderRadius: "50%",
+          border: "1px solid transparent",
           background: "var(--color-accent)",
           transition: "left 0.25s cubic-bezier(0.34,1.56,0.64,1)",
           boxShadow: "0 1px 4px rgba(0,0,0,0.2)",

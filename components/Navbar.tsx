@@ -27,6 +27,25 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setMobileOpen(false);
+      hamburgerRef.current?.focus();
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [mobileOpen]);
+
+  // The drawer hides the link in use, so focus moves on to the section it opens
+  const followDrawerLink = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const target = document.querySelector<HTMLElement>(e.currentTarget.hash);
+    setMobileOpen(false);
+    target?.setAttribute("tabindex", "-1");
+    target?.focus({ preventScroll: true });
+  };
+
   const linkStyle: React.CSSProperties = {
     fontFamily: "var(--font-body)", fontSize: "0.875rem",
     fontWeight: 500, color: "var(--color-text-secondary)",
@@ -34,7 +53,9 @@ export default function Navbar() {
   };
 
   return (
-    <header role="banner" style={{
+    <header role="banner" onBlur={e => {
+      if (e.relatedTarget && !e.currentTarget.contains(e.relatedTarget)) setMobileOpen(false);
+    }} style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
       transition: "background 0.3s, border-color 0.3s",
       background: scrolled || mobileOpen ? "var(--color-bg-nav)" : "transparent",
@@ -44,7 +65,7 @@ export default function Navbar() {
     }}>
       <nav aria-label="Main navigation" style={{
         maxWidth: 1152, margin: "0 auto", padding: "0 24px",
-        height: 64, display: "flex", alignItems: "center", justifyContent: "space-between",
+        minHeight: 64, display: "flex", alignItems: "center", justifyContent: "space-between",
         gap: 16,
       }}>
         {/* Logo */}
@@ -63,7 +84,7 @@ export default function Navbar() {
         </a>
 
         {/* Desktop nav links — hidden on mobile */}
-        <ul className="hidden lg:flex" style={{ listStyle: "none", margin: 0, padding: 0, gap: 32, flex: 1, justifyContent: "center" }}>
+        <ul className="hidden lg:flex" style={{ listStyle: "none", margin: 0, padding: 0, gap: "4px 32px", flex: 1, flexWrap: "wrap", minWidth: 0, justifyContent: "center" }}>
           {NAV_LINKS.map(link => (
             <li key={link.href}>
               <a href={link.href} style={linkStyle}
@@ -90,7 +111,7 @@ export default function Navbar() {
 
           {/* Hire me — desktop only */}
           <a href="#contact" className="hidden lg:inline-block" style={{
-            padding: "7px 16px", borderRadius: 6,
+            padding: "7px 16px", borderRadius: 6, border: "1px solid transparent",
             background: "var(--color-accent)", color: "var(--color-on-accent)",
             fontSize: "0.8rem", fontWeight: 700,
             textDecoration: "none", transition: "opacity 0.2s",
@@ -105,16 +126,18 @@ export default function Navbar() {
           {/* Hamburger — mobile only */}
           <button
             ref={hamburgerRef}
+            type="button"
             className="flex lg:hidden"
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-label="Menu"
             aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
             onClick={() => setMobileOpen(v => !v)}
             style={{ background: "none", border: "none", cursor: "pointer", flexDirection: "column", gap: 5, padding: 8 }}
           >
             {[0,1,2].map(i => (
               <span key={i} style={{
-                display: "block", width: 22, height: 2,
-                background: "var(--color-text-primary)", borderRadius: 2, transition: "all 0.3s",
+                display: "block", width: 22,
+                borderTop: "2px solid var(--color-text-primary)", borderRadius: 2, transition: "all 0.3s",
                 transform: mobileOpen && i === 0 ? "rotate(45deg) translate(5px,5px)" : mobileOpen && i === 2 ? "rotate(-45deg) translate(5px,-5px)" : "none",
                 opacity: mobileOpen && i === 1 ? 0 : 1,
               }} />
@@ -124,7 +147,7 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile drawer */}
-      <div className="lg:hidden" style={{
+      <nav id="mobile-menu" aria-label="Mobile navigation" className="lg:hidden" style={{
         maxHeight: mobileOpen ? "calc(100dvh - 64px)" : 0, overflowX: "hidden", overflowY: mobileOpen ? "auto" : "hidden",
         visibility: mobileOpen ? "visible" : "hidden",
         transition: "max-height 0.3s ease, visibility 0.3s",
@@ -135,7 +158,7 @@ export default function Navbar() {
         <ul style={{ listStyle: "none", padding: "16px 24px 20px", margin: 0, display: "flex", flexDirection: "column", gap: 18 }}>
           {NAV_LINKS.map(link => (
             <li key={link.href}>
-              <a href={link.href} onClick={() => setMobileOpen(false)}
+              <a href={link.href} onClick={followDrawerLink}
                 style={{ ...linkStyle, fontSize: "1rem", color: "var(--color-text-primary)", display: "block" }}
               >{link.label}</a>
             </li>
@@ -151,7 +174,7 @@ export default function Navbar() {
             >Resume</button>
           </li>
           <li>
-            <a href="#contact" onClick={() => setMobileOpen(false)} style={{
+            <a href="#contact" onClick={followDrawerLink} style={{
               display: "inline-block", padding: "9px 20px", borderRadius: 6,
               background: "var(--color-accent)", color: "var(--color-on-accent)",
               fontSize: "0.875rem", fontWeight: 700,
@@ -161,7 +184,7 @@ export default function Navbar() {
             </a>
           </li>
         </ul>
-      </div>
+      </nav>
     </header>
   );
 }

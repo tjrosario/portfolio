@@ -11,6 +11,8 @@ const TERMINAL_LINKS = [
   { label: "linkedin", href: siteConfig.linkedin, text: siteConfig.linkedin.replace("https://www.", "").replace(/\/$/, "") },
 ];
 
+const external = (href: string) => href.startsWith("http");
+
 export default function Contact() {
   const { open: openResume } = useResume();
 
@@ -18,7 +20,7 @@ export default function Contact() {
     <section id="contact" style={{ padding: "96px 0", maxWidth: 1152, margin: "0 auto", paddingLeft: 24, paddingRight: 24 }}>
       <SectionHeader path="./contact.sh" title="Contact" subtitle="Hiring, or have a project in mind? Let's talk." />
 
-      <div className="grid lg:grid-cols-2 gap-14 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
         <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
             <div>
               <h3 className="font-display" style={{
@@ -41,7 +43,7 @@ export default function Contact() {
               color: "var(--color-on-accent)", fontWeight: 700, fontSize: "0.875rem",
               borderRadius: 8, textDecoration: "none",
               transition: "opacity 0.2s, transform 0.15s",
-              alignSelf: "flex-start",
+              alignSelf: "flex-start", maxWidth: "100%", overflowWrap: "anywhere",
               boxShadow: "var(--shadow-glow)",
               fontFamily: "var(--font-body)",
             }}
@@ -52,7 +54,7 @@ export default function Contact() {
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                 <polyline points="22,6 12,13 2,6"/>
               </svg>
-              {siteConfig.email}
+              <span style={{ minWidth: 0 }}>{siteConfig.email}</span>
             </a>
 
           <button type="button" onClick={openResume} style={{
@@ -80,9 +82,11 @@ export default function Contact() {
             <p aria-hidden="true" className="terminal-line"><span className="tok-keyword">$</span> ./hire-tommy --info</p>
             <ul style={{ listStyle: "none", margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
               {TERMINAL_LINKS.map(l => (
-                <li key={l.label} className="terminal-line" style={{ display: "flex", gap: 12 }}>
+                <li key={l.label} className="terminal-line" style={{ display: "flex", gap: 12, minWidth: 0 }}>
                   <span className="tok-key" style={{ whiteSpace: "pre", flexShrink: 0 }}>{l.label}</span>
-                  <a className="terminal-link" href={l.href} {...(l.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}>{l.text}</a>
+                  <a className="terminal-link" href={l.href} {...(external(l.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+                    {l.text}{external(l.href) && <span className="sr-only"> (opens in new tab)</span>}
+                  </a>
                 </li>
               ))}
               <li className="terminal-line" style={{ display: "flex", gap: 12 }}>

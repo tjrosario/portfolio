@@ -17,7 +17,7 @@ export default function ResumeModal({ ref }: { ref: Ref<HTMLDialogElement> }) {
     <dialog
       ref={ref}
       className="resume-dialog"
-      aria-labelledby="resume-title"
+      aria-label={`${siteConfig.name} resume`}
       onMouseDown={e => { pressedBackdrop.current = e.target === e.currentTarget; }}
       onClick={e => { if (pressedBackdrop.current && e.target === e.currentTarget) e.currentTarget.close(); }}
     >
@@ -32,17 +32,17 @@ export default function ResumeModal({ ref }: { ref: Ref<HTMLDialogElement> }) {
           </>
         }
       >
-        <div className="resume-body">
-          <header className="resume-header">
+        <div className="resume-body" role="region" aria-label="Resume content" tabIndex={0}>
+          <div className="resume-header">
             <div>
-              <h2 id="resume-title" className="font-display resume-name">{siteConfig.name}</h2>
+              <h2 className="font-display resume-name">{siteConfig.name}</h2>
               <p className="resume-title">{resume.title}</p>
             </div>
             <a href={siteConfig.siteUrl} className="resume-link">{siteConfig.siteUrl.replace("https://", "")}</a>
-          </header>
+          </div>
 
           <div className="resume-columns">
-            <aside className="resume-sidebar">
+            <div className="resume-sidebar">
               <section>
                 <Heading>contact</Heading>
                 <p><a href={`mailto:${siteConfig.email}`} className="resume-link">{siteConfig.email}</a></p>
@@ -70,7 +70,7 @@ export default function ResumeModal({ ref }: { ref: Ref<HTMLDialogElement> }) {
                 <p>{resume.education.school}</p>
                 <p className="resume-dates">{resume.education.dates}</p>
               </section>
-            </aside>
+            </div>
 
             <div className="resume-main">
               <section>

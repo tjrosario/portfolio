@@ -77,17 +77,17 @@ function ExperienceCard({ entry }: { entry: ExperienceEntry }) {
         )}
 
         {entry.tech && entry.tech.length > 0 && (
-          <div style={{ marginTop: 14, display: "flex", flexWrap: "wrap", gap: 7 }}>
+          <ul role="list" style={{ margin: "14px 0 0", padding: 0, listStyle: "none", display: "flex", flexWrap: "wrap", gap: 7 }}>
             {entry.tech.map(t => (
-              <span key={t} style={{
+              <li key={t} style={{
                 padding: "2px 9px", fontSize: "0.72rem", borderRadius: 5,
                 background: "var(--color-border)",
                 color: "var(--color-accent)",
                 border: "1px solid var(--color-border-hover)",
                 fontWeight: 600,
-              }}>{t}</span>
+              }}>{t}</li>
             ))}
-          </div>
+          </ul>
         )}
       </div>
     </div>

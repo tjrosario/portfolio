@@ -14,7 +14,7 @@ export default function WindowFrame({ label, children, footer, actions, decorati
         <span aria-hidden="true" className="editor-dot" style={{ background: "#ff5f57" }} />
         <span aria-hidden="true" className="editor-dot" style={{ background: "#febc2e" }} />
         <span aria-hidden="true" className="editor-dot" style={{ background: "#28c840" }} />
-        <span className="editor-tab">{label}</span>
+        <span aria-hidden="true" className="editor-tab">{label}</span>
         {actions && <div className="editor-actions">{actions}</div>}
       </div>
       {children}
