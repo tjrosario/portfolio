@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { siteConfig } from "@/site.config";
+import { useResume } from "@/lib/resume";
 import ThemeToggle from "./ThemeToggle";
 
 const NAV_LINKS = [
@@ -16,6 +17,7 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled]     = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { open: openResume } = useResume();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -71,6 +73,14 @@ export default function Navbar() {
               </a>
             </li>
           ))}
+          <li>
+            <button type="button" onClick={openResume} style={{ ...linkStyle, background: "none", border: "none", padding: 0, cursor: "pointer" }}
+              onMouseEnter={e => (e.currentTarget.style.color = "var(--color-text-primary)")}
+              onMouseLeave={e => (e.currentTarget.style.color = "var(--color-text-secondary)")}
+            >
+              Resume
+            </button>
+          </li>
         </ul>
 
         {/* Right side — single ThemeToggle, always rendered once */}
@@ -128,6 +138,11 @@ export default function Navbar() {
               >{link.label}</a>
             </li>
           ))}
+          <li>
+            <button type="button" onClick={() => { setMobileOpen(false); openResume(); }}
+              style={{ ...linkStyle, fontSize: "1rem", color: "var(--color-text-primary)", display: "block", background: "none", border: "none", padding: 0, cursor: "pointer" }}
+            >Resume</button>
+          </li>
           <li>
             <a href="#contact" onClick={() => setMobileOpen(false)} style={{
               display: "inline-block", padding: "9px 20px", borderRadius: 6,

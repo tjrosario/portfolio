@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import type { ExperienceEntry } from "@/lib/experience.types";
+import { ResumeProvider } from "@/lib/resume";
 
 import JsonLd from "@/components/JsonLd";
 import Navbar from "@/components/Navbar";
@@ -29,7 +30,7 @@ export default function Home() {
   const entries = loadExperience();
 
   return (
-    <>
+    <ResumeProvider>
       <JsonLd />
       <Navbar />
       <main id="main">
@@ -43,6 +44,6 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
-    </>
+    </ResumeProvider>
   );
 }

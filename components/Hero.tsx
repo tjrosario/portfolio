@@ -6,6 +6,7 @@ import HeroEditor from "./HeroEditor";
 import SeasonalParticles from "./SeasonalParticles";
 import { ART } from "./SeasonalArt";
 import { useSeason } from "@/lib/season";
+import { useResume } from "@/lib/resume";
 
 const FLOATING_TAGS = [
   { label: "<div>",  top: "16%", left: "4%",   delay: "0s" },
@@ -64,6 +65,7 @@ function HeroCircle() {
 
 export default function Hero() {
   const season = useSeason();
+  const { open: openResume } = useResume();
 
   return (
     <section id="hero" aria-label="Hero" style={{
@@ -155,6 +157,18 @@ export default function Hero() {
               >
                 Get in Touch
               </a>
+              <button type="button" onClick={openResume} style={{
+                padding: "12px 24px", background: "transparent",
+                color: "var(--color-text-primary)", fontWeight: 600, fontSize: "0.875rem",
+                borderRadius: 8, border: "1px solid var(--color-border)",
+                cursor: "pointer", transition: "border-color 0.2s, background 0.2s",
+                fontFamily: "var(--font-body)",
+              }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--color-border-hover)"; e.currentTarget.style.background = "var(--color-border)"; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--color-border)";       e.currentTarget.style.background = "transparent"; }}
+              >
+                View Resume
+              </button>
             </div>
 
             {siteConfig.availableForWork && (

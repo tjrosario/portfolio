@@ -350,6 +350,268 @@ footer :focus-visible {
   outline-color: var(--season-dark, #f97316);
 }
 
+/* ═══════════════════════════════════════════════
+   RESUME MODAL
+   ═══════════════════════════════════════════════ */
+html:has(.resume-dialog[open]) {
+  overflow: hidden;
+}
+.resume-dialog {
+  width: min(1040px, calc(100vw - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  border: none;
+  background: transparent;
+  overflow: visible;
+}
+.resume-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+}
+.resume-dialog .editor-window {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100dvh - 32px);
+}
+.editor-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+.editor-actions form {
+  display: flex;
+}
+.editor-bar {
+  flex-shrink: 0;
+}
+.resume-action {
+  padding: 3px 10px;
+  border: 1px solid #2c313b;
+  border-radius: 5px;
+  background: transparent;
+  color: #c9ccd3;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.resume-action:hover {
+  border-color: var(--season-dark, #f97316);
+  color: #f1ece4;
+}
+.resume-body {
+  padding: clamp(20px, 4vw, 36px);
+  overflow-y: auto;
+  background: var(--color-bg-card);
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+.resume-body p {
+  margin: 0;
+}
+.resume-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px 24px;
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--color-border-hover);
+}
+.resume-body .resume-name {
+  margin: 0;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+.resume-body .resume-title {
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-accent);
+}
+.resume-link {
+  color: var(--color-accent);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.resume-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 40px;
+}
+.resume-sidebar, .resume-main {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-width: 0;
+}
+.resume-sidebar section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.resume-heading {
+  margin: 0 0 12px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+.resume-sidebar .resume-heading {
+  margin-bottom: 4px;
+}
+.resume-body h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+.resume-skill + .resume-skill {
+  margin-top: 6px;
+}
+.resume-role + .resume-role {
+  margin-top: 22px;
+}
+.resume-role-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px 16px;
+  margin-bottom: 6px;
+}
+.resume-body .resume-company {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+.resume-body .resume-dates {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  color: var(--color-text-muted);
+}
+.resume-role ul {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.resume-role li {
+  display: flex;
+  gap: 8px;
+}
+.resume-role li span {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--color-diff-add);
+}
+@media (max-width: 720px) {
+  .resume-columns {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+  .resume-main {
+    order: -1;
+  }
+}
+@media (max-width: 480px) {
+  .resume-dialog .editor-tab {
+    display: none;
+  }
+}
+@media print {
+  html:has(.resume-dialog[open]) {
+    overflow: visible;
+  }
+  html.theme-ready .resume-dialog,
+  html.theme-ready .resume-dialog * {
+    transition: none;
+  }
+  .resume-dialog .resume-columns {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: 24px;
+  }
+  .resume-dialog .resume-main {
+    order: 0;
+  }
+  body:has(.resume-dialog[open]) > :not(.resume-dialog) {
+    display: none;
+  }
+  .resume-dialog {
+    --color-bg-card: #ffffff;
+    --color-text-primary: #111111;
+    --color-text-secondary: #333333;
+    --color-text-muted: #555555;
+    --color-accent: #a24705;
+    --color-border-hover: #bbbbbb;
+    --color-diff-add: #15803d;
+    position: static;
+    width: 100%;
+    max-height: none;
+    margin: 0;
+    overflow: visible;
+  }
+  .resume-dialog::backdrop {
+    display: none;
+  }
+  .resume-dialog .editor-window {
+    display: block;
+    max-height: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background: #ffffff;
+    overflow: visible;
+  }
+  .resume-dialog .editor-bar {
+    display: none;
+  }
+  .resume-body {
+    padding: 0;
+    overflow: visible;
+    font-size: 0.66rem;
+    line-height: 1.4;
+  }
+  .resume-header {
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+  }
+  .resume-sidebar, .resume-main {
+    gap: 14px;
+  }
+  .resume-role + .resume-role {
+    margin-top: 10px;
+  }
+  .resume-role {
+    break-inside: avoid;
+  }
+  .resume-body h4 {
+    font-size: 0.76rem;
+  }
+  .resume-body .resume-dates {
+    font-size: 0.64rem;
+  }
+  .resume-role ul {
+    gap: 2px;
+    margin-top: 4px;
+  }
+  .resume-role-header {
+    margin-bottom: 3px;
+  }
+  @page {
+    margin: 12mm;
+  }
+}
+
 .jsx-bracket {
   font-family: var(--font-mono);
   font-size: 0.72em;

@@ -31,6 +31,7 @@ portfolio/
 │   ├── About.tsx            Bio + highlights grid
 │   ├── Experience.tsx       Timeline cards
 │   ├── AiWorkflow.tsx       How I build with AI
+│   ├── ResumeModal.tsx      Resume dialog with print styles
 │   ├── Skills.tsx           Grouped skill chips
 │   ├── Projects.tsx         Project cards
 │   ├── Contact.tsx          Email link + socials
@@ -38,9 +39,11 @@ portfolio/
 │   └── SectionHeader.tsx    Reusable heading with accent dot
 ├── lib/
 │   ├── theme.tsx            Dark/light theme
+│   ├── resume.tsx           Opens the resume modal
 │   └── experience.types.ts
 ├── data/
-│   └── experience.json      Editable experience data
+│   ├── experience.json      Editable experience data
+│   └── resume.json          Content for the resume modal
 ├── public/fonts/            Self-hosted Sora, Inter and JetBrains Mono
 └── site.config.ts           ALL content lives here
 ```
