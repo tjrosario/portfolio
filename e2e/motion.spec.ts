@@ -26,6 +26,9 @@ test.describe("axe with motion allowed", () => {
   test("the pause control and particles pass", async ({ page }) => {
     await page.goto("/");
     await expect(pauseButton(page)).toBeVisible();
+    // Text fading in reads as low contrast until the entrance animation ends
+    await page.waitForFunction(() =>
+      [...document.querySelectorAll(".anim-hidden")].every(el => getComputedStyle(el).opacity === "1"));
     await expectNoAxeViolations(page);
   });
 });
