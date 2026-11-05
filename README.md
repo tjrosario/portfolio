@@ -16,7 +16,7 @@ The source for [tommyrosario.me](https://tommyrosario.me), my portfolio as a sen
 
 ## Stack
 
-Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, MSW, ESLint, Bun, and Vercel. GitHub Actions runs lint and a production build on every pull request.
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, MSW, Vitest, Playwright, ESLint, Bun, and Vercel. GitHub Actions runs lint, both test suites, and a production build on every pull request.
 
 ## Run it locally
 
@@ -35,6 +35,9 @@ Then open http://localhost:4000. To use another port, run `PORT=4500 bun run dev
 | `bun run build` | Creates a production build |
 | `bun run start` | Serves the production build |
 | `bun run lint` | Runs ESLint |
+| `bun run test` | Runs the unit and component tests once |
+| `bun run test:watch` | Runs those tests in watch mode |
+| `bun run test:e2e` | Builds the site and runs the browser tests |
 
 ## Project structure
 
@@ -43,15 +46,25 @@ app/          Routes, layout, global styles, and the og, llms.txt, and api/resum
 components/   Page sections and shared UI
 data/         Experience timeline and resume content
 docs/         README assets
+e2e/          Playwright tests that run against the production build
 lib/          Theme, season, motion, and resume state
-mocks/        MSW handlers for local development
+mocks/        MSW handlers shared by local development and tests
 public/       Fonts, icons, images, and the generated MSW service worker
+test/         Vitest setup
 site.config.ts   Site content, projects, skills, and seasons
 ```
 
+## Testing
+
+Unit and component tests use [Vitest](https://vitest.dev) and React Testing Library, and sit next to the code they cover. They share the MSW handlers from `mocks/`, so a test and the dev server get the same responses.
+
+Browser tests use [Playwright](https://playwright.dev) against a production build. They cover axe scans of the page, resume, and mobile menu in every season and both themes, the resume loading, error, and print flows, keyboard navigation, the pause control, and season dates. Run `bunx playwright install chromium` once before the first run. The tests serve the build on port 4100, so that port must be free.
+
+CI runs lint, both test suites, and the build on every pull request.
+
 ## API mocking
 
-In development, [MSW](https://mswjs.io) intercepts `/api/resume` and adds a 1.2 second delay so the loading state is easy to see. Handlers live in `mocks/`. Production skips MSW and uses the real route in `app/api/resume/route.ts`.
+In development, [MSW](https://mswjs.io) intercepts `/api/resume` and adds a 1.2 second delay so the loading state is easy to see. Production skips MSW and uses the real route in `app/api/resume/route.ts`.
 
 `public/mockServiceWorker.js` is generated, so run `bunx msw init public` after upgrading MSW.
 

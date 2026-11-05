@@ -10,3 +10,11 @@ export const handlers = [
     return HttpResponse.json(resume);
   }),
 ];
+
+/** Tests add this with server.use() to reach the error state */
+export const resumeFailure = http.get("/api/resume", () => new HttpResponse(null, { status: 500 }));
+
+/** Tests add this with server.use() to reach the request timeout */
+export const resumeHang = http.get("/api/resume", async () => {
+  await delay("infinite");
+});
