@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { siteConfig } from "@/site.config";
 import { useResume } from "@/lib/resume";
 import ThemeToggle from "./ThemeToggle";
@@ -18,6 +18,7 @@ export default function Navbar() {
   const [scrolled, setScrolled]     = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { open: openResume } = useResume();
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -62,7 +63,7 @@ export default function Navbar() {
         </a>
 
         {/* Desktop nav links — hidden on mobile */}
-        <ul className="hidden md:flex" style={{ listStyle: "none", margin: 0, padding: 0, gap: 32, flex: 1, justifyContent: "center" }}>
+        <ul className="hidden lg:flex" style={{ listStyle: "none", margin: 0, padding: 0, gap: 32, flex: 1, justifyContent: "center" }}>
           {NAV_LINKS.map(link => (
             <li key={link.href}>
               <a href={link.href} style={linkStyle}
@@ -88,7 +89,7 @@ export default function Navbar() {
           <ThemeToggle />
 
           {/* Hire me — desktop only */}
-          <a href="#contact" className="hidden md:inline-block" style={{
+          <a href="#contact" className="hidden lg:inline-block" style={{
             padding: "7px 16px", borderRadius: 6,
             background: "var(--color-accent)", color: "var(--color-on-accent)",
             fontSize: "0.8rem", fontWeight: 700,
@@ -103,7 +104,8 @@ export default function Navbar() {
 
           {/* Hamburger — mobile only */}
           <button
-            className="flex md:hidden"
+            ref={hamburgerRef}
+            className="flex lg:hidden"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen(v => !v)}
@@ -122,7 +124,7 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile drawer */}
-      <div className="md:hidden" style={{
+      <div className="lg:hidden" style={{
         maxHeight: mobileOpen ? "calc(100dvh - 64px)" : 0, overflowX: "hidden", overflowY: mobileOpen ? "auto" : "hidden",
         visibility: mobileOpen ? "visible" : "hidden",
         transition: "max-height 0.3s ease, visibility 0.3s",
@@ -139,7 +141,12 @@ export default function Navbar() {
             </li>
           ))}
           <li>
-            <button type="button" onClick={() => { setMobileOpen(false); openResume(); }}
+            <button type="button" onClick={() => {
+                // The drawer hides this button, so the dialog returns focus to the hamburger instead
+                hamburgerRef.current?.focus();
+                setMobileOpen(false);
+                openResume();
+              }}
               style={{ ...linkStyle, fontSize: "1rem", color: "var(--color-text-primary)", display: "block", background: "none", border: "none", padding: 0, cursor: "pointer" }}
             >Resume</button>
           </li>
