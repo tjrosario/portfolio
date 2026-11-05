@@ -6,7 +6,7 @@ const WCAG_22_AA = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"];
 /** Retries because a click can land before React hydrates the server-rendered button */
 export async function clickUntil(button: Locator, condition: Locator) {
   await expect(async () => {
-    await button.click({ timeout: 1000 });
+    if (!(await condition.isVisible())) await button.click({ timeout: 1000 });
     await expect(condition).toBeVisible({ timeout: 1000 });
   }).toPass();
 }
