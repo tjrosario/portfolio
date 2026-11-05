@@ -1,32 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import Image from "next/image";
 import { siteConfig } from "@/site.config";
 
-function HeroCircle({ initial }: { initial: string }) {
-  const [size, setSize] = useState(300);
-
-  useEffect(() => {
-    const calc = () => {
-      const w = window.innerWidth;
-      if (w < 480)       setSize(160);
-      else if (w < 640)  setSize(200);
-      else if (w < 1024) setSize(240);
-      else               setSize(300);
-    };
-    calc();
-    window.addEventListener("resize", calc, { passive: true });
-    return () => window.removeEventListener("resize", calc);
-  }, []);
-
-  const inset1   = Math.round(size * 0.067);  // outer dashed ring inset
-  const inset2   = Math.round(size * 0.133);  // avatar inset
-  const dotSize  = Math.round(size * 0.027);  // cardinal dot size
-  const dotEdge  = Math.round(size * 0.027);  // dot distance from edge
-  const fontSize = Math.round(size * 0.34);   // initial letter size
-
+function HeroCircle() {
   return (
-    <div style={{ position: "relative", width: size, height: size, flexShrink: 0 }}>
+    <div style={{ position: "relative", width: "clamp(200px, 55vw, 360px)", aspectRatio: "1", flexShrink: 0 }}>
       {/* Outer spinning ring */}
       <div style={{
         position: "absolute", inset: 0, borderRadius: "50%",
@@ -35,36 +14,36 @@ function HeroCircle({ initial }: { initial: string }) {
       }} />
       {/* Inner dashed ring */}
       <div style={{
-        position: "absolute", inset: inset1, borderRadius: "50%",
+        position: "absolute", inset: "4%", borderRadius: "50%",
         border: "1px dashed var(--color-border)",
         animation: "spin 16s linear infinite reverse",
       }} />
       {/* Avatar disc */}
       <div style={{
-        position: "absolute", inset: inset2, borderRadius: "50%",
+        position: "absolute", inset: "8%", borderRadius: "50%", overflow: "hidden",
         background: "var(--color-bg-card)",
         border: "1px solid var(--color-border-hover)",
         boxShadow: "var(--shadow-glow)",
-        display: "flex", alignItems: "center", justifyContent: "center",
       }}>
-        <span style={{
-          fontFamily: "var(--font-display)",
-          fontSize: fontSize,
-          fontWeight: 800, color: "var(--color-accent)", lineHeight: 1,
-        }}>
-          {initial}
-        </span>
+        <Image
+          src="/caricature.png"
+          alt={`Caricature of ${siteConfig.name} coding at his desk`}
+          fill
+          sizes="(max-width: 640px) 200px, 300px"
+          style={{ objectFit: "cover", objectPosition: "50% 32%" }}
+          priority
+        />
       </div>
       {/* Cardinal dots */}
       {[
-        { top: dotEdge,  left: "50%", transform: "translateX(-50%)" },
-        { bottom: dotEdge, left: "50%", transform: "translateX(-50%)" },
-        { left: dotEdge, top: "50%", transform: "translateY(-50%)" },
-        { right: dotEdge, top: "50%", transform: "translateY(-50%)" },
+        { top: "1%", left: "50%", transform: "translateX(-50%)" },
+        { bottom: "1%", left: "50%", transform: "translateX(-50%)" },
+        { left: "1%", top: "50%", transform: "translateY(-50%)" },
+        { right: "1%", top: "50%", transform: "translateY(-50%)" },
       ].map((s, i) => (
         <div key={i} style={{
           position: "absolute", ...s as React.CSSProperties,
-          width: dotSize, height: dotSize, borderRadius: "50%",
+          width: "2.7%", aspectRatio: "1", borderRadius: "50%",
           background: "var(--color-accent)", opacity: 0.65,
         }} />
       ))}
@@ -73,8 +52,6 @@ function HeroCircle({ initial }: { initial: string }) {
 }
 
 export default function Hero() {
-  const scrollTo = (id: string) => document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
-
   return (
     <section id="hero" aria-label="Hero" style={{
       minHeight: "100vh", display: "flex", alignItems: "center",
@@ -93,7 +70,7 @@ export default function Hero() {
 
           {/* Graphic */}
           <div className="anim-hidden flex justify-center lg:justify-start">
-            <HeroCircle initial={siteConfig.name.charAt(0)} />
+            <HeroCircle />
           </div>
 
           {/* Text */}
@@ -128,16 +105,15 @@ export default function Hero() {
               color: "var(--color-text-secondary)", fontSize: "1rem",
               lineHeight: 1.75, maxWidth: 460,
             }}>
-              {siteConfig.tagline} I focus on building fast, accessible, and visually
-              sharp web experiences that make people&apos;s lives easier.
+              {siteConfig.tagline}
             </p>
 
             <div className="anim-hidden delay-500" style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <button onClick={() => scrollTo("#projects")} style={{
+              <a href="#projects" style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
                 padding: "12px 24px", background: "var(--color-accent)",
-                color: "#fff", fontWeight: 700, fontSize: "0.875rem",
-                borderRadius: 8, border: "none", cursor: "pointer",
+                color: "var(--color-on-accent)", fontWeight: 700, fontSize: "0.875rem",
+                borderRadius: 8, textDecoration: "none",
                 transition: "opacity 0.2s, transform 0.15s",
                 fontFamily: "var(--font-body)",
                 boxShadow: "var(--shadow-glow)",
@@ -149,19 +125,19 @@ export default function Hero() {
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                   <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-              </button>
-              <button onClick={() => scrollTo("#contact")} style={{
+              </a>
+              <a href="#contact" style={{
                 padding: "12px 24px", background: "transparent",
                 color: "var(--color-text-primary)", fontWeight: 600, fontSize: "0.875rem",
                 borderRadius: 8, border: "1px solid var(--color-border)",
-                cursor: "pointer", transition: "border-color 0.2s, background 0.2s",
+                textDecoration: "none", transition: "border-color 0.2s, background 0.2s",
                 fontFamily: "var(--font-body)",
               }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--color-border-hover)"; e.currentTarget.style.background = "var(--color-border)"; }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--color-border)";       e.currentTarget.style.background = "transparent"; }}
               >
                 Get in Touch
-              </button>
+              </a>
             </div>
 
             {siteConfig.availableForWork && (
@@ -171,7 +147,7 @@ export default function Hero() {
                   <span style={{ position: "relative", display: "inline-flex", width: 9, height: 9, borderRadius: "50%", background: "#22c55e" }} />
                 </span>
                 <span style={{ color: "var(--color-text-secondary)", fontSize: "0.82rem" }}>
-                  Available for new opportunities
+                  {siteConfig.availabilityLabel}
                 </span>
               </div>
             )}

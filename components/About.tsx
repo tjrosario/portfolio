@@ -10,6 +10,7 @@ export default function About() {
       <div className="grid lg:grid-cols-2 gap-14 items-start">
         <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
           <p style={{ color: "var(--color-text-primary)", fontSize: "1rem", lineHeight: 1.85, margin: 0 }}>{siteConfig.bio}</p>
+          <p style={{ color: "var(--color-text-primary)", fontSize: "1rem", lineHeight: 1.85, margin: 0 }}>{siteConfig.bioExtended}</p>
           <p style={{ color: "var(--color-text-secondary)", lineHeight: 1.85, margin: 0 }}>
             When I&apos;m not in front of a screen, you&apos;ll find me enjoying life at the Jersey Shore,
             hitting the gym, or spending time with my wife and kids. Being a husband and father

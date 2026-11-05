@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { siteConfig } from "@/site.config";
 import SectionHeader from "./SectionHeader";
 
@@ -13,37 +12,9 @@ const SOCIALS = [
 export default function Contact() {
   return (
     <section id="contact" style={{ padding: "96px 0", maxWidth: 1152, margin: "0 auto", paddingLeft: 24, paddingRight: 24 }}>
-      <SectionHeader title="Contact" subtitle="Have a project in mind? Let's talk." />
+      <SectionHeader title="Contact" subtitle="Hiring, or have a project in mind? Let's talk." />
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 52, alignItems: "center" }}>
-
-        {/* Caricature */}
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <div style={{ position: "relative" }}>
-            <div style={{
-              position: "absolute", inset: -8, borderRadius: 22,
-              background: "radial-gradient(ellipse at center, var(--color-border-hover) 0%, transparent 70%)",
-              filter: "blur(20px)", zIndex: 0,
-            }} />
-            <div style={{
-              position: "relative", zIndex: 1, borderRadius: 16, overflow: "hidden",
-              border: "1px solid var(--color-border-hover)",
-              boxShadow: "var(--shadow-card)",
-              maxWidth: 340, width: "100%",
-            }}>
-              <Image
-                src="/caricature.png"
-                alt="Caricature of Tommy Rosario at his desk coding"
-                width={340} height={453}
-                style={{ display: "block", width: "100%", height: "auto" }}
-                priority
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Info */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 28, maxWidth: 640 }}>
           <div>
             <h3 className="font-display" style={{
               fontSize: "clamp(1.5rem, 3vw, 2rem)", fontWeight: 800,
@@ -55,16 +26,14 @@ export default function Contact() {
               together.
             </h3>
             <p style={{ color: "var(--color-text-secondary)", lineHeight: 1.8, margin: 0, fontSize: "0.95rem" }}>
-              I&apos;m always open to hearing about new projects, ideas, or
-              opportunities. Whether it&apos;s a quick question or a full
-              engagement — feel free to reach out.
+              Hiring for a full-time role, need a contractor, or want a consultant on a specific problem? Tell me what you&apos;re working on and I&apos;ll get back to you.
             </p>
           </div>
 
           <a href={`mailto:${siteConfig.email}`} style={{
             display: "inline-flex", alignItems: "center", gap: 10,
             padding: "13px 20px", background: "var(--color-accent)",
-            color: "#fff", fontWeight: 700, fontSize: "0.875rem",
+            color: "var(--color-on-accent)", fontWeight: 700, fontSize: "0.875rem",
             borderRadius: 8, textDecoration: "none",
             transition: "opacity 0.2s, transform 0.15s",
             alignSelf: "flex-start",
@@ -78,7 +47,7 @@ export default function Contact() {
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
               <polyline points="22,6 12,13 2,6"/>
             </svg>
-            {siteConfig.email.replace("@", " [at] ")}
+            {siteConfig.email}
           </a>
 
           <div>
@@ -110,10 +79,9 @@ export default function Contact() {
                 <span style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "#22c55e", opacity: 0.7, animation: "ping 1.8s cubic-bezier(0,0,0.2,1) infinite" }} />
                 <span style={{ position: "relative", display: "inline-flex", width: 9, height: 9, borderRadius: "50%", background: "#22c55e" }} />
               </span>
-              <span style={{ color: "var(--color-text-secondary)", fontSize: "0.82rem" }}>Available for new opportunities</span>
+              <span style={{ color: "var(--color-text-secondary)", fontSize: "0.82rem" }}>{siteConfig.availabilityLabel}</span>
             </div>
           )}
-        </div>
       </div>
     </section>
   );

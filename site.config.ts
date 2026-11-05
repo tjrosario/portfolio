@@ -8,7 +8,7 @@ export const siteConfig = {
   name:       "Tommy Rosario",
   firstName:  "Tommy",
   lastName:   "Rosario",
-  role:       "Sr. Frontend Engineer",
+  role:       "Senior Software Engineer",
   favicon:    "/favicon.ico",
   icons: {
       icon16: "/favicon-16x16.png",
@@ -18,28 +18,21 @@ export const siteConfig = {
       android512: "/android-chrome-512x512.png",
   },
 
-  /** Used in JSON-LD and SEO copy — all professional aliases */
-  roleAliases: [
-    "React Developer",
-    "JavaScript Developer",
-    "TypeScript Developer",
-    "UI Engineer",
-    "Web Application Developer",
-    "Freelance Frontend Developer",
-  ],
-  tagline:    "I build things for the web.",
-  location:   "Jersey Shore, NJ",
+  tagline:
+    "I build fast, reliable web applications, and I use AI agents every day to deliver them sooner without lowering the bar.",
+  location: "Jersey Shore, NJ",
   availableForWork: true,
+  availabilityLabel: "Open to full-time, contract & consulting work",
 
   // ── Bio (naturally keyword-rich, readable) ────────────────────────────────
-  bio: "Senior Frontend Engineer with 15+ years building high-performance, scalable web applications for consumer platforms and internal enterprise tools. Expert in React, Next.js, TypeScript, Angular, and Vue, with a strong foundation in modern CSS, Tailwind, and design systems.",
+  bio: "Senior Software Engineer with 15+ years building high-performance, scalable web applications for consumer platforms and internal enterprise tools. Expert in React, Next.js, TypeScript, Angular, and Vue, with a strong foundation in modern CSS, Tailwind, and design systems.",
   bioExtended:
     "Known for leading large-scale frontend migrations, improving performance and SEO, and delivering fast, polished user experiences that directly support business growth. Comfortable working across product, design, and data teams to ship features that scale.",
   bioHighlights: [
     "15+ years building production web applications",
     "Expert in React, Next.js, TypeScript, Angular & Vue",
     "Led large-scale frontend migrations & performance improvements",
-    "Cross-functional work across product, design & data teams",
+    "Daily AI-assisted development with custom agents & guardrails",
   ],
 
   // ── Contact ───────────────────────────────────────────────────────────────
@@ -52,11 +45,11 @@ export const siteConfig = {
   // ── SEO / OG ──────────────────────────────────────────────────────────────
   siteUrl:  "https://tommyrosario.me",
   ogImage:  "/og",
-  /** Title template for sub-pages */
-  titleTemplate: "%s | Tommy Rosario — Frontend Developer",
+  /** Update on significant content changes; feeds the sitemap and JSON-LD */
+  lastUpdated: "2026-11-04",
   /** Primary meta description — ≤160 chars */
   metaDescription:
-    "Tommy Rosario is a freelance frontend developer and React specialist in New York. Available to hire for web application development, UI engineering, and design systems.",
+    "Tommy Rosario is a senior software engineer specializing in React, Next.js, and AI-assisted delivery. Open to full-time, contract, and consulting work.",
 
   // ── JSON-LD extras ────────────────────────────────────────────────────────
   knowsAbout: [
@@ -65,6 +58,7 @@ export const siteConfig = {
     "SEO", "Headless CMS", "GraphQL", "Algolia", "Contentful",
     "OpenAI APIs", "Node.js", "PostgreSQL", "Stripe",
     "Frontend Architecture", "Web Performance",
+    "AI-Assisted Development", "Claude Code", "Agentic Workflows",
   ],
 
   // ── Skills ────────────────────────────────────────────────────────────────
@@ -73,7 +67,7 @@ export const siteConfig = {
     "TypeScript",
     "Design Systems",
     "Core Web Vitals",
-    "AI & Automation",
+    "AI-Assisted Engineering",
   ],
   skillGroups: [
     {
@@ -93,8 +87,8 @@ export const siteConfig = {
     {
       label: "AI & Automation",
       skills: [
-        "OpenAI APIs", "Claude", "Microsoft Copilot",
-        "AI-Assisted Workflows",
+        "Claude Code", "Custom Agents & Skills", "MCP",
+        "OpenAI APIs", "Microsoft Copilot", "AI-Assisted Development",
       ],
     },
     {
@@ -112,8 +106,64 @@ export const siteConfig = {
     },
   ],
 
+  // ── AI workflow ───────────────────────────────────────────────────────────
+  aiWorkflow: {
+    intro:
+      "I use AI agents every day, and I'm still accountable for every line that ships. Agents speed up the work. Review, testing and judgment decide what goes out.",
+    practices: [
+      {
+        title: "Custom agents",
+        description:
+          "Purpose-built agents handle investigation, implementation, code review, cross-client parity checks and issue tracker sweeps, each scoped to one job.",
+      },
+      {
+        title: "Tests that prove themselves",
+        description:
+          "After tests are written, an agent breaks the code under test and confirms they fail, so a green suite actually means something.",
+      },
+      {
+        title: "Independent review",
+        description:
+          "Changes get an adversarial review against the original requirement before a pull request goes up, with no shortcuts because an agent wrote the code.",
+      },
+      {
+        title: "Prototype to production",
+        description:
+          "Vibe coding is great for testing an idea quickly. Anything headed to production gets the same standards as code I typed by hand.",
+      },
+    ],
+  },
+
   // ── Projects ──────────────────────────────────────────────────────────────
   projects: [
+    {
+      name: "Design That Hits",
+      slug: "design-that-hits",
+      description:
+        "A production storefront for a live Etsy print-on-demand shop, built on the Next.js App Router. Search, filtering, sorting and pagination all run through the URL across a 400+ product catalog, with SEO treated as a core requirement.",
+      stack: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"],
+      highlights: [
+        "400+ product catalog with automated Etsy feed sync",
+        "URL-driven search, filtering, sorting & pagination",
+        "Canonical URLs and SEO built for organic traffic",
+      ],
+      github: "https://github.com/tjrosario/design-that-hits",
+      live:   "https://designthathits.com",
+    },
+    {
+      name: "Tommy at the Shore",
+      slug: "tommy-at-the-shore",
+      description:
+        "A creator brand site with TikTok and Instagram feeds, date-driven seasonal themes and content managed from a single config file. Small site, full engineering practice: unit tests, browser tests and CI on every pull request.",
+      stack: ["Next.js", "TypeScript", "Tailwind CSS", "Vitest", "Playwright"],
+      highlights: [
+        "Unit and browser tests running in CI",
+        "Live TikTok and Instagram content",
+        "Automatic seasonal themes",
+      ],
+      github: null,
+      live:   "https://tommyattheshore.com",
+    },
     {
       name: "ChatGPT Reviews",
       slug: "chatgpt-reviews",
@@ -142,40 +192,14 @@ export const siteConfig = {
       github: "https://github.com/tjrosario/bite",
       live:   "https://bite-eight.vercel.app",
     },
-    {
-      name: "Ticket Purchase",
-      slug: "ticket-purchase",
-      description:
-        "A mock event ticketing checkout UI built with React and Vite. Demonstrates a clean, component-driven purchase flow — seat selection, order summary, and checkout — with a focus on UI state management and fast local dev iteration using Vite's instant HMR.",
-      stack: ["React", "JavaScript", "Vite", "CSS"],
-      highlights: [
-        "Vite-powered dev environment with instant HMR",
-        "Component-driven checkout flow",
-        "Clean seat selection & order summary UI",
-      ],
-      github: "https://github.com/tjrosario/ticket-purchase",
-      live:   null,
-    },
-    {
-      name: "Brewery App",
-      slug: "brewery-app",
-      description:
-        "A brewery search and discovery app powered by the Open Brewery DB public API. Built with React's Context and Hooks APIs for state management — no external state library — allowing users to search and filter breweries across the US by name, type, and city. A clean exercise in idiomatic React patterns.",
-      stack: ["React", "TypeScript", "Context API", "Hooks", "Open Brewery DB API"],
-      highlights: [
-        "React Context + Hooks for state — no Redux",
-        "Multi-criteria brewery search & filtering",
-        "20 pull requests worth of iterative development",
-      ],
-      github: "https://github.com/tjrosario/brewery-app",
-      live:   null,
-    },
   ],
 
   // ── Ticker marquee keywords ───────────────────────────────────────────────
   tickerWords: [
     "React & Next.js",
     "TypeScript",
+    "AI Agents",
+    "Claude Code",
     "Angular & Vue",
     "Design Systems",
     "Core Web Vitals",

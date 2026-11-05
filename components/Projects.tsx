@@ -88,7 +88,7 @@ export default function Projects() {
   return (
     <section id="projects" style={{ padding: "96px 0", background: "var(--color-bg-section)" }}>
       <div style={{ maxWidth: 1152, margin: "0 auto", padding: "0 24px" }}>
-        <SectionHeader title="Projects" subtitle="Things I've built — from design systems to full-stack apps." />
+        <SectionHeader title="Projects" subtitle="Things I've built, from production storefronts to AI-powered apps." />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {siteConfig.projects.map(p => <ProjectCard key={p.name} project={p} />)}
         </div>
