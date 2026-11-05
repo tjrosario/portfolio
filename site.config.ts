@@ -40,7 +40,6 @@ export const siteConfig = {
   github:        "https://github.com/tjrosario",
   linkedin:      "https://www.linkedin.com/in/tommy-rosario-65771711/",
   twitter:       "https://twitter.com/tommyrosario",
-  twitterHandle: "@tommyrosario",
 
   // ── SEO / OG ──────────────────────────────────────────────────────────────
   siteUrl:  "https://tommyrosario.me",

@@ -26,6 +26,16 @@
     },
     {
       "title": "Senior Frontend Engineer",
+      "company": "Plixer",
+      "dates": "2021 - Present",
+      "summary": "Architected and developed the frontend for Scrutinizer, a high-performance network monitoring and security analytics platform processing millions of flows per second.",
+      "bullets": [
+        "Engineered complex, reactive data visualizations and real-time dashboards to surface actionable network intelligence and security threats.",
+        "Optimized frontend performance for data-heavy reporting interfaces, ensuring smooth interactions with massive historical and real-time datasets."
+      ]
+    },
+    {
+      "title": "Senior Frontend Engineer",
       "company": "CityBldr",
       "dates": "2017 - 2021",
       "summary": "Led frontend architecture for consumer and internal real estate platforms used for land valuation and investor workflows.",

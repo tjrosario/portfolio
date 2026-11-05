@@ -1,83 +1,72 @@
-# Tommy Rosario — Portfolio
+# Tommy Rosario Portfolio
 
-Personal portfolio built with **Next.js (App Router), TypeScript, Tailwind CSS and self-hosted variable fonts**.
+[![CI](https://github.com/tjrosario/portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/tjrosario/portfolio/actions/workflows/ci.yml)
 
-## Quick Start
+The source for [tommyrosario.me](https://tommyrosario.me), my portfolio as a senior frontend engineer. It's a single static page built with Next.js, React, TypeScript, and Tailwind CSS.
+
+![The portfolio hero section in dark mode](docs/screenshot.png)
+
+## Highlights
+
+- **Seasonal theming:** the accent color, falling particles, and holiday art follow the date. A blocking script applies the theme before paint, so a static page still changes with the calendar and never flashes the wrong colors.
+- **Accessibility:** audited against WCAG 2.2 AA. It has a skip link, a pause control for animations, reduced motion and forced colors support, and keyboard handling throughout the mobile menu and resume dialog.
+- **Resume dialog:** a native `<dialog>` with a print stylesheet that produces a one-page PDF.
+- **Search and AI discovery:** metadata, JSON-LD, a sitemap, a generated social image, and an `llms.txt` route, all built from one config file.
+- **Light on dependencies:** four runtime packages and self-hosted variable fonts, with no state library because the site doesn't need one.
+
+## Stack
+
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, ESLint, Bun, and Vercel. GitHub Actions runs lint and a production build on every pull request.
+
+## Run it locally
+
+Requires [Bun](https://bun.sh) and Node 24.
 
 ```bash
 bun install
 bun run dev
-# Open http://localhost:4000
 ```
 
-This project uses [Bun](https://bun.sh) as its package manager. `bun.lock` is the only committed lockfile.
+Then open http://localhost:4000. To use another port, run `PORT=4500 bun run dev`.
 
-The dev and start scripts listen on port 4000 to stay clear of other local projects. Override with `PORT=4500 bun run dev`.
+| Command | What it does |
+|---|---|
+| `bun run dev` | Starts the dev server |
+| `bun run build` | Creates a production build |
+| `bun run start` | Serves the production build |
+| `bun run lint` | Runs ESLint |
 
-## Project Structure
+## Project structure
 
 ```
-portfolio/
-├── app/
-│   ├── layout.tsx          # Root layout (fonts, metadata)
-│   ├── page.tsx            # One-page app
-│   ├── globals.css         # Tailwind + global styles
-│   ├── og/route.tsx        # Generated social share image
-│   └── llms.txt/route.ts   # Plain-text summary for AI tools
-├── components/
-│   ├── Navbar.tsx           Sticky nav + mobile drawer
-│   ├── Hero.tsx             Full-screen hero
-│   ├── Ticker.tsx           Scrolling keyword marquee
-│   ├── About.tsx            Bio + highlights grid
-│   ├── Experience.tsx       Timeline cards
-│   ├── AiWorkflow.tsx       How I build with AI
-│   ├── ResumeModal.tsx      Resume dialog with print styles
-│   ├── Skills.tsx           Grouped skill chips
-│   ├── Projects.tsx         Project cards
-│   ├── Contact.tsx          Email link + socials
-│   ├── Footer.tsx
-│   └── SectionHeader.tsx    Reusable heading with accent dot
-├── lib/
-│   ├── theme.tsx            Dark/light theme
-│   ├── resume.tsx           Opens the resume modal
-│   └── experience.types.ts
-├── data/
-│   ├── experience.json      Editable experience data
-│   └── resume.json          Content for the resume modal
-├── public/fonts/            Self-hosted Sora, Inter and JetBrains Mono
-└── site.config.ts           ALL content lives here
+app/          Routes, layout, global styles, and the og and llms.txt routes
+components/   Page sections and shared UI
+data/         Experience timeline and resume content
+docs/         README assets
+lib/          Theme, season, motion, and resume state
+public/       Fonts, icons, and images
+site.config.ts   Site content, projects, skills, and seasons
 ```
 
-## Customising Content
+## Editing content
 
-Edit **`site.config.ts`** for everything: name, bio, skills, projects, links.
+| Content | Where it lives |
+|---|---|
+| Name, bio, skills, projects, links, seasons | `site.config.ts` |
+| Experience timeline | `data/experience.json` |
+| Resume dialog | `data/resume.json` |
+| Season accent colors | `app/globals.css` |
 
-## Seasonal Themes
+## Previewing seasons
 
-Seasons and their date ranges live in `seasons` in `site.config.ts`, and their accent colors in `app/globals.css`. The first matching range wins, so holidays sit above the seasons around them.
+Seasons are checked in order and the first matching date range wins, so holidays sit above the seasons around them. To preview one, add `?season=<id>` to the URL, for example http://localhost:4000/?season=christmas.
 
-Preview any season with `?season=<id>`, for example `http://localhost:4000/?season=christmas`.
+Available ids: `christmas`, `newyear`, `valentines`, `stpatricks`, `fourth`, `halloween`, `thanksgiving`, `winter`, `spring`, `summer`, `fall`.
 
-Season ids: `christmas`, `newyear`, `valentines`, `stpatricks`, `fourth`, `halloween`, `thanksgiving`, `winter`, `spring`, `summer`, `fall`.
+## AI tooling
 
-## Experience JSON Schema
+I build with AI agents day to day. `AGENTS.md` and `CLAUDE.md` hold the instructions those agents read in this repo.
 
-```json
-[
-  {
-    "company": "Acme Corp",
-    "title": "Senior Frontend Developer",
-    "startDate": "2022-03",
-    "endDate": "Present",
-    "location": "New York, NY",
-    "bullets": ["Led migration...", "Mentored..."],
-    "tech": ["React", "TypeScript"]
-  }
-]
-```
+## License
 
-## Deploy
-
-```bash
-bunx vercel
-```
+The source code is available under the [MIT License](LICENSE). My name, likeness, images, biography, and resume and experience content aren't covered by it. All rights to those are reserved, so please replace them if you reuse this code.
