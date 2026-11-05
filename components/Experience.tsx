@@ -28,7 +28,7 @@ function ExperienceCard({ entry }: { entry: ExperienceEntry }) {
         border: "2px solid var(--color-accent)",
         background: hovered ? "var(--color-accent)" : "var(--color-bg-base)",
         transition: "background 0.2s, box-shadow 0.2s",
-        boxShadow: hovered ? "0 0 10px var(--color-accent-glow, rgba(249,115,22,0.4))" : "none",
+        boxShadow: hovered ? "0 0 10px color-mix(in srgb, var(--color-accent) 40%, transparent)" : "none",
       }} />
       <div
         onMouseEnter={() => setHovered(true)}

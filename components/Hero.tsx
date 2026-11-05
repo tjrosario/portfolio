@@ -81,7 +81,7 @@ export default function Hero() {
       ))}
 
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1152, margin: "0 auto", padding: "80px 24px", width: "100%" }}>
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
           {/* Text */}
           <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>

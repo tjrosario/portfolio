@@ -82,8 +82,7 @@ const seasonScript = `
     var pad = function(n) { return (n < 10 ? '0' : '') + n; };
     var today = pad(now.getMonth() + 1) + '-' + pad(now.getDate());
     var preview = new URLSearchParams(location.search).get('season');
-    var match = seasons.find(function(s) {
-      if (preview) return s[0] === preview;
+    var match = seasons.find(function(s) { return s[0] === preview; }) || seasons.find(function(s) {
       return s[1] <= s[2] ? today >= s[1] && today <= s[2] : today >= s[1] || today <= s[2];
     });
     if (match) document.documentElement.setAttribute('data-season', match[0]);

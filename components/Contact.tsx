@@ -7,7 +7,7 @@ import WindowFrame from "./WindowFrame";
 const TERMINAL_LINKS = [
   { label: "email   ", href: `mailto:${siteConfig.email}`, text: siteConfig.email },
   { label: "github  ", href: siteConfig.github, text: siteConfig.github.replace("https://", "") },
-  { label: "linkedin", href: siteConfig.linkedin, text: "linkedin.com/in/tommy-rosario" },
+  { label: "linkedin", href: siteConfig.linkedin, text: siteConfig.linkedin.replace("https://www.", "").replace(/\/$/, "") },
 ];
 
 export default function Contact() {
