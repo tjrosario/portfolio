@@ -7,6 +7,7 @@ import ThemeToggle from "./ThemeToggle";
 const NAV_LINKS = [
   { label: "About",      href: "#about" },
   { label: "Experience", href: "#experience" },
+  { label: "AI",         href: "#ai" },
   { label: "Skills",     href: "#skills" },
   { label: "Projects",   href: "#projects" },
   { label: "Contact",    href: "#contact" },
@@ -15,37 +16,25 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled]     = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [isMobile, setIsMobile]     = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
-    const onResize = () => setIsMobile(window.innerWidth < 768);
-    onResize(); // set initial value
+    requestAnimationFrame(onScroll); // deep links can load mid-page
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onResize, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onResize);
-    };
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const go = (href: string) => {
-    setMobileOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-  };
-
   const linkStyle: React.CSSProperties = {
-    background: "none", border: "none", cursor: "pointer",
     fontFamily: "var(--font-body)", fontSize: "0.875rem",
     fontWeight: 500, color: "var(--color-text-secondary)",
-    transition: "color 0.2s", padding: 0,
+    transition: "color 0.2s", textDecoration: "none",
   };
 
   return (
     <header role="banner" style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
       transition: "background 0.3s, border-color 0.3s",
-      background: scrolled ? "var(--color-bg-nav)" : "transparent",
+      background: scrolled || mobileOpen ? "var(--color-bg-nav)" : "transparent",
       backdropFilter: scrolled ? "blur(14px)" : "none",
       WebkitBackdropFilter: scrolled ? "blur(14px)" : "none",
       borderBottom: scrolled ? "1px solid var(--color-border-nav)" : "1px solid transparent",
@@ -56,106 +45,101 @@ export default function Navbar() {
         gap: 16,
       }}>
         {/* Logo */}
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          aria-label="Scroll to top"
+        <a
+          href="#hero"
+          aria-label={`${siteConfig.name}, back to top`}
           style={{
             ...linkStyle,
             fontFamily: "var(--font-display)", fontWeight: 800,
             fontSize: "1.1rem", color: "var(--color-text-primary)", flexShrink: 0,
           }}
         >
-          {siteConfig.name.split(" ")[0]}
-          <span style={{ color: "var(--color-accent)" }}>.</span>
-        </button>
+          <span style={{ color: "var(--color-accent)" }}>&lt;</span>
+          {siteConfig.firstName}
+          <span style={{ color: "var(--color-accent)" }}>{" />"}</span>
+        </a>
 
         {/* Desktop nav links — hidden on mobile */}
-        {!isMobile && (
-          <ul style={{ listStyle: "none", margin: 0, padding: 0, gap: 32, flex: 1, justifyContent: "center", display: "flex" }}>
-            {NAV_LINKS.map(link => (
-              <li key={link.href}>
-                <button onClick={() => go(link.href)} style={linkStyle}
-                  onMouseEnter={e => (e.currentTarget.style.color = "var(--color-text-primary)")}
-                  onMouseLeave={e => (e.currentTarget.style.color = "var(--color-text-secondary)")}
-                >
-                  {link.label}
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
+        <ul className="hidden md:flex" style={{ listStyle: "none", margin: 0, padding: 0, gap: 32, flex: 1, justifyContent: "center" }}>
+          {NAV_LINKS.map(link => (
+            <li key={link.href}>
+              <a href={link.href} style={linkStyle}
+                onMouseEnter={e => (e.currentTarget.style.color = "var(--color-text-primary)")}
+                onMouseLeave={e => (e.currentTarget.style.color = "var(--color-text-secondary)")}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
 
         {/* Right side — single ThemeToggle, always rendered once */}
         <div style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
           <ThemeToggle />
 
           {/* Hire me — desktop only */}
-          {!isMobile && (
-            <a href={`mailto:${siteConfig.email}`} style={{
-              padding: "7px 16px", borderRadius: 6,
-              background: "var(--color-accent)", color: "#fff",
-              fontSize: "0.8rem", fontWeight: 700,
-              textDecoration: "none", transition: "opacity 0.2s",
-              fontFamily: "var(--font-body)", whiteSpace: "nowrap",
-            }}
-              onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
-              onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
-            >
-              Hire me
-            </a>
-          )}
+          <a href="#contact" className="hidden md:inline-block" style={{
+            padding: "7px 16px", borderRadius: 6,
+            background: "var(--color-accent)", color: "var(--color-on-accent)",
+            fontSize: "0.8rem", fontWeight: 700,
+            textDecoration: "none", transition: "opacity 0.2s",
+            fontFamily: "var(--font-body)", whiteSpace: "nowrap",
+          }}
+            onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
+            onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+          >
+            Hire me
+          </a>
 
           {/* Hamburger — mobile only */}
-          {isMobile && (
-            <button
-              aria-label={mobileOpen ? "Close menu" : "Open menu"}
-              aria-expanded={mobileOpen}
-              onClick={() => setMobileOpen(v => !v)}
-              style={{ background: "none", border: "none", cursor: "pointer", display: "flex", flexDirection: "column", gap: 5, padding: 8 }}
-            >
-              {[0,1,2].map(i => (
-                <span key={i} style={{
-                  display: "block", width: 22, height: 2,
-                  background: "var(--color-text-primary)", borderRadius: 2, transition: "all 0.3s",
-                  transform: mobileOpen && i === 0 ? "rotate(45deg) translate(5px,5px)" : mobileOpen && i === 2 ? "rotate(-45deg) translate(5px,-5px)" : "none",
-                  opacity: mobileOpen && i === 1 ? 0 : 1,
-                }} />
-              ))}
-            </button>
-          )}
+          <button
+            className="flex md:hidden"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            onClick={() => setMobileOpen(v => !v)}
+            style={{ background: "none", border: "none", cursor: "pointer", flexDirection: "column", gap: 5, padding: 8 }}
+          >
+            {[0,1,2].map(i => (
+              <span key={i} style={{
+                display: "block", width: 22, height: 2,
+                background: "var(--color-text-primary)", borderRadius: 2, transition: "all 0.3s",
+                transform: mobileOpen && i === 0 ? "rotate(45deg) translate(5px,5px)" : mobileOpen && i === 2 ? "rotate(-45deg) translate(5px,-5px)" : "none",
+                opacity: mobileOpen && i === 1 ? 0 : 1,
+              }} />
+            ))}
+          </button>
         </div>
       </nav>
 
       {/* Mobile drawer */}
-      {isMobile && (
-        <div style={{
-          maxHeight: mobileOpen ? 320 : 0, overflow: "hidden",
-          transition: "max-height 0.3s ease",
-          background: "var(--color-bg-nav)",
-          backdropFilter: "blur(14px)",
-          borderBottom: mobileOpen ? "1px solid var(--color-border-nav)" : "none",
-        }}>
-          <ul style={{ listStyle: "none", padding: "16px 24px 20px", margin: 0, display: "flex", flexDirection: "column", gap: 18 }}>
-            {NAV_LINKS.map(link => (
-              <li key={link.href}>
-                <button onClick={() => go(link.href)}
-                  style={{ ...linkStyle, fontSize: "1rem", color: "var(--color-text-primary)", width: "100%", textAlign: "left" }}
-                >{link.label}</button>
-              </li>
-            ))}
-            <li>
-              <a href={`mailto:${siteConfig.email}`} style={{
-                display: "inline-block", padding: "9px 20px", borderRadius: 6,
-                background: "var(--color-accent)", color: "#fff",
-                fontSize: "0.875rem", fontWeight: 700,
-                textDecoration: "none", fontFamily: "var(--font-body)",
-              }}>
-                Hire me
-              </a>
+      <div className="md:hidden" style={{
+        maxHeight: mobileOpen ? "calc(100dvh - 64px)" : 0, overflowX: "hidden", overflowY: mobileOpen ? "auto" : "hidden",
+        visibility: mobileOpen ? "visible" : "hidden",
+        transition: "max-height 0.3s ease, visibility 0.3s",
+        background: "var(--color-bg-nav)",
+        backdropFilter: "blur(14px)",
+        borderBottom: mobileOpen ? "1px solid var(--color-border-nav)" : "none",
+      }}>
+        <ul style={{ listStyle: "none", padding: "16px 24px 20px", margin: 0, display: "flex", flexDirection: "column", gap: 18 }}>
+          {NAV_LINKS.map(link => (
+            <li key={link.href}>
+              <a href={link.href} onClick={() => setMobileOpen(false)}
+                style={{ ...linkStyle, fontSize: "1rem", color: "var(--color-text-primary)", display: "block" }}
+              >{link.label}</a>
             </li>
-          </ul>
-        </div>
-      )}
+          ))}
+          <li>
+            <a href="#contact" onClick={() => setMobileOpen(false)} style={{
+              display: "inline-block", padding: "9px 20px", borderRadius: 6,
+              background: "var(--color-accent)", color: "var(--color-on-accent)",
+              fontSize: "0.875rem", fontWeight: 700,
+              textDecoration: "none", fontFamily: "var(--font-body)",
+            }}>
+              Hire me
+            </a>
+          </li>
+        </ul>
+      </div>
     </header>
   );
 }

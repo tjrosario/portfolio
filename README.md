@@ -1,6 +1,6 @@
 # Tommy Rosario — Portfolio
 
-A production-ready frontend developer portfolio built with **Next.js 15 (App Router) + TypeScript + Tailwind CSS + self-hosted fonts**.
+Personal portfolio built with **Next.js (App Router), TypeScript, Tailwind CSS and self-hosted variable fonts**.
 
 ## Quick Start
 
@@ -22,26 +22,26 @@ portfolio/
 │   ├── layout.tsx          # Root layout (fonts, metadata)
 │   ├── page.tsx            # One-page app
 │   ├── globals.css         # Tailwind + global styles
-│   └── api/experience/
-│       └── route.ts        # API: serves parsed experience data
+│   ├── og/route.tsx        # Generated social share image
+│   └── llms.txt/route.ts   # Plain-text summary for AI tools
 ├── components/
 │   ├── Navbar.tsx           Sticky nav + mobile drawer
 │   ├── Hero.tsx             Full-screen hero
 │   ├── Ticker.tsx           Scrolling keyword marquee
 │   ├── About.tsx            Bio + highlights grid
 │   ├── Experience.tsx       Timeline cards
+│   ├── AiWorkflow.tsx       How I build with AI
 │   ├── Skills.tsx           Grouped skill chips
 │   ├── Projects.tsx         Project cards
-│   ├── Contact.tsx          Mailto form + socials
+│   ├── Contact.tsx          Email link + socials
 │   ├── Footer.tsx
 │   └── SectionHeader.tsx    Reusable heading with accent dot
 ├── lib/
-│   ├── resumeParser.ts      PDF parser + JSON fallback
+│   ├── theme.tsx            Dark/light theme
 │   └── experience.types.ts
 ├── data/
-│   ├── experience.json      Fallback/editable experience data
-│   └── resume.pdf           (optional) Drop your resume here
-├── public/fonts/            Self-hosted Syne + Space Grotesk
+│   └── experience.json      Editable experience data
+├── public/fonts/            Self-hosted Sora, Inter and JetBrains Mono
 └── site.config.ts           ALL content lives here
 ```
 
@@ -49,14 +49,13 @@ portfolio/
 
 Edit **`site.config.ts`** for everything: name, bio, skills, projects, links.
 
-## PDF Resume
+## Seasonal Themes
 
-Place your resume at `data/resume.pdf`. The parser extracts experience entries automatically, falling back to `data/experience.json` if parsing fails.
+Seasons and their date ranges live in `seasons` in `site.config.ts`, and their accent colors in `app/globals.css`. The first matching range wins, so holidays sit above the seasons around them.
 
-Debug the parser:
-```bash
-RESUME_PARSER_DEBUG=true npx tsx lib/resumeParser.ts
-```
+Preview any season with `?season=<id>`, for example `http://localhost:4000/?season=christmas`.
+
+Season ids: `christmas`, `newyear`, `valentines`, `stpatricks`, `fourth`, `halloween`, `thanksgiving`, `winter`, `spring`, `summer`, `fall`.
 
 ## Experience JSON Schema
 
@@ -77,7 +76,5 @@ RESUME_PARSER_DEBUG=true npx tsx lib/resumeParser.ts
 ## Deploy
 
 ```bash
-npx vercel
+bunx vercel
 ```
-
-Ensure the `data/` directory is included in your deployment.

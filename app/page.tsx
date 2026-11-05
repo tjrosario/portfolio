@@ -2,11 +2,13 @@ import fs from "fs";
 import path from "path";
 import type { ExperienceEntry } from "@/lib/experience.types";
 
+import JsonLd from "@/components/JsonLd";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Ticker from "@/components/Ticker";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
+import AiWorkflow from "@/components/AiWorkflow";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
@@ -27,16 +29,20 @@ export default function Home() {
   const entries = loadExperience();
 
   return (
-    <main>
+    <>
+      <JsonLd />
       <Navbar />
-      <Hero />
-      <Ticker />
-      <About />
-      <Experience entries={entries} />
-      <Skills />
-      <Projects />
-      <Contact />
+      <main id="main">
+        <Hero />
+        <Ticker />
+        <About />
+        <Experience entries={entries} />
+        <AiWorkflow />
+        <Skills />
+        <Projects />
+        <Contact />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }

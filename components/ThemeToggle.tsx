@@ -49,7 +49,7 @@ export default function ThemeToggle() {
       }}
       onMouseEnter={e => {
         e.currentTarget.style.borderColor = "var(--color-border-hover)";
-        e.currentTarget.style.boxShadow = "0 0 12px rgba(249,115,22,0.12)";
+        e.currentTarget.style.boxShadow = "0 0 12px color-mix(in srgb, var(--color-accent) 12%, transparent)";
       }}
       onMouseLeave={e => {
         e.currentTarget.style.borderColor = "var(--color-border)";
@@ -62,7 +62,7 @@ export default function ThemeToggle() {
         width: 36,
         height: 20,
         borderRadius: 10,
-        background: isDark ? "rgba(249,115,22,0.15)" : "rgba(234,108,10,0.18)",
+        background: "color-mix(in srgb, var(--color-accent) 16%, transparent)",
         border: "1px solid var(--color-border)",
         transition: "background 0.25s",
         flexShrink: 0,

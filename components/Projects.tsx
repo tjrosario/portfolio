@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { siteConfig } from "@/site.config";
+import { siteConfig, type Project } from "@/site.config";
 import SectionHeader from "./SectionHeader";
 
 const GH = () => (
@@ -16,8 +16,31 @@ const EXT = () => (
   </svg>
 );
 
-function ProjectCard({ project }: { project: typeof siteConfig.projects[number] }) {
+const PROJECT_ICONS: Record<Project["icon"], React.ReactNode> = {
+  store: <><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></>,
+  video: <><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></>,
+  ai: <><path d="M11 3l2 5.5L18.5 10.5 13 12.5 11 18l-2-5.5L3.5 10.5 9 8.5z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></>,
+  food: <><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></>,
+};
+
+function ProjectIcon({ icon }: { icon: Project["icon"] }) {
+  return (
+    <span style={{
+      display: "inline-flex", alignItems: "center", justifyContent: "center",
+      width: 36, height: 36, borderRadius: 8, flexShrink: 0,
+      background: "var(--color-border)", color: "var(--color-accent)",
+      border: "1px solid var(--color-border-hover)",
+    }}>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        {PROJECT_ICONS[icon]}
+      </svg>
+    </span>
+  );
+}
+
+function ProjectCard({ project }: { project: Project }) {
   const [hovered, setHovered] = useState(false);
+  const address = (project.live ?? project.github).replace("https://", "");
   return (
     <article
       onMouseEnter={() => setHovered(true)}
@@ -25,60 +48,72 @@ function ProjectCard({ project }: { project: typeof siteConfig.projects[number] 
       style={{
         background: "var(--color-bg-card)",
         border: `1px solid ${hovered ? "var(--color-border-hover)" : "var(--color-border)"}`,
-        borderRadius: 12, padding: 22,
-        display: "flex", flexDirection: "column", gap: 12,
+        borderRadius: 12, overflow: "hidden",
+        display: "flex", flexDirection: "column",
         boxShadow: hovered ? "var(--shadow-card)" : "none",
         transition: "border-color 0.3s, box-shadow 0.3s",
       }}
     >
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 }}>
-        <h3 className="font-display" style={{
-          fontWeight: 700, fontSize: "1rem",
-          color: hovered ? "var(--color-accent)" : "var(--color-text-primary)",
-          margin: 0, letterSpacing: "-0.01em", transition: "color 0.2s",
-        }}>
-          {project.name}
-        </h3>
-        <div style={{ display: "flex", gap: 10, flexShrink: 0 }}>
-          {project.github && (
-            <a href={project.github} target="_blank" rel="noopener noreferrer"
-              aria-label={`${project.name} GitHub`}
-              style={{ color: "var(--color-text-muted)", transition: "color 0.2s", display: "flex", textDecoration: "none" }}
-              onMouseEnter={e => (e.currentTarget.style.color = "var(--color-accent)")}
-              onMouseLeave={e => (e.currentTarget.style.color = "var(--color-text-muted)")}
-            ><GH /></a>
-          )}
-          {project.live && (
-            <a href={project.live} target="_blank" rel="noopener noreferrer"
-              aria-label={`${project.name} live`}
-              style={{ color: "var(--color-text-muted)", transition: "color 0.2s", display: "flex", textDecoration: "none" }}
-              onMouseEnter={e => (e.currentTarget.style.color = "var(--color-accent)")}
-              onMouseLeave={e => (e.currentTarget.style.color = "var(--color-text-muted)")}
-            ><EXT /></a>
-          )}
-        </div>
+      <div aria-hidden="true" className="browser-bar">
+        <span className="editor-dot" style={{ background: "#ff5f57" }} />
+        <span className="editor-dot" style={{ background: "#febc2e" }} />
+        <span className="editor-dot" style={{ background: "#28c840" }} />
+        <span className="browser-address">{address}</span>
       </div>
 
-      <p style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem", lineHeight: 1.65, margin: 0, flex: 1 }}>
-        {project.description}
-      </p>
+      <div style={{ padding: 22, display: "flex", flexDirection: "column", gap: 12, flex: 1 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
+            <ProjectIcon icon={project.icon} />
+            <h3 className="font-display" style={{
+              fontWeight: 700, fontSize: "1rem",
+              color: hovered ? "var(--color-accent)" : "var(--color-text-primary)",
+              margin: 0, letterSpacing: "-0.01em", transition: "color 0.2s",
+            }}>
+              {project.name}
+            </h3>
+          </div>
+          <div style={{ display: "flex", gap: 10, flexShrink: 0 }}>
+            {project.github && (
+              <a href={project.github} target="_blank" rel="noopener noreferrer"
+                aria-label={`${project.name} GitHub`}
+                style={{ color: "var(--color-text-muted)", transition: "color 0.2s", display: "flex", textDecoration: "none" }}
+                onMouseEnter={e => (e.currentTarget.style.color = "var(--color-accent)")}
+                onMouseLeave={e => (e.currentTarget.style.color = "var(--color-text-muted)")}
+              ><GH /></a>
+            )}
+            {project.live && (
+              <a href={project.live} target="_blank" rel="noopener noreferrer"
+                aria-label={`${project.name} live`}
+                style={{ color: "var(--color-text-muted)", transition: "color 0.2s", display: "flex", textDecoration: "none" }}
+                onMouseEnter={e => (e.currentTarget.style.color = "var(--color-accent)")}
+                onMouseLeave={e => (e.currentTarget.style.color = "var(--color-text-muted)")}
+              ><EXT /></a>
+            )}
+          </div>
+        </div>
 
-      <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 4 }}>
-        {project.highlights.map((h, i) => (
-          <li key={i} style={{ display: "flex", gap: 7, fontSize: "0.76rem", color: "var(--color-text-muted)" }}>
-            <span style={{ color: "var(--color-accent)", fontWeight: 700, flexShrink: 0 }}>✓</span>{h}
-          </li>
-        ))}
-      </ul>
+        <p style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem", lineHeight: 1.65, margin: 0, flex: 1 }}>
+          {project.description}
+        </p>
 
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 5, paddingTop: 10, borderTop: "1px solid var(--color-border)" }}>
-        {project.stack.map(t => (
-          <span key={t} style={{
-            padding: "2px 7px", fontSize: "0.68rem", borderRadius: 4,
-            background: "var(--color-border)", color: "var(--color-accent)",
-            border: "1px solid var(--color-border-hover)",
-          }}>{t}</span>
-        ))}
+        <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 4 }}>
+          {project.highlights.map((h, i) => (
+            <li key={i} style={{ display: "flex", gap: 7, fontSize: "0.76rem", color: "var(--color-text-muted)" }}>
+              <span style={{ color: "var(--color-accent)", fontWeight: 700, flexShrink: 0 }}>✓</span>{h}
+            </li>
+          ))}
+        </ul>
+
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 5, paddingTop: 10, borderTop: "1px solid var(--color-border)" }}>
+          {project.stack.map(t => (
+            <span key={t} style={{
+              padding: "2px 7px", fontSize: "0.68rem", borderRadius: 4,
+              background: "var(--color-border)", color: "var(--color-accent)",
+              border: "1px solid var(--color-border-hover)",
+            }}>{t}</span>
+          ))}
+        </div>
       </div>
     </article>
   );
@@ -88,7 +123,7 @@ export default function Projects() {
   return (
     <section id="projects" style={{ padding: "96px 0", background: "var(--color-bg-section)" }}>
       <div style={{ maxWidth: 1152, margin: "0 auto", padding: "0 24px" }}>
-        <SectionHeader title="Projects" subtitle="Things I've built — from design systems to full-stack apps." />
+        <SectionHeader path="./projects/*" title="Projects" subtitle="Things I've built, from production storefronts to AI-powered apps." />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {siteConfig.projects.map(p => <ProjectCard key={p.name} project={p} />)}
         </div>
