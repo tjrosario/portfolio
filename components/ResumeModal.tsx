@@ -1,21 +1,25 @@
 "use client";
 
-import type { Ref } from "react";
+import { useRef, type Ref } from "react";
 import resume from "@/data/resume.json";
 import { siteConfig } from "@/site.config";
 import WindowFrame from "./WindowFrame";
 
 function Heading({ children }: { children: string }) {
-  return <h3 className="resume-heading">{`// ${children}`}</h3>;
+  return <h3 className="resume-heading"><span aria-hidden="true">{"// "}</span>{children}</h3>;
 }
 
 export default function ResumeModal({ ref }: { ref: Ref<HTMLDialogElement> }) {
+  // A text selection dragged out of the window also fires click on the dialog
+  const pressedBackdrop = useRef(false);
+
   return (
     <dialog
       ref={ref}
       className="resume-dialog"
       aria-labelledby="resume-title"
-      onClick={e => { if (e.target === e.currentTarget) e.currentTarget.close(); }}
+      onMouseDown={e => { pressedBackdrop.current = e.target === e.currentTarget; }}
+      onClick={e => { if (pressedBackdrop.current && e.target === e.currentTarget) e.currentTarget.close(); }}
     >
       <WindowFrame
         label="resume.tsx"

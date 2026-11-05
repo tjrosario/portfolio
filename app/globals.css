@@ -409,6 +409,9 @@ html:has(.resume-dialog[open]) {
   font-size: 0.85rem;
   line-height: 1.65;
 }
+.resume-body :focus-visible {
+  outline-color: var(--color-accent);
+}
 .resume-body p {
   margin: 0;
 }
@@ -531,6 +534,10 @@ html:has(.resume-dialog[open]) {
 @media print {
   html:has(.resume-dialog[open]) {
     overflow: visible;
+    background: #ffffff;
+  }
+  body:has(.resume-dialog[open]) {
+    background: #ffffff;
   }
   html.theme-ready .resume-dialog,
   html.theme-ready .resume-dialog * {
