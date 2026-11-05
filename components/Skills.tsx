@@ -27,19 +27,19 @@ export default function Skills() {
 
       <div style={{ marginBottom: 44 }}>
         <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.75rem", color: "var(--color-text-muted)", marginBottom: 14 }}>
-          {"// core strengths"}
+          <span aria-hidden="true">{"// "}</span>core strengths
         </p>
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+        <ul role="list" style={{ display: "flex", flexWrap: "wrap", gap: 10, listStyle: "none", margin: 0, padding: 0 }}>
           {siteConfig.coreStrengths.map(s => (
-            <span key={s} style={{
+            <li key={s} style={{
               padding: "7px 16px", borderRadius: 7,
               background: "var(--color-border)",
               border: "1px solid var(--color-border-hover)",
               color: "var(--color-accent)", fontWeight: 600, fontSize: "0.8rem", cursor: "default",
               fontFamily: "var(--font-mono)",
-            }}>{`<${s} />`}</span>
+            }}><span aria-hidden="true">{"<"}</span>{s}<span aria-hidden="true">{" />"}</span></li>
           ))}
-        </div>
+        </ul>
       </div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -55,9 +55,9 @@ export default function Skills() {
               <span aria-hidden="true" className="tok-json-key">&quot;</span>
               <span aria-hidden="true" style={{ color: "var(--color-text-muted)" }}>: [</span>
             </h3>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 7 }}>
-              {group.skills.map(skill => <SkillChip key={skill} label={skill} />)}
-            </div>
+            <ul role="list" style={{ display: "flex", flexWrap: "wrap", gap: 7, listStyle: "none", margin: 0, padding: 0 }}>
+              {group.skills.map(skill => <li key={skill}><SkillChip label={skill} /></li>)}
+            </ul>
             <p aria-hidden="true" style={{ fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: "var(--color-text-muted)", margin: "14px 0 0" }}>]</p>
           </div>
         ))}

@@ -73,6 +73,15 @@ const themeScript = `
 })();
 `;
 
+// Restores a saved pause before the first animation frame
+const motionScript = `
+(function() {
+  try {
+    if (localStorage.getItem('motion') === 'paused') document.documentElement.setAttribute('data-motion', 'paused');
+  } catch(e) {}
+})();
+`;
+
 // Runs on each visit so a static page still follows the date; ?season=<id> previews any season
 const seasonScript = `
 (function() {
@@ -95,7 +104,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${sora.variable}`} suppressHydrationWarning>
       <head>
         {/* Blocking script must run before any CSS is applied */}
-        <script dangerouslySetInnerHTML={{ __html: themeScript + seasonScript }} />
+        <script dangerouslySetInnerHTML={{ __html: themeScript + motionScript + seasonScript }} />
       </head>
       <body>
         <a href="#main" className="skip-link">Skip to content</a>

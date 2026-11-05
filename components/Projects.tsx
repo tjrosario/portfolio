@@ -76,7 +76,7 @@ function ProjectCard({ project }: { project: Project }) {
           <div style={{ display: "flex", gap: 10, flexShrink: 0 }}>
             {project.github && (
               <a href={project.github} target="_blank" rel="noopener noreferrer"
-                aria-label={`${project.name} GitHub`}
+                aria-label={`${project.name} on GitHub (opens in new tab)`}
                 style={{ color: "var(--color-text-muted)", transition: "color 0.2s", display: "flex", textDecoration: "none" }}
                 onMouseEnter={e => (e.currentTarget.style.color = "var(--color-accent)")}
                 onMouseLeave={e => (e.currentTarget.style.color = "var(--color-text-muted)")}
@@ -84,7 +84,7 @@ function ProjectCard({ project }: { project: Project }) {
             )}
             {project.live && (
               <a href={project.live} target="_blank" rel="noopener noreferrer"
-                aria-label={`${project.name} live`}
+                aria-label={`${project.name} live site (opens in new tab)`}
                 style={{ color: "var(--color-text-muted)", transition: "color 0.2s", display: "flex", textDecoration: "none" }}
                 onMouseEnter={e => (e.currentTarget.style.color = "var(--color-accent)")}
                 onMouseLeave={e => (e.currentTarget.style.color = "var(--color-text-muted)")}
@@ -100,20 +100,20 @@ function ProjectCard({ project }: { project: Project }) {
         <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 4 }}>
           {project.highlights.map((h, i) => (
             <li key={i} style={{ display: "flex", gap: 7, fontSize: "0.76rem", color: "var(--color-text-muted)" }}>
-              <span style={{ color: "var(--color-accent)", fontWeight: 700, flexShrink: 0 }}>✓</span>{h}
+              <span aria-hidden="true" style={{ color: "var(--color-accent)", fontWeight: 700, flexShrink: 0 }}>✓</span>{h}
             </li>
           ))}
         </ul>
 
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 5, paddingTop: 10, borderTop: "1px solid var(--color-border)" }}>
+        <ul role="list" style={{ display: "flex", flexWrap: "wrap", gap: 5, margin: 0, padding: "10px 0 0", listStyle: "none", borderTop: "1px solid var(--color-border)" }}>
           {project.stack.map(t => (
-            <span key={t} style={{
+            <li key={t} style={{
               padding: "2px 7px", fontSize: "0.68rem", borderRadius: 4,
               background: "var(--color-border)", color: "var(--color-accent)",
               border: "1px solid var(--color-border-hover)",
-            }}>{t}</span>
+            }}>{t}</li>
           ))}
-        </div>
+        </ul>
       </div>
     </article>
   );
