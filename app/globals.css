@@ -1,37 +1,11 @@
 @import "tailwindcss";
 
-@theme {
-  /* Fonts from your config */
+/* Static so tokens used only in plain CSS are kept; [data-theme="light"] overrides the dark defaults */
+@theme static {
   --font-body:    var(--font-inter), sans-serif;
   --font-display: var(--font-sora), sans-serif;
   --font-mono:    var(--font-jetbrains-mono), monospace;
 
-  /* Colors from your config (moved into the theme engine) */
-  --color-accent: #2dd4bf;
-  --color-accent-dim: #0d9488;
-  --color-bg-base: #0b0f14;
-  --color-bg-card: #111820;
-  --color-bg-section: #0d1117;
-
-  /* Animations & Keyframes */
-  --animate-marquee: marquee 25s linear infinite;
-  --animate-fade-in-up: fadeInUp 0.7s ease forwards;
-
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-}
-
-/* ═══════════════════════════════════════════════
-   DARK THEME (default)
-   ═══════════════════════════════════════════════ */
-:root,
-[data-theme="dark"] {
   --color-bg-base:    #0e1117;
   --color-bg-card:    #141820;
   --color-bg-section: #111419;
@@ -54,6 +28,21 @@
 
   --grid-dot: color-mix(in srgb, var(--color-accent) 14%, transparent);
 
+  --animate-marquee: marquee 25s linear infinite;
+  --animate-fade-in-up: fadeInUp 0.7s ease forwards;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* Outside @theme because Tailwind copies theme shadows into utilities, which would lose the light override */
+:root {
   --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.35);
   --shadow-glow: 0 4px 24px color-mix(in srgb, var(--color-accent) 30%, transparent);
 }
@@ -151,9 +140,6 @@
    UTILITIES
    ═══════════════════════════════════════════════ */
 @layer utilities {
-  .font-display { font-family: var(--font-display); }
-  .font-body    { font-family: var(--font-body); }
-
   .animate-marquee { animation: var(--animate-marquee); }
 
   .anim-hidden {

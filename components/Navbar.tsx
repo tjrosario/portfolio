@@ -14,6 +14,9 @@ const NAV_LINKS = [
   { label: "Contact",    href: "#contact" },
 ];
 
+const DESKTOP_LINK = "font-body text-[0.875rem] font-medium text-text-secondary transition-colors duration-200 hover:text-text-primary";
+const DRAWER_LINK = "block font-body text-[1rem] font-medium text-text-primary";
+
 export default function Navbar() {
   const [scrolled, setScrolled]     = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -47,98 +50,50 @@ export default function Navbar() {
     target?.addEventListener("blur", () => target.removeAttribute("tabindex"), { once: true });
   };
 
-  const linkStyle: React.CSSProperties = {
-    fontFamily: "var(--font-body)", fontSize: "0.875rem",
-    fontWeight: 500, color: "var(--color-text-secondary)",
-    transition: "color 0.2s", textDecoration: "none",
+  const closeOnFocusLeave = (e: React.FocusEvent<HTMLElement>) => {
+    if (e.relatedTarget && !e.currentTarget.contains(e.relatedTarget)) setMobileOpen(false);
   };
 
   return (
-    <header role="banner" onBlur={e => {
-      if (e.relatedTarget && !e.currentTarget.contains(e.relatedTarget)) setMobileOpen(false);
-    }} style={{
-      position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
-      transition: "background 0.3s, border-color 0.3s",
-      background: scrolled || mobileOpen ? "var(--color-bg-nav)" : "transparent",
-      backdropFilter: scrolled ? "blur(14px)" : "none",
-      WebkitBackdropFilter: scrolled ? "blur(14px)" : "none",
-      borderBottom: scrolled ? "1px solid var(--color-border-nav)" : "1px solid transparent",
-    }}>
-      <nav aria-label="Main navigation" style={{
-        maxWidth: 1152, margin: "0 auto", padding: "0 24px",
-        minHeight: 64, display: "flex", alignItems: "center", justifyContent: "space-between",
-        gap: 16,
-      }}>
-        {/* Logo */}
-        <a
-          href="#hero"
-          aria-label={`${siteConfig.name}, back to top`}
-          style={{
-            ...linkStyle,
-            fontFamily: "var(--font-display)", fontWeight: 800,
-            fontSize: "1.1rem", color: "var(--color-text-primary)", flexShrink: 0,
-          }}
-        >
-          <span style={{ color: "var(--color-accent)" }}>&lt;</span>
+    <header
+      role="banner"
+      onBlur={closeOnFocusLeave}
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color] duration-300 ${scrolled || mobileOpen ? "bg-bg-nav" : ""} ${scrolled ? "border-border-nav backdrop-blur-[14px]" : "border-transparent"}`}
+    >
+      <nav aria-label="Main navigation" className="mx-auto flex min-h-16 max-w-6xl items-center justify-between gap-4 px-6">
+        <a href="#hero" aria-label={`${siteConfig.name}, back to top`} className="shrink-0 font-display text-[1.1rem] font-extrabold text-text-primary">
+          <span className="text-accent">&lt;</span>
           {siteConfig.firstName}
-          <span style={{ color: "var(--color-accent)" }}>{" />"}</span>
+          <span className="text-accent">{" />"}</span>
         </a>
 
-        {/* Desktop nav links — hidden on mobile */}
-        <ul className="hidden lg:flex" style={{ listStyle: "none", margin: 0, padding: 0, gap: "4px 32px", flex: 1, flexWrap: "wrap", minWidth: 0, justifyContent: "center" }}>
+        <ul className="hidden min-w-0 flex-1 flex-wrap justify-center gap-x-8 gap-y-1 lg:flex">
           {NAV_LINKS.map(link => (
             <li key={link.href}>
-              <a href={link.href} style={linkStyle}
-                onMouseEnter={e => (e.currentTarget.style.color = "var(--color-text-primary)")}
-                onMouseLeave={e => (e.currentTarget.style.color = "var(--color-text-secondary)")}
-              >
-                {link.label}
-              </a>
+              <a href={link.href} className={DESKTOP_LINK}>{link.label}</a>
             </li>
           ))}
           <li>
-            <button type="button" onClick={openResume} style={{ ...linkStyle, background: "none", border: "none", padding: 0, cursor: "pointer" }}
-              onMouseEnter={e => (e.currentTarget.style.color = "var(--color-text-primary)")}
-              onMouseLeave={e => (e.currentTarget.style.color = "var(--color-text-secondary)")}
-            >
-              Resume
-            </button>
+            <button type="button" onClick={openResume} className={`${DESKTOP_LINK} cursor-pointer`}>Resume</button>
           </li>
         </ul>
 
-        {/* Right side — single ThemeToggle, always rendered once */}
-        <div style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
+        <div className="flex shrink-0 items-center gap-2.5">
           <ThemeToggle />
-
-          {/* Hire me — desktop only */}
-          <a href="#contact" className="hidden lg:inline-block" style={{
-            padding: "7px 16px", borderRadius: 6, border: "1px solid transparent",
-            background: "var(--color-accent)", color: "var(--color-on-accent)",
-            fontSize: "0.8rem", fontWeight: 700,
-            textDecoration: "none", transition: "opacity 0.2s",
-            fontFamily: "var(--font-body)", whiteSpace: "nowrap",
-          }}
-            onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
-            onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
-          >
+          <a href="#contact" className="hidden rounded-md border border-transparent bg-accent px-4 py-[7px] font-body text-[0.8rem] font-bold whitespace-nowrap text-on-accent transition-opacity duration-200 hover:opacity-85 lg:inline-block">
             Hire me
           </a>
-
-          {/* Hamburger — mobile only */}
           <button
             ref={hamburgerRef}
             type="button"
-            className="flex lg:hidden"
+            className="flex cursor-pointer flex-col gap-[5px] p-2 lg:hidden"
             aria-label="Menu"
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
-            onClick={() => setMobileOpen(v => !v)}
-            style={{ background: "none", border: "none", cursor: "pointer", flexDirection: "column", gap: 5, padding: 8 }}
+            onClick={() => setMobileOpen(open => !open)}
           >
-            {[0,1,2].map(i => (
-              <span key={i} style={{
-                display: "block", width: 22,
-                borderTop: "2px solid var(--color-text-primary)", borderRadius: 2, transition: "all 0.3s",
+            {[0, 1, 2].map(i => (
+              <span key={i} className="block w-[22px] rounded-sm border-t-2 border-text-primary transition-all duration-300" style={{
                 transform: mobileOpen && i === 0 ? "rotate(45deg) translate(5px,5px)" : mobileOpen && i === 2 ? "rotate(-45deg) translate(5px,-5px)" : "none",
                 opacity: mobileOpen && i === 1 ? 0 : 1,
               }} />
@@ -147,40 +102,33 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile drawer */}
-      <nav id="mobile-menu" aria-label="Mobile navigation" className="lg:hidden" style={{
-        maxHeight: mobileOpen ? "calc(100dvh - 64px)" : 0, overflowX: "hidden", overflowY: mobileOpen ? "auto" : "hidden",
-        visibility: mobileOpen ? "visible" : "hidden",
-        transition: "max-height 0.3s ease, visibility 0.3s",
-        background: "var(--color-bg-nav)",
-        backdropFilter: "blur(14px)",
-        borderBottom: mobileOpen ? "1px solid var(--color-border-nav)" : "none",
-      }}>
-        <ul style={{ listStyle: "none", padding: "16px 24px 20px", margin: 0, display: "flex", flexDirection: "column", gap: 18 }}>
+      <nav
+        id="mobile-menu"
+        aria-label="Mobile navigation"
+        className={`overflow-x-hidden bg-bg-nav backdrop-blur-[14px] transition-[max-height,visibility] duration-300 lg:hidden ${mobileOpen ? "visible max-h-[calc(100dvh-64px)] overflow-y-auto border-b border-border-nav" : "invisible max-h-0 overflow-y-hidden"}`}
+      >
+        <ul className="flex flex-col gap-[18px] px-6 pt-4 pb-5">
           {NAV_LINKS.map(link => (
             <li key={link.href}>
-              <a href={link.href} onClick={followDrawerLink}
-                style={{ ...linkStyle, fontSize: "1rem", color: "var(--color-text-primary)", display: "block" }}
-              >{link.label}</a>
+              <a href={link.href} onClick={followDrawerLink} className={DRAWER_LINK}>{link.label}</a>
             </li>
           ))}
           <li>
-            <button type="button" onClick={() => {
+            <button
+              type="button"
+              className={`${DRAWER_LINK} cursor-pointer`}
+              onClick={() => {
                 // The drawer hides this button, so the dialog returns focus to the hamburger instead
                 hamburgerRef.current?.focus();
                 setMobileOpen(false);
                 openResume();
               }}
-              style={{ ...linkStyle, fontSize: "1rem", color: "var(--color-text-primary)", display: "block", background: "none", border: "none", padding: 0, cursor: "pointer" }}
-            >Resume</button>
+            >
+              Resume
+            </button>
           </li>
           <li>
-            <a href="#contact" onClick={followDrawerLink} style={{
-              display: "inline-block", padding: "9px 20px", borderRadius: 6, border: "1px solid transparent",
-              background: "var(--color-accent)", color: "var(--color-on-accent)",
-              fontSize: "0.875rem", fontWeight: 700,
-              textDecoration: "none", fontFamily: "var(--font-body)",
-            }}>
+            <a href="#contact" onClick={followDrawerLink} className="inline-block rounded-md border border-transparent bg-accent px-5 py-[9px] font-body text-[0.875rem] font-bold text-on-accent">
               Hire me
             </a>
           </li>

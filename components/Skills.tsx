@@ -1,67 +1,45 @@
-"use client";
-
-import { useState } from "react";
 import { siteConfig } from "@/site.config";
-import SectionHeader from "./SectionHeader";
-
-function SkillChip({ label }: { label: string }) {
-  const [h, setH] = useState(false);
-  return (
-    <span onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)} style={{
-      padding: "5px 11px", fontSize: "0.78rem", borderRadius: 6, cursor: "default",
-      background: h ? "var(--color-border)" : "var(--color-bg-card)",
-      border: `1px solid ${h ? "var(--color-border-hover)" : "var(--color-border)"}`,
-      color: h ? "var(--color-text-primary)" : "var(--color-text-secondary)",
-      transition: "all 0.18s", display: "inline-block",
-      boxShadow: h ? "var(--shadow-card)" : "none",
-    }}>
-      {label}
-    </span>
-  );
-}
+import Card from "./Card";
+import Section from "./Section";
 
 export default function Skills() {
   return (
-    <section id="skills" style={{ padding: "96px 0", maxWidth: 1152, margin: "0 auto", paddingLeft: 24, paddingRight: 24 }}>
-      <SectionHeader path="./skills.json" title="Skills" subtitle="Technologies and tools I work with day-to-day." />
-
-      <div style={{ marginBottom: 44 }}>
-        <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.75rem", color: "var(--color-text-muted)", marginBottom: 14 }}>
+    <Section id="skills" path="./skills.json" title="Skills" subtitle="Technologies and tools I work with day-to-day.">
+      <div className="mb-11">
+        <p className="mb-3.5 font-mono text-[0.75rem] text-text-muted">
           <span aria-hidden="true">{"// "}</span>core strengths
         </p>
-        <ul role="list" style={{ display: "flex", flexWrap: "wrap", gap: 10, listStyle: "none", margin: 0, padding: 0 }}>
-          {siteConfig.coreStrengths.map(s => (
-            <li key={s} style={{
-              padding: "7px 16px", borderRadius: 7,
-              background: "var(--color-border)",
-              border: "1px solid var(--color-border-hover)",
-              color: "var(--color-accent)", fontWeight: 600, fontSize: "0.8rem", cursor: "default",
-              fontFamily: "var(--font-mono)",
-            }}><span aria-hidden="true">{"<"}</span>{s}<span aria-hidden="true">{" />"}</span></li>
+        <ul role="list" className="flex flex-wrap gap-2.5">
+          {siteConfig.coreStrengths.map(strength => (
+            <li key={strength} className="rounded-[7px] border border-border-hover bg-border px-4 py-[7px] font-mono text-[0.8rem] font-semibold text-accent">
+              <span aria-hidden="true">{"<"}</span>{strength}<span aria-hidden="true">{" />"}</span>
+            </li>
           ))}
         </ul>
       </div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {siteConfig.skillGroups.map(group => (
-          <div key={group.label} style={{
-            background: "var(--color-bg-card)",
-            border: "1px solid var(--color-border)",
-            borderRadius: 12, padding: 18,
-          }}>
-            <h3 style={{ fontFamily: "var(--font-mono)", fontWeight: 600, fontSize: "0.8rem", color: "var(--color-text-primary)", margin: "0 0 14px" }}>
+          <Card key={group.label} className="p-[18px]">
+            <h3 className="mb-3.5 font-mono text-[0.8rem] font-semibold text-text-primary">
               <span aria-hidden="true" className="tok-json-key">&quot;</span>
               <span className="tok-json-key">{group.label}</span>
               <span aria-hidden="true" className="tok-json-key">&quot;</span>
-              <span aria-hidden="true" style={{ color: "var(--color-text-muted)" }}>: [</span>
+              <span aria-hidden="true" className="text-text-muted">: [</span>
             </h3>
-            <ul role="list" style={{ display: "flex", flexWrap: "wrap", gap: 7, listStyle: "none", margin: 0, padding: 0 }}>
-              {group.skills.map(skill => <li key={skill}><SkillChip label={skill} /></li>)}
+            <ul role="list" className="flex flex-wrap gap-[7px]">
+              {group.skills.map(skill => (
+                <li key={skill}>
+                  <span className="inline-block rounded-md border border-border bg-bg-card px-[11px] py-[5px] text-[0.78rem] text-text-secondary transition-all duration-[180ms] hover:border-border-hover hover:bg-border hover:text-text-primary hover:shadow-(--shadow-card)">
+                    {skill}
+                  </span>
+                </li>
+              ))}
             </ul>
-            <p aria-hidden="true" style={{ fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: "var(--color-text-muted)", margin: "14px 0 0" }}>]</p>
-          </div>
+            <p aria-hidden="true" className="mt-3.5 font-mono text-[0.8rem] text-text-muted">]</p>
+          </Card>
         ))}
       </div>
-    </section>
+    </Section>
   );
 }

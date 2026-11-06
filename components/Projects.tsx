@@ -1,8 +1,8 @@
-"use client";
-
-import { useState } from "react";
 import { siteConfig, type Project } from "@/site.config";
-import SectionHeader from "./SectionHeader";
+import Card from "./Card";
+import ChipList from "./ChipList";
+import Section from "./Section";
+import { TrafficLights } from "./WindowFrame";
 
 const GH = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -25,12 +25,7 @@ const PROJECT_ICONS: Record<Project["icon"], React.ReactNode> = {
 
 function ProjectIcon({ icon }: { icon: Project["icon"] }) {
   return (
-    <span style={{
-      display: "inline-flex", alignItems: "center", justifyContent: "center",
-      width: 36, height: 36, borderRadius: 8, flexShrink: 0,
-      background: "var(--color-border)", color: "var(--color-accent)",
-      border: "1px solid var(--color-border-hover)",
-    }}>
+    <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-lg border border-border-hover bg-border text-accent">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         {PROJECT_ICONS[icon]}
       </svg>
@@ -38,96 +33,62 @@ function ProjectIcon({ icon }: { icon: Project["icon"] }) {
   );
 }
 
-function ProjectCard({ project }: { project: Project }) {
-  const [hovered, setHovered] = useState(false);
-  const address = (project.live ?? project.github).replace("https://", "");
+function ProjectLink({ href, label, children }: { href: string; label: string; children: React.ReactNode }) {
   return (
-    <article
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        background: "var(--color-bg-card)",
-        border: `1px solid ${hovered ? "var(--color-border-hover)" : "var(--color-border)"}`,
-        borderRadius: 12, overflow: "hidden",
-        display: "flex", flexDirection: "column",
-        boxShadow: hovered ? "var(--shadow-card)" : "none",
-        transition: "border-color 0.3s, box-shadow 0.3s",
-      }}
+    <a href={href} target="_blank" rel="noopener noreferrer" aria-label={`${label} (opens in new tab)`}
+      className="flex text-text-muted transition-colors duration-200 hover:text-accent"
     >
+      {children}
+    </a>
+  );
+}
+
+function ProjectCard({ project }: { project: Project }) {
+  const address = (project.live ?? project.github).replace("https://", "");
+
+  return (
+    <Card as="article" interactive className="group flex flex-col overflow-hidden">
       <div aria-hidden="true" className="browser-bar">
-        <span className="editor-dot" style={{ background: "#ff5f57" }} />
-        <span className="editor-dot" style={{ background: "#febc2e" }} />
-        <span className="editor-dot" style={{ background: "#28c840" }} />
+        <TrafficLights />
         <span className="browser-address">{address}</span>
       </div>
 
-      <div style={{ padding: 22, display: "flex", flexDirection: "column", gap: 12, flex: 1 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 8 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
+      <div className="flex flex-1 flex-col gap-3 p-[22px]">
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex min-w-0 items-center gap-2.5">
             <ProjectIcon icon={project.icon} />
-            <h3 className="font-display" style={{
-              fontWeight: 700, fontSize: "1rem",
-              color: hovered ? "var(--color-accent)" : "var(--color-text-primary)",
-              margin: 0, letterSpacing: "-0.01em", transition: "color 0.2s",
-            }}>
+            <h3 className="m-0 font-display text-[1rem] font-bold tracking-[-0.01em] text-text-primary transition-colors duration-200 group-hover:text-accent">
               {project.name}
             </h3>
           </div>
-          <div style={{ display: "flex", gap: 10, flexShrink: 0 }}>
-            {project.github && (
-              <a href={project.github} target="_blank" rel="noopener noreferrer"
-                aria-label={`${project.name} on GitHub (opens in new tab)`}
-                style={{ color: "var(--color-text-muted)", transition: "color 0.2s", display: "flex", textDecoration: "none" }}
-                onMouseEnter={e => (e.currentTarget.style.color = "var(--color-accent)")}
-                onMouseLeave={e => (e.currentTarget.style.color = "var(--color-text-muted)")}
-              ><GH /></a>
-            )}
-            {project.live && (
-              <a href={project.live} target="_blank" rel="noopener noreferrer"
-                aria-label={`${project.name} live site (opens in new tab)`}
-                style={{ color: "var(--color-text-muted)", transition: "color 0.2s", display: "flex", textDecoration: "none" }}
-                onMouseEnter={e => (e.currentTarget.style.color = "var(--color-accent)")}
-                onMouseLeave={e => (e.currentTarget.style.color = "var(--color-text-muted)")}
-              ><EXT /></a>
-            )}
+          <div className="flex shrink-0 gap-2.5">
+            {project.github && <ProjectLink href={project.github} label={`${project.name} on GitHub`}><GH /></ProjectLink>}
+            {project.live && <ProjectLink href={project.live} label={`${project.name} live site`}><EXT /></ProjectLink>}
           </div>
         </div>
 
-        <p style={{ color: "var(--color-text-secondary)", fontSize: "0.85rem", lineHeight: 1.65, margin: 0, flex: 1 }}>
-          {project.description}
-        </p>
+        <p className="flex-1 text-[0.85rem] leading-[1.65] text-text-secondary">{project.description}</p>
 
-        <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 4 }}>
-          {project.highlights.map((h, i) => (
-            <li key={i} style={{ display: "flex", gap: 7, fontSize: "0.76rem", color: "var(--color-text-muted)" }}>
-              <span aria-hidden="true" style={{ color: "var(--color-accent)", fontWeight: 700, flexShrink: 0 }}>✓</span>{h}
+        <ul className="flex flex-col gap-1">
+          {project.highlights.map(highlight => (
+            <li key={highlight} className="flex gap-[7px] text-[0.76rem] text-text-muted">
+              <span aria-hidden="true" className="shrink-0 font-bold text-accent">✓</span>{highlight}
             </li>
           ))}
         </ul>
 
-        <ul role="list" style={{ display: "flex", flexWrap: "wrap", gap: 5, margin: 0, padding: "10px 0 0", listStyle: "none", borderTop: "1px solid var(--color-border)" }}>
-          {project.stack.map(t => (
-            <li key={t} style={{
-              padding: "2px 7px", fontSize: "0.68rem", borderRadius: 4,
-              background: "var(--color-border)", color: "var(--color-accent)",
-              border: "1px solid var(--color-border-hover)",
-            }}>{t}</li>
-          ))}
-        </ul>
+        <ChipList items={project.stack} size="sm" className="border-t border-border pt-2.5" />
       </div>
-    </article>
+    </Card>
   );
 }
 
 export default function Projects() {
   return (
-    <section id="projects" style={{ padding: "96px 0", background: "var(--color-bg-section)" }}>
-      <div style={{ maxWidth: 1152, margin: "0 auto", padding: "0 24px" }}>
-        <SectionHeader path="./projects/*" title="Projects" subtitle="Things I've built, from production storefronts to AI-powered apps." />
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {siteConfig.projects.map(p => <ProjectCard key={p.name} project={p} />)}
-        </div>
+    <Section id="projects" className="bg-bg-section" path="./projects/*" title="Projects" subtitle="Things I've built, from production storefronts to AI-powered apps.">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {siteConfig.projects.map(project => <ProjectCard key={project.name} project={project} />)}
       </div>
-    </section>
+    </Section>
   );
 }
