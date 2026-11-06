@@ -23,7 +23,7 @@ export default function Hero() {
     <section id="hero" aria-label="Hero" className="relative flex min-h-screen items-center overflow-hidden pt-16">
       <div aria-hidden="true" className="grid-bg pointer-events-none absolute inset-0" />
       <div aria-hidden="true" className="hero-glow -top-[20%] -right-[10%]" />
-      <div aria-hidden="true" className="hero-glow -bottom-[35%] -left-[15%] opacity-50" />
+      <div aria-hidden="true" className="hero-glow -bottom-[35%] -left-[15%] opacity-50!" />
       <SeasonalParticles />
       {FLOATING_TAGS.map(({ label, ...style }) => (
         <span key={label} aria-hidden="true" className="floating-tag hidden lg:block" style={style}>

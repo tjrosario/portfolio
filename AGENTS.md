@@ -24,5 +24,6 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Keep components on the server unless they need state or browser APIs, and push `"use client"` down to the smallest leaf.
 - Reuse `Button`, `Card`, `ChipList`, `Section`, and the other shared components before adding new markup.
 - Use arbitrary font sizes like `text-[0.85rem]` where line height must not change, since `text-sm` also sets it. Reference shadows as `shadow-(--shadow-card)`, because Tailwind copies `@theme` shadows into utilities and loses the light override.
+- Unlayered rules in `app/globals.css` beat Tailwind utilities, so a class that shares a property with one needs the `!` modifier or a CSS change. Custom keyframes need names Tailwind doesn't ship.
 - Comments are 1 or 2 lines and say what the code does now, never what it replaced.
 - Commit messages are one conventional-commit line. Reasoning goes in the PR.

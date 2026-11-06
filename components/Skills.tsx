@@ -11,7 +11,7 @@ export default function Skills() {
         </p>
         <ul role="list" className="flex flex-wrap gap-2.5">
           {siteConfig.coreStrengths.map(strength => (
-            <li key={strength} className="rounded-[7px] border border-border-hover bg-border px-4 py-[7px] font-mono text-[0.8rem] font-semibold text-accent">
+            <li key={strength} className="cursor-default rounded-[7px] border border-border-hover bg-border px-4 py-[7px] font-mono text-[0.8rem] font-semibold text-accent">
               <span aria-hidden="true">{"<"}</span>{strength}<span aria-hidden="true">{" />"}</span>
             </li>
           ))}
@@ -30,7 +30,7 @@ export default function Skills() {
             <ul role="list" className="flex flex-wrap gap-[7px]">
               {group.skills.map(skill => (
                 <li key={skill}>
-                  <span className="inline-block rounded-md border border-border bg-bg-card px-[11px] py-[5px] text-[0.78rem] text-text-secondary transition-all duration-[180ms] hover:border-border-hover hover:bg-border hover:text-text-primary hover:shadow-(--shadow-card)">
+                  <span className="inline-block cursor-default rounded-md border border-border bg-bg-card px-[11px] py-[5px] text-[0.78rem] text-text-secondary transition-all duration-[180ms] hover:border-border-hover hover:bg-border hover:text-text-primary hover:shadow-(--shadow-card)">
                     {skill}
                   </span>
                 </li>

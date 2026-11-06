@@ -770,6 +770,7 @@ html:has(.resume-dialog[open]) {
   to { transform: rotate(360deg); }
 }
 
-@keyframes ping {
+/* Named apart from Tailwind's ping, which would otherwise replace it */
+@keyframes badge-ping {
   75%, 100% { transform: scale(2.2); opacity: 0; }
 }
