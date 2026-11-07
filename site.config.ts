@@ -224,6 +224,36 @@ export const siteConfig = {
     },
   ],
 
+  // ── Recommendations ───────────────────────────────────────────────────────
+  linkedinRecommendationCount: 27,
+  /** Verbatim excerpts from LinkedIn; "…" marks a cut within a quote */
+  recommendations: [
+    {
+      name: "Laz Fuentes",
+      title: "Founder and CEO of SQOR.ai",
+      relationship: "Managed Tommy at CPXi",
+      quote: "He makes the really hard stuff look easy and inspires everyone else to be better. As GM of the Consumer Applications division at CPXi, I hired Tom to lead front-end development.",
+    },
+    {
+      name: "Barry Clark",
+      title: "Interim CTO & Advisor, ex-Trello & Atlassian",
+      relationship: "Worked with Tommy at DoSomething",
+      quote: "Tom did a tremendous job on the front-end team at DoSomething. … I appreciated his attention to detail, communication, and thoughtfulness in architecting systems that we could reuse.",
+    },
+    {
+      name: "Matt Holford",
+      title: "Vice President of Engineering at Oscar Health",
+      relationship: "Worked with Tommy at Alexander Interactive",
+      quote: "Tom, a marvelously gifted front-end technologist, delivers at such a high level that his work can sometimes seem like magic. … Every member of his team that I've met, past and present, is thankful for the time they spent learning from him.",
+    },
+    {
+      name: "Jeremy Villano",
+      title: "Growth Operator for PE-Backed Companies",
+      relationship: "Worked with Tommy at Alexander Interactive",
+      quote: "I don't think we ever had a project with a reasonable timeline, or with typical deliverables, and Tom consistently helped us figure out the best ways to get the project done. Even when Tom pushed back on feasibility, he always had a suggested solution to get us where we wanted to go.",
+    },
+  ],
+
   // ── Ticker marquee keywords ───────────────────────────────────────────────
   tickerWords: [
     "React & Next.js",
