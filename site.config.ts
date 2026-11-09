@@ -38,7 +38,7 @@ export const siteConfig = {
   // ── Contact ───────────────────────────────────────────────────────────────
   email:         "tom.jason.rosario@gmail.com",
   github:        "https://github.com/tjrosario",
-  linkedin:      "https://www.linkedin.com/in/tommy-rosario-65771711/",
+  linkedin:      "https://www.linkedin.com/in/tommy-rosario/",
   twitter:       "https://twitter.com/tommyrosario",
 
   // ── SEO / OG ──────────────────────────────────────────────────────────────
