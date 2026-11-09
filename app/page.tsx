@@ -9,6 +9,7 @@ import Hero from "@/components/Hero";
 import Ticker from "@/components/Ticker";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
+import Recommendations from "@/components/Recommendations";
 import AiWorkflow from "@/components/AiWorkflow";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
@@ -38,6 +39,7 @@ export default function Home() {
         <Ticker />
         <About />
         <Experience entries={entries} />
+        <Recommendations />
         <AiWorkflow />
         <Skills />
         <Projects />

@@ -1,5 +1,5 @@
 interface CardProps {
-  as?: "div" | "article";
+  as?: "div" | "article" | "figure";
   /** Lifts the card on hover */
   interactive?: boolean;
   className?: string;

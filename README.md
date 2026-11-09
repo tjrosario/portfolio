@@ -51,7 +51,7 @@ lib/          Theme, season, motion, and resume state
 mocks/        MSW handlers shared by local development and tests
 public/       Fonts, icons, images, and the generated MSW service worker
 test/         Vitest setup
-site.config.ts   Site content, projects, skills, and seasons
+site.config.ts   Site content, projects, recommendations, skills, and seasons
 ```
 
 ## Testing
@@ -72,7 +72,7 @@ In development, [MSW](https://mswjs.io) intercepts `/api/resume` and adds a 1.2 
 
 | Content | Where it lives |
 |---|---|
-| Name, bio, skills, projects, links, seasons | `site.config.ts` |
+| Name, bio, skills, projects, recommendations, links, seasons | `site.config.ts` |
 | Experience timeline | `data/experience.json` |
 | Resume dialog | `data/resume.json` |
 | Season accent colors | `app/globals.css` |
@@ -89,4 +89,4 @@ I build with AI agents day to day. `AGENTS.md` and `CLAUDE.md` hold the instruct
 
 ## License
 
-The source code is available under the [MIT License](LICENSE). My name, likeness, images, biography, and resume and experience content aren't covered by it. All rights to those are reserved, so please replace them if you reuse this code.
+The source code is available under the [MIT License](LICENSE). My name, likeness, images, biography, and resume and experience content aren't covered by it, and the recommendations belong to the people who wrote them. All rights to those are reserved, so please replace them if you reuse this code.
