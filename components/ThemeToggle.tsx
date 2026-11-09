@@ -27,73 +27,23 @@ const MoonIcon = () => (
 export default function ThemeToggle() {
   const { theme, toggle } = useTheme();
   const isDark = theme === "dark";
+  const label = isDark ? "Switch to light mode" : "Switch to dark mode";
 
   return (
     <button
+      type="button"
       onClick={toggle}
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      title={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: 6,
-        padding: "6px 10px",
-        borderRadius: 20,
-        border: "1px solid var(--color-border)",
-        background: "var(--color-bg-card)",
-        cursor: "pointer",
-        transition: "border-color 0.2s, box-shadow 0.2s",
-        flexShrink: 0,
-        position: "relative",
-        overflow: "hidden",
-      }}
-      onMouseEnter={e => {
-        e.currentTarget.style.borderColor = "var(--color-border-hover)";
-        e.currentTarget.style.boxShadow = "0 0 12px color-mix(in srgb, var(--color-accent) 12%, transparent)";
-      }}
-      onMouseLeave={e => {
-        e.currentTarget.style.borderColor = "var(--color-border)";
-        e.currentTarget.style.boxShadow = "none";
-      }}
+      aria-label={label}
+      title={label}
+      className="relative flex shrink-0 cursor-pointer items-center gap-1.5 overflow-hidden rounded-[20px] border border-border bg-bg-card px-2.5 py-1.5 transition-[border-color,box-shadow] duration-200 hover:border-border-hover hover:shadow-[0_0_12px_color-mix(in_srgb,var(--color-accent)_12%,transparent)]"
     >
-      {/* Track */}
-      <div style={{
-        position: "relative",
-        width: 36,
-        height: 20,
-        borderRadius: 10,
-        background: "color-mix(in srgb, var(--color-accent) 16%, transparent)",
-        border: "1px solid var(--color-border)",
-        transition: "background 0.25s",
-        flexShrink: 0,
-      }}>
-        {/* Thumb */}
-        <div style={{
-          position: "absolute",
-          top: 2,
-          left: isDark ? 2 : 16,
-          width: 14,
-          height: 14,
-          borderRadius: "50%",
-          border: "1px solid transparent",
-          background: "var(--color-accent)",
-          transition: "left 0.25s cubic-bezier(0.34,1.56,0.64,1)",
-          boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}>
-        </div>
+      <div className="relative h-5 w-9 shrink-0 rounded-[10px] border border-border bg-[color-mix(in_srgb,var(--color-accent)_16%,transparent)]">
+        <div
+          className="absolute top-0.5 size-3.5 rounded-full border border-transparent bg-accent shadow-[0_1px_4px_rgba(0,0,0,0.2)] transition-[left] duration-250 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+          style={{ left: isDark ? 2 : 16 }}
+        />
       </div>
-
-      {/* Icon */}
-      <span style={{
-        color: "var(--color-accent)",
-        display: "flex",
-        alignItems: "center",
-        transition: "transform 0.3s, opacity 0.2s",
-        transform: isDark ? "rotate(0deg)" : "rotate(180deg)",
-      }}>
+      <span className="flex items-center text-accent transition-transform duration-300" style={{ transform: isDark ? "none" : "rotate(180deg)" }}>
         {isDark ? <MoonIcon /> : <SunIcon />}
       </span>
     </button>

@@ -1,28 +1,15 @@
-"use client";
-
 import { siteConfig } from "@/site.config";
 
 export default function Ticker() {
   const items = [...siteConfig.tickerWords, ...siteConfig.tickerWords];
+
   return (
-    <div aria-hidden="true" style={{
-      overflow: "hidden",
-      borderTop: "1px solid var(--color-border)",
-      borderBottom: "1px solid var(--color-border)",
-      padding: "12px 0",
-      background: "var(--color-bg-section)",
-    }}>
-      <div className="animate-marquee" style={{ display: "flex", whiteSpace: "nowrap", willChange: "transform" }}>
+    <div aria-hidden="true" className="overflow-hidden border-y border-border bg-bg-section py-3">
+      <div className="animate-marquee flex whitespace-nowrap will-change-transform">
         {items.map((word, i) => (
-          <span key={i} className={i >= siteConfig.tickerWords.length ? "ticker-repeat" : undefined} style={{ display: "inline-flex", alignItems: "center", gap: 16, margin: "0 16px" }}>
-            <span style={{
-              fontFamily: "var(--font-mono)", fontWeight: 600,
-              fontSize: "0.72rem",
-              color: "var(--color-text-muted)",
-            }}>
-              {word}
-            </span>
-            <span style={{ fontFamily: "var(--font-mono)", color: "var(--color-accent)", fontSize: "0.72rem" }}>{"//"}</span>
+          <span key={i} className={`mx-4 inline-flex items-center gap-4 ${i >= siteConfig.tickerWords.length ? "ticker-repeat" : ""}`}>
+            <span className="font-mono text-[0.72rem] font-semibold text-text-muted">{word}</span>
+            <span className="font-mono text-[0.72rem] text-accent">{"//"}</span>
           </span>
         ))}
       </div>
